@@ -6,6 +6,8 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<html>
+<head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
   :host {
@@ -30,70 +32,38 @@
     margin: 0;
   }
 
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    height: 60px;
-    margin: -8px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover {
-    opacity: 0.8;
-  }
-
   #loginContainer{
     padding: 5rem;
+    display: block;
+    margin: 0 auto;
+    max-width: 40rem;
+
   }
 
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
+  .content{
+    display: block;
+    margin: 0 auto;
   }
 
   a:hover {
     color: #125699;
   }
 
-
-
   footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-    justify-content: center;
+    position: fixed;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
   }
 
   footer a {
     display: flex;
     align-items: center;
+
   }
-
-
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-
-
-
 
   }
 
@@ -101,17 +71,34 @@
 
   }
 </style>
+</head>
 
-<!-- Toolbar -->
-<nav class="navbar navbar-dark bg-primary">
-  <!-- Navbar content -->
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PSD2</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="Inloggen.html">Inloggen <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Registreren</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
+<div class="content">
   <!-- Inloggen -->
   <div id="loginContainer">
     <form>
       <div class="form-group">
-        <h2>PSD2</h2>
+        <h2>Inloggen</h2>
         <p>Log hier in met je gebruikersgegevens.</p>
         <br>
         <label for="exampleInputEmail1">Emailadres</label>
@@ -121,15 +108,19 @@
         <label for="exampleInputPassword1">Wachtwoord</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Wachtwoord">
       </div>
-      <button type="submit" class="btn btn-primary">Inloggen</button>
+      <small>Als je nog geen account hebt klik dan <a href="#"> <u>hier</u></a>.</small><br>
+      <button type="submit" class="btn btn-primary">Log in</button>
     </form>
   </div>
-
+</div>
+</body>
 
   <!-- Footer -->
   <footer>
     <p>Osaka & Info Support - © 2019</p>
   </footer>
+
+</html>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
