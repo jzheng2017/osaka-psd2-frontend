@@ -1,0 +1,134 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    :host {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 14px;
+      color: #333;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 8px 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    #loginContainer{
+      padding: 5rem;
+      display: block;
+      margin: 0 auto;
+      max-width: 40rem;
+
+    }
+
+    .content{
+      display: block;
+      margin: 0 auto;
+    }
+
+    a:hover {
+      color: #125699;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer a {
+      display: flex;
+      align-items: center;
+
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 767px) {
+
+    }
+
+    @media screen and (max-width: 575px) {
+
+    }
+  </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PSD2</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="Inloggen.html">Inloggen <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Registreren</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="content">
+  <!-- Inloggen -->
+  <div id="loginContainer">
+    <form>
+      <div class="form-group">
+        <h2>Inloggen</h2>
+        <p>Log hier in met je gebruikersgegevens.</p>
+        <br>
+        <label for="inputLoginEmail">Emailadres</label>
+        <input type="email" class="form-control" id="inputLoginEmail" aria-describedby="emailHelp" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="inputLoginWachtwoord">Wachtwoord</label>
+        <input type="password" class="form-control" id="inputLoginWachtwoord" placeholder="Wachtwoord">
+      </div>
+      <small>Als je nog geen account hebt klik dan <a href="#"> <u>hier</u></a>.</small><br>
+      <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+  </div>
+</div>
+</body>
+
+<!-- Footer -->
+<footer>
+  <p>Osaka & Info Support - © 2019</p>
+</footer>
+
+</html>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>
