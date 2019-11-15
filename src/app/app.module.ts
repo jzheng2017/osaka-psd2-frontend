@@ -8,7 +8,7 @@ import { TransactieoverzichtComponent } from './transactieoverzicht/transactieov
 @NgModule({
   declarations: [
     AppComponent,
-    TransactieoverzichtComponent
+    TransactieoverzichtComponent,
   ],
   imports: [
     BrowserModule,
