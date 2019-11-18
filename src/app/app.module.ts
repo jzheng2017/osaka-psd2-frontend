@@ -10,7 +10,8 @@ import {InloggenComponent} from './inloggen/inloggen.component';
 @NgModule({
     declarations: [
         AppComponent,
-        InloggenComponent
+        InloggenComponent,
+        RegistrationComponent
     ],
     imports: [
         BrowserModule,
