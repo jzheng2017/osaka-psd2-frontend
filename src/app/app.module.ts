@@ -6,12 +6,14 @@ import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {InloggenComponent} from './inloggen/inloggen.component';
+import { RekeningoverzichtComponent } from './rekeningoverzicht/rekeningoverzicht.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         InloggenComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        RekeningoverzichtComponent
     ],
     imports: [
         BrowserModule,
