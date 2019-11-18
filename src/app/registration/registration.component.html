@@ -25,7 +25,7 @@
                            placeholder="Wachtwoord" required="true" #password="ngModel" minlength="8">
                     <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
                         <li *ngIf="password.errors.required">Wachtwoord is verplicht</li>
-                        <li *ngIf="password.errors.minlength">Wachtwoord moet uit minimaal 8 karakters bestaan</li>
+                        <li *ngIf="password.errors.minlength">Wachtwoord moet uit minimaal {{password.errors.minlength.requiredLength}} karakters bestaan</li>
                     </div>
                 </div>
 
