@@ -9,8 +9,8 @@ import {TransactieoverzichtComponent} from './transactieoverzicht/transactieover
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
     {path: 'inloggen', component: InloggenComponent},
-    {path: 'rekeningoverzicht', component: RekeningoverzichtComponent},
-    {path: 'transactieoverzicht', component: TransactieoverzichtComponent}
+    {path: 'overzicht/rekening', component: RekeningoverzichtComponent},
+    {path: 'overzicht/transactie', component: TransactieoverzichtComponent}
 ];
 
 @NgModule({
