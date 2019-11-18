@@ -7,13 +7,15 @@ import {RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {InloggenComponent} from './inloggen/inloggen.component';
 import { RekeningoverzichtComponent } from './rekeningoverzicht/rekeningoverzicht.component';
+import { TransactieoverzichtComponent } from './transactieoverzicht/transactieoverzicht.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         InloggenComponent,
         RegistrationComponent,
-        RekeningoverzichtComponent
+        RekeningoverzichtComponent,
+        TransactieoverzichtComponent
     ],
     imports: [
         BrowserModule,

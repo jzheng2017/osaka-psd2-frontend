@@ -1,0 +1,59 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PSD2</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Transactieoverzicht</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Uitloggen</button>
+    </form>
+  </div>
+</nav>
+
+<div class="content">
+  <!-- Inloggen -->
+  <div id="overzichtContainer">
+    <div id="overzichtHeader" style="display: flex">
+      <h2>Transactieoverzicht</h2>
+      <h6 id="IBAN">INGBNL4728912398</h6>
+    </div>
+    <h5>Balans: €3922</h5>
+    <form class="form-inline my-2 my-lg-0" id="overzichtHeaderKnop">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Overboeken</button>
+    </form>
+    <p>Hieronder staan alle transacties die bij de rekening horen.</p><br>
+
+    <ul class="list-group">
+      <li class="list-group-item"><small>28-2-2019</small><br>Winkel A <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
+      <li class="list-group-item"><small>28-2-2019</small><br>Winkel B <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
+      <li class="list-group-item"><small>28-2-2019</small><br>Winkel C <span class="transactieRight"><span class="bedrag">Bedrag: -€1644</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
+      <li class="list-group-item"><small>28-2-2019</small><br>J. Dijk rekening <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
+      <li class="list-group-item"><small>28-2-2019</small><br>L. Dak <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
+      <li class="list-group-item"><small>28-2-2019</small><br>P. Huizen <span class="transactieRight"><span class="bedrag">Bedrag: -€63</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>Osaka & Info Support - © 2019</p>
+</footer>
+
+</body>
+
+</html>
+
+<router-outlet></router-outlet>
