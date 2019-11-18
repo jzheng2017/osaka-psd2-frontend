@@ -1,13 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {InloggenComponent} from './inloggen/inloggen.component';
-import { RekeningoverzichtComponent } from './rekeningoverzicht/rekeningoverzicht.component';
-import { TransactieoverzichtComponent } from './transactieoverzicht/transactieoverzicht.component';
+import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
+import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
+import {FormsModule} from '@angular/forms';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +20,7 @@ import { TransactieoverzichtComponent } from './transactieoverzicht/transactieov
     imports: [
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
         RouterModule.forRoot([
             {path: 'registration', component: RegistrationComponent}
         ])

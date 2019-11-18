@@ -1,21 +1,28 @@
 <div class="content container">
     <div id="registrationContainer">
         <div class="row">
-            <h2>Registreren</h2>
-            <form class="col-sm-12">
+            <div *ngIf="submitted" class="col-sm-12 alert alert-success">
+                U bent nu geregistreerd
+            </div>
+            <form class="col-sm-12" #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+                <h2>Registreren</h2>
                 <div class="form-group">
-
                     <p>Registreer hier een account.</p>
                     <br>
                     <label for="email">Emailadres</label>
-                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
-                           placeholder="Email">
+                    <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email"
+                           aria-describedby="emailHelp"
+                           placeholder="Email" required="true" #email="ngModel">
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is verplicht</div>
                 </div>
                 <div class="form-group">
                     <label for="password">Wachtwoord</label>
-                    <input type="password" class="form-control" id="password" placeholder="Wachtwoord">
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password"
+                           placeholder="Wachtwoord" required="true" #password="ngModel" minlength="8">
+                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Wachtwoord is verplicht</div>
+
                 </div>
-                <input type="submit" class="btn btn-primary" value="Maak account aan">
+                <input type="submit" class="btn btn-primary" value="Maak account aan" [disabled]="!registrationForm.valid">
             </form>
         </div>
     </div>
