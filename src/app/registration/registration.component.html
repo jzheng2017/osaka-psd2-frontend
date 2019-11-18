@@ -2,7 +2,7 @@
     <div id="registrationContainer">
         <div class="row">
             <div *ngIf="submitted" class="col-sm-12 alert alert-success">
-                U bent nu geregistreerd
+                Je bent nu geregistreerd. Je wordt in een ogenblik naar de inlogpagina gestuurd.
             </div>
             <form class="col-sm-12" #registrationForm="ngForm" (ngSubmit)="onSubmit()">
                 <h2>Registreren</h2>
@@ -12,17 +12,36 @@
                     <label for="email">Emailadres</label>
                     <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email"
                            aria-describedby="emailHelp"
-                           placeholder="Email" required="true" #email="ngModel">
-                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is verplicht</div>
+                           placeholder="Email" required email #email="ngModel">
+                    <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
+                        <li *ngIf="email.errors.required">Email is verplicht</li>
+                        <li *ngIf="email.errors.email">Email is ongeldig</li>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Wachtwoord</label>
-                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password"
+                    <input type="password" class="form-control" id="password" name="password"
+                           [(ngModel)]="user.password"
                            placeholder="Wachtwoord" required="true" #password="ngModel" minlength="8">
-                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Wachtwoord is verplicht</div>
-
+                    <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
+                        <li *ngIf="password.errors.required">Wachtwoord is verplicht</li>
+                        <li *ngIf="password.errors.minlength">Wachtwoord moet uit minimaal 8 karakters bestaan</li>
+                    </div>
                 </div>
-                <input type="submit" class="btn btn-primary" value="Maak account aan" [disabled]="!registrationForm.valid">
+
+                <div class="form-group">
+                    <label for="confirm_password">Bevestig wachtwoord</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                           [(ngModel)]="user.confirmPassword"
+                           placeholder="Bevestig wachtwoord" required #confirmPassword="ngModel" pattern="{{password.value}}">
+                    <div *ngIf="confirmPassword.invalid && confirmPassword.dirty" class="alert alert-danger">
+                        <li *ngIf="confirmPassword.errors.required">Bevestig wachtwoord is verplicht</li>
+                        <li *ngIf="confirmPassword.errors.pattern">Wachtwoorden moeten overeenkomen</li>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Maak account aan"
+                       [disabled]="!registrationForm.valid">
             </form>
         </div>
     </div>
