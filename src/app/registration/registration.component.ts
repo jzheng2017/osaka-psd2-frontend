@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Registration} from '../registration';
+import {Registration} from './registration';
 import {Router} from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class RegistrationComponent {
 
     onSubmit() {
         this.submitted = true;
-        setTimeout(() => this.router.navigate(['inloggen']), 5000);
+        setTimeout(() => this.router.navigate(['login']), 5000);
     }
 
     register() {

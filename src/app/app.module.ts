@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
-import {InloggenComponent} from './inloggen/inloggen.component';
+import {InloggenComponent} from './login/inloggen.component';
 import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
 import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
 import {FormsModule} from '@angular/forms';
