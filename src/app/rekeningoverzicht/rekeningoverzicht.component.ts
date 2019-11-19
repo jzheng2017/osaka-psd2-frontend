@@ -10,6 +10,8 @@ import {RekeningService} from '../service/rekening.service';
 export class RekeningoverzichtComponent implements OnInit {
 
     rekeningen: Rekening[];
+    totalBalance: number;
+    isLoading = true;
 
     constructor(private rekeningService: RekeningService) {
     }
@@ -19,7 +21,15 @@ export class RekeningoverzichtComponent implements OnInit {
     }
 
     getRekeningen() {
-        this.rekeningService.getRekeningen().subscribe(rekeningen => this.rekeningen = rekeningen);
+        this.rekeningService.getRekeningen().subscribe(rekeningen => {
+                this.rekeningen = rekeningen;
+                this.totalBalance = 0;
+                for (const rekening of rekeningen) {
+                    this.totalBalance = this.totalBalance + rekening.balance;
+                }
+                this.isLoading = false;
+            }
+        );
     }
 
 }
