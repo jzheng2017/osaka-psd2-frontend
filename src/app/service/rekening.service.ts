@@ -15,4 +15,9 @@ export class RekeningService {
     getRekeningen(): Observable<Rekening[]> {
         return this.http.get<Rekening[]>(this.apiUrl);
     }
+
+    getRekening(id: number) {
+        const url = `${this.apiUrl}/${id}`;
+        return this.http.get<Rekening>(url);
+    }
 }

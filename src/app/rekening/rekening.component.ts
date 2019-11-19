@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Rekening} from "./rekening";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {RekeningService} from '../service/rekening.service';
+import {Rekening} from './rekening';
 
 @Component({
     selector: 'app-rekening',
@@ -8,12 +10,21 @@ import {Rekening} from "./rekening";
 })
 export class RekeningComponent implements OnInit {
 
-    @Input() rekening: Rekening;
+    rekening: Rekening;
+    isLoading = true;
 
-    constructor() {
+    constructor(private activtedRoute: ActivatedRoute, private rekeningService: RekeningService) {
     }
 
     ngOnInit() {
+        this.getRekening(+this.activtedRoute.snapshot.paramMap.get('id'));
+    }
+
+    getRekening(id: number) {
+        this.rekeningService.getRekening(id).subscribe(rekening => {
+            this.rekening = rekening;
+            this.isLoading = false;
+        });
     }
 
 }

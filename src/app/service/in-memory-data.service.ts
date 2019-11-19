@@ -18,6 +18,17 @@ export class InMemoryDataService implements InMemoryDbService {
             {id: '4', name: 'ING', bankAccountNumber: 'INGBNL27164300', balance: 55},
         ];
 
-        return {rekeningen};
+        const transactions = [
+            {
+                id: '1',
+                bankAccountNumber: 'INGBNL27164300',
+                bankAccountNumberSender: 'INGBNL27039529',
+                amount: 55,
+                datetime: '12-05-2019 10:55',
+                comment: 'hahahahha'
+            }
+        ];
+
+        return {rekeningen, transactions};
     }
 }
