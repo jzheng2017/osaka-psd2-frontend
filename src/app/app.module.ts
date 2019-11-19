@@ -8,6 +8,7 @@ import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.
 import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
+import {RekeningComponent} from "./rekening/rekening.component";
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import {AppRoutingModule} from './app-routing.module';
         InloggenComponent,
         RegistrationComponent,
         RekeningoverzichtComponent,
-        TransactieoverzichtComponent
+        TransactieoverzichtComponent,
+        RekeningComponent
     ],
     imports: [
         BrowserModule,
