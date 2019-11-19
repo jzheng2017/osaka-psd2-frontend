@@ -12,6 +12,7 @@ import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from "./service/in-memory-data.service";
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {InMemoryDataService} from "./service/in-memory-data.service";
         RegistrationComponent,
         RekeningoverzichtComponent,
         TransactieoverzichtComponent,
-        RekeningComponent
+        RekeningComponent,
+        TransactionComponent
     ],
     imports: [
         BrowserModule,

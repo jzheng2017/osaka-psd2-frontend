@@ -15,5 +15,10 @@ export class TransactionService {
     getTransacties() {
         return this.http.get<Transaction[]>(this.apiUrl);
     }
+
+    getTransactie(id: number) {
+        const url = `${this.apiUrl}/${id}`;
+        return this.http.get<Transaction>(url);
+    }
 }
 
