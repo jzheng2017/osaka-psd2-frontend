@@ -6,12 +6,12 @@
                 <h2>Login</h2>
                 <p>Log hier in met je gebruikersgegevens.</p>
                 <br>
-                <label for="email">Emailadres</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                <label for="email">E-mailadres</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail"
                        [(ngModel)]="user.email" required email #email="ngModel">
                 <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
-                    <li *ngIf="email.errors.required">Email is verplicht</li>
-                    <li *ngIf="email.errors.email">Email is ongeldig</li>
+                    <li *ngIf="email.errors.required">E-mail is verplicht</li>
+                    <li *ngIf="email.errors.email">E-mail is ongeldig</li>
                 </div>
             </div>
             <div class="form-group">

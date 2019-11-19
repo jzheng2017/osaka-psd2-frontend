@@ -12,7 +12,7 @@ export class RegistrationComponent {
 
     submitted = false;
 
-    user = new Registration('', '','');
+    user = new Registration('', '', '');
 
     constructor(private router: Router) {
     }
