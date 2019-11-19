@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {InMemoryDbService} from 'angular-in-memory-web-api';
-import {Rekening} from '../rekening/rekening';
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +25,21 @@ export class InMemoryDataService implements InMemoryDbService {
                 amount: 55,
                 datetime: '12-05-2019 10:55',
                 comment: 'hahahahha'
-            }
+            }, {
+                id: '2',
+                bankAccountNumber: 'INGBNL27164300',
+                bankAccountNumberSender: 'INGBNL2382529',
+                amount: 121,
+                datetime: '12-05-2019 23:12',
+                comment: 'hahahahha'
+            }, {
+                id: '3',
+                bankAccountNumber: 'INGBNL27164300',
+                bankAccountNumberSender: 'INGBNL94282229',
+                amount: 515,
+                datetime: '12-05-2019 10:55',
+                comment: 'hahahahha'
+            },
         ];
 
         return {rekeningen, transactions};

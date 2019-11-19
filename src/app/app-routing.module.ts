@@ -7,11 +7,11 @@ import {RekeningComponent} from './rekening/rekening.component';
 
 
 const routes: Routes = [
-    { path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full' },
     {path: 'registration', component: RegistrationComponent},
     {path: 'login', component: InloggenComponent},
     {path: 'overzicht/rekeningen', component: RekeningoverzichtComponent},
-    {path: 'rekening/:id/details', component: RekeningComponent}
+    {path: 'rekening/:id/details', component: RekeningComponent},
+    { path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full' },
 ];
 
 @NgModule({
