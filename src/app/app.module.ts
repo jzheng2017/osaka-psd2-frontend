@@ -8,7 +8,10 @@ import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.
 import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {RekeningComponent} from "./rekening/rekening.component";
+import {RekeningComponent} from './rekening/rekening.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {InMemoryDataService} from "./service/in-memory-data.service";
 
 @NgModule({
     declarations: [
@@ -23,9 +26,11 @@ import {RekeningComponent} from "./rekening/rekening.component";
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        RouterModule.forRoot([
-            {path: 'registration', component: RegistrationComponent}
-        ])
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService, {dataEncapsulation: false}
+        ),
+        RouterModule
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Rekening} from '../rekening/rekening';
+import {RekeningService} from '../service/rekening.service';
 
 @Component({
     selector: 'app-rekeningoverzicht',
@@ -7,18 +8,18 @@ import {Rekening} from '../rekening/rekening';
     styleUrls: ['./rekeningoverzicht.component.css']
 })
 export class RekeningoverzichtComponent implements OnInit {
-    rekeningen: Rekening[] = [
-        {id: '1', name: 'Rabobank', balance: 123},
-        {id: '1', name: 'Rabobank', balance: 123},
-        {id: '1', name: 'Rabobank', balance: 123},
-        {id: '1', name: 'Rabobank', balance: 123},
-    ];
+
+    rekeningen: Rekening[];
+
+    constructor(private rekeningService: RekeningService) {
+    }
 
     ngOnInit() {
+        this.getRekeningen();
     }
 
     getRekeningen() {
-
+        this.rekeningService.getRekeningen().subscribe(rekeningen => this.rekeningen = rekeningen);
     }
 
 }
