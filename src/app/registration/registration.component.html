@@ -9,13 +9,13 @@
                 <div class="form-group">
                     <p>Registreer hier een account.</p>
                     <br>
-                    <label for="email">Emailadres</label>
+                    <label for="email">E-mailadres</label>
                     <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email"
                            aria-describedby="emailHelp"
-                           placeholder="Email" required email #email="ngModel">
+                           placeholder="E-mail" required email #email="ngModel">
                     <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
-                        <li *ngIf="email.errors.required">Email is verplicht</li>
-                        <li *ngIf="email.errors.email">Email is ongeldig</li>
+                        <li *ngIf="email.errors.required">E-mail is verplicht</li>
+                        <li *ngIf="email.errors.email">E-mail is ongeldig</li>
                     </div>
                 </div>
                 <div class="form-group">
