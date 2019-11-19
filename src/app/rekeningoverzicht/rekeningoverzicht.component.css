@@ -79,47 +79,9 @@ footer a {
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
-  #overzichtHeader h2{
-    font-size: 1.5rem;
-  }
-
-  #overzichtHeader h5, h6{
-    font-size: 1rem;
-  }
-
-  #overzichtContainer{
-    padding: 2rem;
-    display: block;
-    margin: 0 auto;
-    max-width: 80rem;
-  }
 
 }
 
 @media screen and (max-width: 575px) {
-  #overzichtHeader h2{
-    font-size: 1.2rem;
-  }
 
-  #overzichtHeader h5, h6{
-    font-size: 0.8rem;
-  }
-
-  #overzichtContainer{
-    padding: 1rem;
-    display: block;
-    margin: 0 auto;
-    max-width: 80rem;
-  }
-
-  .btn {
-    padding: 0.4rem 0.4rem;
-    font-size: 14px;
-    border-radius: 0.4rem;
-  }
-
-  .bedrag{
-    margin-right: 10px;
-
-  }
 }
