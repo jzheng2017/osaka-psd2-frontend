@@ -1,24 +1,36 @@
-<div class="content">
+<div class="container">
   <!-- Inloggen -->
-  <div id="overzichtContainer">
-    <div id="overzichtHeader" style="display: flex">
+  <div class="row">
+    <div class="col-sm-12">
       <h2>Transactieoverzicht</h2>
-      <h6 id="IBAN">INGBNL4728912398</h6>
-    </div>
-    <h5>Balans: €3922</h5>
-    <form class="form-inline my-2 my-lg-0" id="overzichtHeaderKnop">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Overboeken</button>
-    </form>
-    <p>Hieronder staan alle transacties die bij de rekening horen.</p><br>
+      <h4>INGBNL4728912398</h4>
+      <h5>Balans: €3922</h5>
 
-    <ul class="list-group">
-      <li class="list-group-item"><small>28-2-2019</small><br>Winkel A <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
-      <li class="list-group-item"><small>28-2-2019</small><br>Winkel B <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
-      <li class="list-group-item"><small>28-2-2019</small><br>Winkel C <span class="transactieRight"><span class="bedrag">Bedrag: -€1644</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
-      <li class="list-group-item"><small>28-2-2019</small><br>J. Dijk rekening <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
-      <li class="list-group-item"><small>28-2-2019</small><br>L. Dak <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
-      <li class="list-group-item"><small>28-2-2019</small><br>P. Huizen <span class="transactieRight"><span class="bedrag">Bedrag: -€63</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>
-    </ul>
+      <form class="form-inline my-2 my-lg-0" id="overzichtHeaderKnop">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Overboeken</button>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <p>Hieronder staan alle transacties die bij de rekening horen.</p><br>
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <small>27-2-2019</small>
+          <br>Winkel A <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button
+                class="btn btn-primary">Details</button></span></li>
+        <li class="list-group-item">
+          <small>24-2-2019</small>
+          <br>Winkel B <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button
+                class="btn btn-primary">Details</button></span></li>
+        <li class="list-group-item">
+          <small>24-2-2019</small>
+          <br>F. van Dalen<span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button
+                class="btn btn-primary">Details</button></span></li>
+        <li class="list-group-item">
+          <small>22-2-2019</small>
+          <br>D. Baks <span class="transactieRight"><span class="bedrag">Bedrag: +€10</span><button
+                class="btn btn-primary">Details</button></span></li>
+      </ul>
+    </div>
   </div>
 </div>
-
