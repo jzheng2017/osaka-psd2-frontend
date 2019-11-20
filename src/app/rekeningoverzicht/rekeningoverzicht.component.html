@@ -9,9 +9,9 @@
     <p>Hieronder staan alle rekeningen die gekoppeld zijn aan je account.</p><br>
 
     <ul class="list-group">
-        <li class="list-group-item" *ngFor="let rekening of rekeningen">{{rekening.name}} / {{rekening.bankAccountNumber}} <span
-                class="transactieRight"><span class="bedrag">Balans: €{{rekening.balance}}</span><a
+        <li class="list-group-item" *ngFor="let rekening of rekeningen">{{rekening.name}} / {{rekening.iban}} <span
+                class="transactieRight"><a
                 class="btn btn-secondary infoButton"
-                [routerLink]="['/rekening', rekening.id, 'details']">Details</a></span></li>
+                [routerLink]="['/rekening', rekening.resourceId, 'details']">Details</a></span></li>
     </ul>
 </div>

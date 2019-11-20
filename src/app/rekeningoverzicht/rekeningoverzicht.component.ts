@@ -10,25 +10,21 @@ import {stringify} from 'querystring';
 })
 export class RekeningoverzichtComponent implements OnInit {
 
-    rekeningen: Array<Rekening>;
+    rekeningen: Rekening[];
 
     constructor(private rekeningService: RekeningService) {
     }
 
     ngOnInit() {
-        this.rekeningen = this.getRekeningen();
-        console.log(this.rekeningen);
+        this.getRekeningen();
     }
 
-    getRekeningen(): Array<Rekening> {
+    getRekeningen() {
         this.rekeningService.getRekeningen().subscribe(rekeningen => {
             console.log(rekeningen);
-            //this.rekeningen = new Array<Rekening>(rekeningen.length);
-            this.rekeningen = rekeningen;
+            this.rekeningen = rekeningen.accounts;
             console.log(this.rekeningen);
-            return this.rekeningen;
         });
-        return this.rekeningen;
     }
 
 }

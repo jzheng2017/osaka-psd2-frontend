@@ -1,4 +1,4 @@
 export class Rekening {
-    constructor(public id: string, public bankAccountNumber: string, public name: string, public balance: number) {
+    constructor(public resourceId: string, public iban: string, public name: string, public status: string) {
     }
 }
