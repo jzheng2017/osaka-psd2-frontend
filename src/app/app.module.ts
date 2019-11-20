@@ -10,8 +10,8 @@ import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from "./service/in-memory-data.service";
+//import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+//import {InMemoryDataService} from './service/in-memory-data.service';
 
 @NgModule({
     declarations: [
@@ -27,9 +27,9 @@ import {InMemoryDataService} from "./service/in-memory-data.service";
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(
-            InMemoryDataService, {dataEncapsulation: false}
-        ),
+        // HttpClientInMemoryWebApiModule.forRoot(
+        //     InMemoryDataService, {dataEncapsulation: false}
+        // ),
         RouterModule
     ],
     providers: [],
