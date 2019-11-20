@@ -1,10 +1,10 @@
 export class Transaction {
 
-    constructor(private id: number,
-                private bankAccountNumber: string,
-                private bankAccountNumberSender: string,
-                private amount: number,
-                private datetime: string,
-                private comment: string) {
+    constructor(public id: number,
+                public bankAccountNumber: string,
+                public bankAccountNumberSender: string,
+                public amount: number,
+                public datetime: string,
+                public comment: string) {
     }
 }
