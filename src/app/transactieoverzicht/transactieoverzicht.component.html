@@ -4,8 +4,22 @@
 
     <ul class="list-group">
         <li *ngFor="let transaction of transactions" class="list-group-item">
-            <small>{{transaction.datetime}}</small>
-            <br>{{transaction.bankAccountNumberSender}} <span class="transactieRight"><span class="bedrag">Bedrag: €{{transaction.amount}}</span><a
-                class="btn btn-primary infoButton" [routerLink]="['/transactie', transaction.id, 'details']">Details</a></span></li>
+            <div class="row">
+                <div class="col-sm-12">
+                    <small>{{transaction.datetime}}</small>
+                </div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6">{{transaction.bankAccountNumberSender}}</div>
+                        <div class="col-sm-3 text-md-right"> Bedrag: €{{transaction.amount}}</div>
+                        <div class="col-sm-3"><a class="btn btn-primary infoButton float-right"
+                                                 [routerLink]="['/transactie', transaction.id, 'details']">Details</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </li>
     </ul>
 </div>
