@@ -6,7 +6,7 @@
         </div>
 
         <div class="col-sm-12" *ngIf="isLoading">
-            Transactiegegevens wordt opgehaald...
+            Transactiegegevens worden opgehaald...
         </div>
         <div class="col-sm-12" *ngIf="!isLoading">
             <div class="card">
@@ -14,6 +14,8 @@
                     <b>{{transaction.bankAccountNumberSender}}</b> naar <b>{{transaction.bankAccountNumber}}</b>
                 </div>
                 <div class="card-body">
+                    <b>Transactie ID:</b> {{transaction.id}}
+                    <br>
                     <b>Datum:</b> {{transaction.datetime}}
                     <br>
                     <b>Bedrag:</b> &euro;{{transaction.amount}}
