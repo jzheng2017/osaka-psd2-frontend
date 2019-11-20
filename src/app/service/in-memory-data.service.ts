@@ -31,7 +31,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 bankAccountNumberSender: 'INGBNL223950209',
                 amount: 121,
                 datetime: '12-05-2019 23:12',
-                comment: 'hahahahha'
+                comment: ''
             }, {
                 id: '3',
                 bankAccountNumber: 'INGBNL27164300',

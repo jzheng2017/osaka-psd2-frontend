@@ -5,6 +5,7 @@
             <h2>{{rekening.name}}</h2>
             <h4>{{rekening.bankAccountNumber}}</h4>
             <h6>Balans: &euro; {{rekening.balance}}</h6>
+            <button (click)="back()" class="btn btn-primary margin-bottom-20">Ga terug</button>
         </div>
         <div class="col-sm-12">
             <app-transactieoverzicht></app-transactieoverzicht>

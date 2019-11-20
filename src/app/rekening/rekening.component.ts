@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RekeningService} from '../service/rekening.service';
 import {Rekening} from './rekening';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-rekening',
@@ -13,7 +14,7 @@ export class RekeningComponent implements OnInit {
     rekening: Rekening;
     isLoading = true;
 
-    constructor(private activtedRoute: ActivatedRoute, private rekeningService: RekeningService) {
+    constructor(private activtedRoute: ActivatedRoute, private location: Location, private rekeningService: RekeningService) {
     }
 
     ngOnInit() {
@@ -27,4 +28,7 @@ export class RekeningComponent implements OnInit {
         });
     }
 
+    back() {
+        this.location.back();
+    }
 }
