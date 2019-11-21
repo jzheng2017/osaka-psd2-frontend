@@ -9,7 +9,7 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-6">{{transaction.bankAccountNumberSender}}</div>
-                        <div class="col-sm-3 text-md-right"> Bedrag: €{{transaction.amount}}</div>
+                        <div class="col-sm-3"> Bedrag: €{{transaction.amount}}</div>
                         <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage" *ngIf="transaction.comment"></i></div>
                         <div class="col-sm-2"><a class="btn btn-primary float-right"
                                                  [routerLink]="['/transactie', transaction.id, 'details']">Details</a>
