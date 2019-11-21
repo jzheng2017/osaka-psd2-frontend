@@ -7,7 +7,7 @@ import {Rekening} from '../rekening/rekening';
     providedIn: 'root'
 })
 export class RekeningService {
-    private apiUrl = 'http://localhost:8080/rabo/accounts?token=AAIkYzQ1MTc3OGMtZGIyYy00NTFlLThmNTctOWJiNjI0MjIzMjllLOWLzDrwjjwlVz2GZ9at8-GpnAb1sOeUO0iznI2dzlDNjeES_pao16cfHFjMWbZhV_FDGhXLV9GlqMDGxPLKx_wh-WFCB_o0HYteUNZM5efLgnWC-o49RW0lsKiE6OjQiwreTCRGTsmc_ttUp4tg4JZ-pMa_eIw_aoIOkD7ghC6JXRs3uIx7FsruV5UhMxf-zalDE5NDt6XebGZCjCmFbw';
+    private apiUrl = 'http://localhost:8080/rabo/accounts?token=AAIkYzQ1MTc3OGMtZGIyYy00NTFlLThmNTctOWJiNjI0MjIzMjllXO9UG_k_mBz61cyIeOMaDrctlxR-FvYsUEi2ae_KF-x48Pq4AJ0t9ywmW0d--7_Wcg5YIN5q6t5bYR45bnnYoGeG5fL5HIKNxKBuGRCDQQas0rQfPM4QrBZnW4U8MI39226B5NB-AaMJ9LW_38dMZMs0hipt0Oh3MmpJP5T5EF62VqlUCposDjmI8T_CMVyfdqwefa-qGe1uE6v0KVWvbA';
 
     constructor(private http: HttpClient) {
     }
@@ -17,4 +17,5 @@ export class RekeningService {
         // return this.http.get<any>(this.apiUrl);
 
     }
+
 }

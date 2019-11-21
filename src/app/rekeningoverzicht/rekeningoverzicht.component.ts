@@ -9,8 +9,8 @@ import {stringify} from 'querystring';
     styleUrls: ['./rekeningoverzicht.component.css']
 })
 export class RekeningoverzichtComponent implements OnInit {
-
-    rekeningen: Rekening[];
+    rekeningen: any[];
+    totalBalance: number;
 
     constructor(private rekeningService: RekeningService) {
     }
@@ -26,5 +26,6 @@ export class RekeningoverzichtComponent implements OnInit {
             console.log(this.rekeningen);
         });
     }
+
 
 }

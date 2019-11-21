@@ -1,31 +1,41 @@
-<div class="content">
+<div class="container">
     <!-- Login -->
-    <div id="loginContainer">
-        <form class="col-sm-12" #loginForm="ngForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <h2>Login</h2>
-                <p>Log hier in met je gebruikersgegevens.</p>
-                <br>
-                <label for="email">E-mailadres</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail"
-                       [(ngModel)]="user.email" required email #email="ngModel">
-                <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
-                    <li *ngIf="email.errors.required">E-mail is verplicht</li>
-                    <li *ngIf="email.errors.email">E-mail is ongeldig</li>
+    <div id="row">
+        <form class="offset-sm-3 col-sm-6 margin-top-40" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <h2>Login</h2>
+                    <p>Log hier in met je gebruikersgegevens.</p>
+                    <br>
+                    <label for="email">E-mailadres</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail"
+                           [(ngModel)]="user.email" required email #email="ngModel">
+                    <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
+                        <li *ngIf="email.errors.required">E-mail is verplicht</li>
+                        <li *ngIf="email.errors.email">E-mail is ongeldig</li>
+                    </div>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label for="password">Wachtwoord</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord"
+                           [(ngModel)]="user.password" required #password="ngModel" minlength="8">
+                    <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
+                        <li *ngIf="password.errors.required">Wachtwoord is verplicht</li>
+                        <li *ngIf="password.errors.minlength">Wachtwoord moet uit
+                            minimaal {{password.errors.minlength.requiredLength}} karakters bestaan
+                        </li>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <small>Als je nog geen account hebt klik dan <a routerLink="/registration"> <u>hier</u></a>.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10"
+                            [disabled]="!loginForm.valid" value="Log in">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="password">Wachtwoord</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Wachtwoord"
-                       [(ngModel)]="user.password" required #password="ngModel" minlength="8">
-                <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
-                    <li *ngIf="password.errors.required">Wachtwoord is verplicht</li>
-                    <li *ngIf="password.errors.minlength">Wachtwoord moet uit minimaal {{password.errors.minlength.requiredLength}} karakters bestaan</li>
-                </div>
-            </div>
-            <small>Als je nog geen account hebt klik dan <a routerLink="/registration"> <u>hier</u></a>.</small>
-            <br>
-            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log in</button>
         </form>
     </div>
 </div>

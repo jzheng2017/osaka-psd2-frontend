@@ -1,17 +1,31 @@
 <div class="container">
-    <div id="overzichtHeader" style="display: flex">
-        <h2>Overzicht Rekeningen</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Overzicht Rekeningen</h2>
+            <h5>Totale Balans: €{{totalBalance}}</h5>
+            <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary">Bedrag overmaken</button>
+                <button type="button" class="btn btn-outline-primary" routerLink="/bank-koppelen">Rekening toevoegen</button>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let rekening of rekeningen">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6"> {{rekening.name}} / {{rekening.iban}} </div>
+                                <div class="col-sm-3 ">Balans: €{{rekening.balance}}</div>
+                                <div class="col-sm-3 text-right">
+                                    <button class="btn btn-primary"
+                                       [routerLink]="['/rekening', rekening.resourceId, 'details']">Bekijk</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <h5>Totale Balans: €15.000</h5>
-    <form class="form-inline my-2 my-lg-0" id="overzichtHeaderKnop">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Overboeken</button>
-    </form>
-    <p>Hieronder staan alle rekeningen die gekoppeld zijn aan je account.</p><br>
 
-    <ul class="list-group">
-        <li class="list-group-item" *ngFor="let rekening of rekeningen">{{rekening.name}} / {{rekening.iban}} <span
-                class="transactieRight"><a
-                class="btn btn-secondary infoButton"
-                [routerLink]="['/rekening', rekening.resourceId, 'details']">Details</a></span></li>
-    </ul>
 </div>

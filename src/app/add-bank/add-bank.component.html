@@ -1,0 +1,26 @@
+<div class="container">
+    <!-- Login -->
+    <div id="row">
+        <form class="offset-sm-3 col-sm-6 margin-top-40" #addBankForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <h2>Bankaccount koppelen</h2>
+                    <label for="name">Selecteer een bank:</label>
+                    <select class="form-control" id="name" name="name" [(ngModel)]="bank.name" required>
+                        <option value="ing">ING</option>
+                        <option value="rabobank">Rabobank</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label for="iban">IBAN</label>
+                    <input type="text" class="form-control" id="iban" name="iban" placeholder="IBAN"
+                           [(ngModel)]="bank.iban"
+                           required>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10" [disabled]="!addBankForm.valid" value="Koppel">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

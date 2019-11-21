@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap";
+
+.margin-bottom-20{
+    margin-bottom: 20px;
+}
+
+
+@media all and (min-width:768px) {
+    .margin-top-40 { margin-top:40px; }
+}

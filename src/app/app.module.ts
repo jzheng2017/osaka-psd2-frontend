@@ -10,8 +10,11 @@ import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
-//import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-//import {InMemoryDataService} from './service/in-memory-data.service';
+
+// import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+// import {InMemoryDataService} from './service/in-memory-data.service';
+import { TransactionComponent } from './transaction/transaction.component';
+import { AddBankComponent } from './add-bank/add-bank.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
         RegistrationComponent,
         RekeningoverzichtComponent,
         TransactieoverzichtComponent,
-        RekeningComponent
+        RekeningComponent,
+        TransactionComponent,
+        AddBankComponent
     ],
     imports: [
         BrowserModule,

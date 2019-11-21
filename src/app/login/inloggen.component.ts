@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Login} from './login';
 import {Router} from '@angular/router';
 
@@ -23,5 +23,6 @@ export class InloggenComponent implements OnInit {
 
     ngOnInit() {
     }
+
 
 }
