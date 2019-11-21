@@ -3,10 +3,10 @@
         <div *ngIf="submitted" class="col-sm-12 alert alert-success">
             Je bent nu geregistreerd. Je wordt in een ogenblik naar de inlogpagina gestuurd.
         </div>
-        <form class="offset-sm-3 offset-md-2 col-sm-6" #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+        <form class="offset-sm-3 col-sm-6" #registrationForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="row">
-                <h2>Registreren</h2>
                 <div class="col-sm-12 form-group">
+                    <h2>Registreren</h2>
                     <p>Registreer hier een account.</p>
                     <br>
                     <label for="email">E-mailadres</label>
