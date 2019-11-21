@@ -24,6 +24,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 bankAccountNumberSender: 'INGBNL27039529',
                 amount: 55,
                 datetime: '12-05-2019 10:55',
+                mark: 'red-mark',
                 comment: 'hahahahha'
             }, {
                 id: '2',
@@ -31,13 +32,23 @@ export class InMemoryDataService implements InMemoryDbService {
                 bankAccountNumberSender: 'INGBNL223950209',
                 amount: 121,
                 datetime: '12-05-2019 23:12',
+                mark: '',
                 comment: ''
             }, {
                 id: '3',
                 bankAccountNumber: 'INGBNL27164300',
+                bankAccountNumberSender: 'INGBNL223950209',
+                amount: 401,
+                datetime: '16-11-2019 12:12',
+                mark: '',
+                comment: ''
+            }, {
+                id: '4',
+                bankAccountNumber: 'INGBNL27164300',
                 bankAccountNumberSender: 'INGBNL9428099181',
                 amount: 515,
                 datetime: '12-05-2019 10:55',
+                mark: 'green-mark',
                 comment: 'hahahahha'
             },
         ];

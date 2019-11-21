@@ -1,7 +1,7 @@
 <div *ngIf="isLoading">Transacties worden opgehaald...</div>
 <div *ngIf="!isLoading">
     <ul class="list-group">
-        <li *ngFor="let transaction of transactions" class="list-group-item">
+        <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
             <div class="row">
                 <div class="col-sm-12">
                     <small>{{transaction.datetime}}</small>

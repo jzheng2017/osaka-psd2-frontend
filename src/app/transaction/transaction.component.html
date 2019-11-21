@@ -13,20 +13,34 @@
                 <div class="card-header text-center">
                     <b>{{transaction.bankAccountNumberSender}}</b> naar <b>{{transaction.bankAccountNumber}}</b>
                 </div>
-                <div class="card-body">
-                    <b>Transactie ID:</b> {{transaction.id}}
-                    <br>
-                    <b>Datum:</b> {{transaction.datetime}}
-                    <br>
-                    <b>Bedrag:</b> &euro;{{transaction.amount}}
-                    <form #commentForm="ngForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label for="comment">Opmerking</label>
-                            <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
-                                      id="comment"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary float-right" value="Opslaan">
+                <div class="card-body row">
+                    <div class="col-sm-12">
+                        <b>Transactie ID:</b> {{transaction.id}}
+                        <br>
+                        <b>Datum:</b> {{transaction.datetime}}
+                        <br>
+                        <b>Bedrag:</b> &euro;{{transaction.amount}}
+                    </div>
+                    <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="comment">Opmerking</label>
+                                <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
+                                          id="comment"></textarea>
+                            </div>
+
+                            <div class="col-sm-12 form-group">
+                                <label for="mark">Markeer de rekening:</label>
+                                <select class="form-control" id="mark" name="mark" [(ngModel)]="transaction.mark">
+                                    <option value="">Geen</option>
+                                    <option value="red-mark">Rood</option>
+                                    <option value="green-mark">Groen</option>
+                                    <option value="yellow-mark">Geel</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <input type="submit" class="btn btn-primary float-right" value="Opslaan">
+                            </div>
                         </div>
                     </form>
                 </div>

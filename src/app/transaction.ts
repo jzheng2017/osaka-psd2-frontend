@@ -5,6 +5,7 @@ export class Transaction {
                 public bankAccountNumberSender: string,
                 public amount: number,
                 public datetime: string,
+                public mark: string,
                 public comment: string) {
     }
 }
