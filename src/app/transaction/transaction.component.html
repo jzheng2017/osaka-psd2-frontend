@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>Transactie</h2>
-            <button class="btn btn-primary margin-bottom-20" (click)="back()" >Ga terug</button>
+            <button class="btn btn-primary margin-bottom-20" (click)="back()">Ga terug</button>
         </div>
 
         <div class="col-sm-12" *ngIf="isLoading">
@@ -19,11 +19,11 @@
                     <b>Datum:</b> {{transaction.datetime}}
                     <br>
                     <b>Bedrag:</b> &euro;{{transaction.amount}}
-                    <form>
+                    <form #commentForm="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <label for="comment">Opmerking</label>
-                            <textarea class="form-control" name="comment"
-                                      id="comment">{{transaction.comment}}</textarea>
+                            <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
+                                      id="comment"></textarea>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary float-right" value="Opslaan">
