@@ -18,8 +18,8 @@
                                 <div class="col-sm-6"> {{rekening.name}} / {{rekening.bankAccountNumber}} </div>
                                 <div class="col-sm-3 ">Balans: €{{rekening.balance}}</div>
                                 <div class="col-sm-3 text-right">
-                                    <a class="btn btn-primary"
-                                       [routerLink]="['/rekening', rekening.id, 'details']">Bekijk</a>
+                                    <button class="btn btn-primary"
+                                       [routerLink]="['/rekening', rekening.id, 'details']">Bekijk</button>
                                 </div>
                             </div>
                         </div>
