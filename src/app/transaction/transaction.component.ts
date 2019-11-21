@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from "../transaction";
-import {ActivatedRoute} from "@angular/router";
-import {TransactionService} from "../service/transaction.service";
-import {Location} from "@angular/common";
+import {Transaction} from '../transaction';
+import {ActivatedRoute} from '@angular/router';
+import {TransactionService} from '../service/transaction.service';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-transaction',
@@ -29,5 +29,9 @@ export class TransactionComponent implements OnInit {
 
     back() {
         this.location.back();
+    }
+
+    onSubmit() {
+        this.transactionService.updateComment(this.transaction).subscribe(() => this.location.back());
     }
 }
