@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './service/in-memory-data.service';
 import { TransactionComponent } from './transaction/transaction.component';
+import { AddBankComponent } from './add-bank/add-bank.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { TransactionComponent } from './transaction/transaction.component';
         RekeningoverzichtComponent,
         TransactieoverzichtComponent,
         RekeningComponent,
-        TransactionComponent
+        TransactionComponent,
+        AddBankComponent
     ],
     imports: [
         BrowserModule,
