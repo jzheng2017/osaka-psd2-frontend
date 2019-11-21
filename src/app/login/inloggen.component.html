@@ -26,16 +26,14 @@
                         </li>
                     </div>
                 </div>
+
+                <div class="col-sm-12">
+                    <small>Als je nog geen account hebt klik dan <a routerLink="/registration"> <u>hier</u></a>.
+                    </small>
+                </div>
                 <div class="col-sm-12 form-group">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <small>Als je nog geen account hebt klik dan <a routerLink="/registration"> <u>hier</u></a>.
-                            </small>
-                        </div>
-                        <div class="col-sm-6 ">
-                            <button type="submit" class="btn btn-primary float-right" [disabled]="!loginForm.valid">Log in</button>
-                        </div>
-                    </div>
+                    <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10"
+                            [disabled]="!loginForm.valid" value="Log in">
                 </div>
             </div>
         </form>
