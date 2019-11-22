@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AddBank} from "./add-bank";
+import {RekeningService} from "../service/rekening.service";
 
 @Component({
     selector: 'app-add-bank',
@@ -10,13 +11,13 @@ export class AddBankComponent implements OnInit {
 
     bank = new AddBank('', '');
 
-    constructor() {
+    constructor(private rekeningService: RekeningService) {
     }
 
     ngOnInit() {
     }
 
     onSubmit() {
-        console.log(this.bank);
+        this.rekeningService.addRekening(this.bank);
     }
 }
