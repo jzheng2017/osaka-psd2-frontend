@@ -32,6 +32,6 @@ export class TransactionComponent implements OnInit {
     }
 
     onSubmit() {
-        this.transactionService.updateComment(this.transaction).subscribe(() => this.location.back());
+        this.transactionService.updateTransaction(this.transaction).subscribe(() => this.location.back());
     }
 }
