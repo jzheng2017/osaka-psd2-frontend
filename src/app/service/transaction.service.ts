@@ -25,7 +25,7 @@ export class TransactionService {
         return this.http.get<Transaction>(url);
     }
 
-    updateComment(transaction: Transaction) {
+    updateTransaction(transaction: Transaction) {
         return this.http.put(this.apiUrl, transaction, this.httpOptions);
     }
 }
