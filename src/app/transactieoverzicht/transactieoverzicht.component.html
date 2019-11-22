@@ -1,5 +1,6 @@
 <div *ngIf="isLoading">Transacties worden opgehaald...</div>
 <div *ngIf="!isLoading">
+    <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
     <ul class="list-group">
         <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
             <div class="row">
