@@ -1,13 +1,13 @@
 <div>
     <ul class="list-group">
-        <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
+        <li *ngFor="let transaction of transactions" class="list-group-item">
             <div class="row">
                 <div class="col-sm-12">
-                    <small>{{transaction.datetime}}</small>
+                    <small>{{transaction.datum}}</small>
                 </div>
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-6">{{transaction.bankAccountNumberSender}}</div>
+                        <div class="col-sm-6">{{transaction.creditorAccount.name}}</div>
                         <div class="col-sm-3"> Bedrag: €{{transaction.amount}}</div>
                         <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage" *ngIf="transaction.comment"></i></div>
                         <div class="col-sm-2"><a class="btn btn-primary float-right"
@@ -19,3 +19,9 @@
         </li>
     </ul>
 </div>
+
+
+<!--<ul class="list-group">-->
+
+    <!--<li class="list-group-item" *ngFor="let transactie of transacties"><small>{{transactie.bookingDate}}</small><br>{{transactie.creditorName}} <span class="transactieRight"><span class="bedrag">{{transactie.transactionAmount.amount}}</span><button type="button" class="btn btn-secondary infoButton">Details</button></span></li>-->
+<!--</ul>-->

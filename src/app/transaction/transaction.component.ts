@@ -17,21 +17,21 @@ export class TransactionComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getTransaction(+this.activatedRoute.snapshot.paramMap.get('id'));
+        //this.getTransaction(+this.activatedRoute.snapshot.paramMap.get('id'));
     }
 
-    getTransaction(id: number) {
-        this.transactionService.getTransactie(id).subscribe(transaction => {
-            this.transaction = transaction;
-            this.isLoading = false;
-        });
-    }
-
-    back() {
-        this.location.back();
-    }
-
-    onSubmit() {
-        this.transactionService.updateComment(this.transaction).subscribe(() => this.location.back());
-    }
+    // getTransaction(id: number) {
+    //     this.transactionService.getTransactie(id).subscribe(transaction => {
+    //         this.transaction = transaction;
+    //         this.isLoading = false;
+    //     });
+    // }
+    //
+    // back() {
+    //     this.location.back();
+    // }
+    //
+    // onSubmit() {
+    //     this.transactionService.updateComment(this.transaction).subscribe(() => this.location.back());
+    // }
 }

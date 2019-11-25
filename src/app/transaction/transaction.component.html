@@ -5,10 +5,10 @@
             <button class="btn btn-primary margin-bottom-20" (click)="back()">Ga terug</button>
         </div>
 
-        <div class="col-sm-12" *ngIf="isLoading">
-            Transactiegegevens worden opgehaald...
-        </div>
-        <div class="col-sm-12" *ngIf="!isLoading">
+        <!--<div class="col-sm-12" *ngIf="isLoading">-->
+            <!--Transactiegegevens worden opgehaald...-->
+        <!--</div>-->
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-header text-center">
                     <b>{{transaction.bankAccountNumberSender}}</b> naar <b>{{transaction.bankAccountNumber}}</b>
@@ -23,11 +23,11 @@
                     </div>
                     <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
                         <div class="row">
-                            <div class="col-sm-12 form-group">
-                                <label for="comment">Opmerking</label>
-                                <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
-                                          id="comment"></textarea>
-                            </div>
+                            <!--<div class="col-sm-12 form-group">-->
+                                <!--<label for="comment">Opmerking</label>-->
+                                <!--<textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"-->
+                                          <!--id="comment"></textarea>-->
+                            <!--</div>-->
 
                             <div class="col-sm-12 form-group">
                                 <label for="mark">Markeer de rekening:</label>

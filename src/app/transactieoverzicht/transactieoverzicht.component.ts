@@ -10,7 +10,6 @@ import {Transaction} from '../transaction';
 export class TransactieoverzichtComponent implements OnInit {
 
     transactions: Transaction[];
-    isLoading = true;
 
     constructor(private transactionService: TransactionService) {
     }
@@ -21,8 +20,14 @@ export class TransactieoverzichtComponent implements OnInit {
 
     getTransactions() {
         this.transactionService.getTransacties().subscribe(transactions => {
-            this.transactions = transactions;
-            this.isLoading = false;
+            this.transactions = transactions.transactions;
+            console.log(transactions.transactions);
+            for(let t of this.transactions){
+                console.log(t.creditorAccount.name);
+            }
+            // console.log(this.transactions[1].creditorAccount.name);
+            // console.log(this.transactions[2].creditorAccount.name);
+            console.log(this.transactions);
         });
     }
 
