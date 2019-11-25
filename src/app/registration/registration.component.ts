@@ -26,6 +26,6 @@ export class RegistrationComponent {
     }
 
     newUser() {
-        this.user = new Registration('', '','');
+        this.user = new Registration('', '', '');
     }
 }
