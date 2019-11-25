@@ -19,17 +19,17 @@ export class RekeningComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getRekening(+this.activtedRoute.snapshot.paramMap.get('id'));
+        // this.getRekening(+this.activtedRoute.snapshot.paramMap.get('id'));
     }
 
-    getRekening(id: number) {
-        this.rekeningService.getRekening(id).subscribe(rekening => {
-            this.rekening = rekening;
-            this.isLoading = false;
-        });
-    }
-
-    back() {
-        this.location.back();
-    }
+    // getRekening(id: number) {
+    //     this.rekeningService.getRekening(id).subscribe(rekening => {
+    //         this.rekening = rekening;
+    //         this.isLoading = false;
+    //     });
+    // }
+    //
+    // back() {
+    //     this.location.back();
+    // }
 }
