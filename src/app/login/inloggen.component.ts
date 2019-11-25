@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Login} from './login';
 import {Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-inloggen',
@@ -21,7 +22,8 @@ export class InloggenComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['overzicht/rekening']);
+      this.router.navigate(['overzicht/rekening']);
+      //window.location.reload();
   }
 
   public login() {
