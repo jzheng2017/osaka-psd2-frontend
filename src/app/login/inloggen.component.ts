@@ -3,26 +3,26 @@ import {Login} from './login';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-inloggen',
-    templateUrl: './inloggen.component.html',
-    styleUrls: ['./inloggen.component.css']
+  selector: 'app-inloggen',
+  templateUrl: './inloggen.component.html',
+  styleUrls: ['./inloggen.component.css']
 })
 export class InloggenComponent implements OnInit {
-    title = 'Registratie Formulier';
+  title = 'Registratie Formulier';
 
 
-    user = new Login('', '');
+  user = new Login('', '');
 
 
-    constructor(private router: Router) {
-    }
+  constructor(private router: Router) {
+  }
 
-    onSubmit() {
-        this.router.navigate(['overzicht/rekening']);
-    }
+  onSubmit() {
+    this.router.navigate(['overzicht/rekening']);
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
 
 }
