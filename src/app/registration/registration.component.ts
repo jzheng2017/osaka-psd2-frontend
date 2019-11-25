@@ -20,6 +20,8 @@ export class RegistrationComponent {
 
     onSubmit() {
         this.submitted = true;
+        console.log(this.user.email);
+        console.log(this.user.password);
         setTimeout(() => this.router.navigate(['login']), 5000);
     }
 

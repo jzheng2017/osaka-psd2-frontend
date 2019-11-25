@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Registration} from '../registration/registration';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {RegistrationRequest} from '../registration/registrationrequest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
 
+    private req: RegistrationRequest;
   constructor(private httpClient: HttpClient) { }
 
 
@@ -15,8 +17,9 @@ export class RegistrationService {
   }
 
   private handleRequest(r: Registration) {
-    r.name = 'hans';
-    const body = JSON.stringify(r);
+    this.req = new RegistrationRequest('jam', r.email, r.password);
+
+    const body = JSON.stringify(this.req);
     console.log(body);
     const url = 'http://localhost:8080/users/register';
     const headers = new HttpHeaders().set('ContentType', 'application/json');
