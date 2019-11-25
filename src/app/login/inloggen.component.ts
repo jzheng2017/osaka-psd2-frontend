@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './login';
 import {Router} from '@angular/router';
-import {InloggenService} from '../service/inloggen.service';
+import {LoginService} from '../service/login.service';
 
 @Component({
     selector: 'app-inloggen',
@@ -9,25 +9,23 @@ import {InloggenService} from '../service/inloggen.service';
     styleUrls: ['./inloggen.component.css']
 })
 export class InloggenComponent implements OnInit {
-    title = 'Registratie Formulier';
+  title = 'Registratie Formulier';
 
 
-    user = new Login('', '');
+  user = new Login('', '');
 
+  ngOnInit() {
+  }
 
-    constructor(private router: Router, private inloggenService: InloggenService) {
-    }
+  constructor(private router: Router, private loginService: LoginService) {
+  }
 
-    onSubmit() {
-        this.router.navigate(['overzicht/rekening']);
-        console.log(this.user.email);
-        console.log(this.user.password);
-    }
+  onSubmit() {
+    this.router.navigate(['overzicht/rekening']);
+  }
 
-    ngOnInit() {
-    }
-
-  public login(): void {
+  public login() {
+    this.loginService.login(this.user);
   }
 
 }

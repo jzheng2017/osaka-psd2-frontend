@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Registration} from './registration';
 import {Router} from '@angular/router';
-import {RegistrationService} from '../service/registration.service';
 
 @Component({
     selector: 'app-registration',
@@ -15,18 +14,18 @@ export class RegistrationComponent {
 
     user = new Registration('', '', '');
 
-    constructor(private router: Router, private registreerService: RegistrationService) {
+    constructor(private router: Router) {
     }
 
     onSubmit() {
         this.submitted = true;
-        console.log(this.user.email);
-        console.log(this.user.password);
         setTimeout(() => this.router.navigate(['login']), 5000);
     }
 
-    public register() {
-      this.registreerService.register(this.user);
+    register() {
     }
 
+    newUser() {
+        this.user = new Registration('', '', '');
+    }
 }
