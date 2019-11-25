@@ -18,12 +18,11 @@ export class InloggenComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private loginService: LoginService) {
   }
 
   onSubmit() {
-      this.router.navigate(['overzicht/rekening']);
-      //window.location.reload();
+    this.login();
   }
 
   public login() {
