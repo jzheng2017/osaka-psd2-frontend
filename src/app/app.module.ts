@@ -11,7 +11,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from "./service/in-memory-data.service";
 import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
@@ -29,9 +28,6 @@ import { TransactionComponent } from './transaction/transaction.component';
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(
-            InMemoryDataService, {dataEncapsulation: false, delay: 500}
-        ),
         RouterModule
     ],
     providers: [],
