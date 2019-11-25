@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 form-group">
-                    <input type="submit" class="btn btn-primary float-right btn-block-sm" value="Maak account aan"
+                    <input (click)="register()" type="submit" class="btn btn-primary float-right btn-block-sm" value="Maak account aan"
                            [disabled]="!registrationForm.valid">
                 </div>
             </div>
