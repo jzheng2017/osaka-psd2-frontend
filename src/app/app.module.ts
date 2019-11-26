@@ -10,7 +10,6 @@ import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({

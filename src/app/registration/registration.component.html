@@ -1,14 +1,23 @@
 <div class="container">
     <div class="row">
         <div *ngIf="submitted" class="col-sm-12 alert alert-success">
-            Je bent nu geregistreerd. Je wordt in een ogenblik naar de inlogpagina gestuurd.
+            Je bent nu geregistreerd. Je wordt in een ogenblik gestuurd naar een nieuwe pagina.
         </div>
         <form class="offset-sm-3 col-sm-6" #registrationForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-sm-12 form-group">
                     <h2>Registreren</h2>
                     <p>Registreer hier een account.</p>
-                    <br>
+                    <label for="name">Naam</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                           [(ngModel)]="user.name"
+                           placeholder="Naam" required="true" #name="ngModel">
+                    <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
+                        <li *ngIf="name.errors.required">Naam is verplicht</li>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 form-group">
                     <label for="email">E-mailadres</label>
                     <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email"
                            aria-describedby="emailHelp"
@@ -17,6 +26,7 @@
                         <li *ngIf="email.errors.required">E-mail is verplicht</li>
                         <li *ngIf="email.errors.email">E-mail is ongeldig</li>
                     </div>
+
                 </div>
                 <div class="col-sm-12 form-group">
                     <label for="password">Wachtwoord</label>
@@ -43,7 +53,8 @@
                     </div>
                 </div>
                 <div class="col-sm-12 form-group">
-                    <input (click)="register()" type="submit" class="btn btn-primary float-right btn-block-sm" value="Maak account aan"
+                    <input type="submit" class="btn btn-primary float-right btn-block-sm"
+                           value="Maak account aan"
                            [disabled]="!registrationForm.valid">
                 </div>
             </div>

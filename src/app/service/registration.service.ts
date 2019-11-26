@@ -1,35 +1,40 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Registration} from '../registration/registration';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RegistrationRequest} from '../registration/registrationrequests';
+import {Router} from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RegistrationService {
 
     private req: RegistrationRequest;
-  constructor(private httpClient: HttpClient) { }
+
+    constructor(private httpClient: HttpClient, private router: Router ) {
+    }
 
 
-  public register(r: Registration) {
-    this.handleRequest(r);
-  }
+    public register(r: Registration) {
+        this.handleRequest(r);
+    }
 
-  private handleRequest(r: Registration) {
-    this.req = new RegistrationRequest('jam', r.email, r.password);
+    private handleRequest(r: Registration) {
+        this.req = new RegistrationRequest(r.name, r.email, r.password);
 
-    const body = this.req;
-    console.log(body);
-    const url = 'http://localhost:8080/users/register';
+        const body = this.req;
+        const url = 'http://localhost:8080/users/register';
 
-    console.log(this.httpClient.post<any>(url, body).subscribe(data => {
-      console.log(data);
-    }));
-  }
+        this.httpClient.post<any>(url, body).subscribe(data => {
+            this.handleResponse(data);
+        });
+    }
 
-  private handleResponse() {
-
-  }
+    private handleResponse(data) {
+        if (data.token != null) {
+            localStorage.setItem('token', data.token);
+            this.router.navigate(['overzicht/rekeningen']);
+        }
+    }
 
 }
