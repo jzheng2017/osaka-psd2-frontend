@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
+          //Header van het rekeningoverzicht
             <h2>Overzicht Rekeningen</h2>
             <h5>Totale Balans: €{{totalBalance}}</h5>
             <div class="btn-group float-right margin-bottom-20" role="group" aria-label="Basic example">
@@ -11,6 +12,7 @@
         <div class="col-sm-12">
             <div *ngIf="isLoading">Bankrekeningen worden opgehaald...</div>
             <ul class="list-group">
+              //Elke rekening uit rekeningen wordt opgehaald en van een lay-out voorzien
                 <li class="list-group-item" *ngFor="let rekening of rekeningen">
                     <div class="row">
                         <div class="col-sm-12">
@@ -18,6 +20,7 @@
                                 <div class="col-sm-6"> {{rekening.name}} / {{rekening.bankAccountNumber}} </div>
                                 <div class="col-sm-3 ">Balans: €{{rekening.balance}}</div>
                                 <div class="col-sm-3 text-right">
+                                  //Linkt een pagina met transactieoverzicht van de bewuste rekening
                                     <a class="btn btn-primary"
                                        [routerLink]="['/rekening', rekening.id, 'details']">Bekijk</a>
                                 </div>
