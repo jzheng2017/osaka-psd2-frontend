@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>Overzicht Rekeningen</h2>
-            <h5>Totale Balans: €{{totalBalance}}</h5>
+            <h5>Totale Balans: €<span [class.text-danger]="totalBalance < 0">{{totalBalance}}</span></h5>
                 <a class="btn btn-outline-primary float-right" routerLink="/overboeken">Overboeken</a>
         </div>
         <div class="col-sm-12">
@@ -12,11 +12,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-sm-6"> {{rekening.name}} / {{rekening.bankAccountNumber}} </div>
+                                <div class="col-sm-6"> {{rekening.name}} / {{rekening.iban}} </div>
                                 <div class="col-sm-3 ">Balans: €{{rekening.balance}}</div>
                                 <div class="col-sm-3 text-right">
                                     <a class="btn btn-primary"
-                                       [routerLink]="['/rekening', rekening.id, 'details']">Bekijk</a>
+                                       [routerLink]="['/rekening', rekening.iban, 'details']">Bekijk</a>
                                 </div>
                             </div>
                         </div>
