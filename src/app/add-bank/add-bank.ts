@@ -1,4 +1,4 @@
 export class AddBank {
-    constructor(public name: string, public iban: string) {
+    constructor(public name: string, public url: string) {
     }
 }

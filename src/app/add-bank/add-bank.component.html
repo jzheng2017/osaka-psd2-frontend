@@ -6,19 +6,15 @@
                 <div class="col-sm-12 form-group">
                     <h2>Bankaccount koppelen</h2>
                     <label for="name">Selecteer een bank:</label>
-                    <select class="form-control" id="name" name="name" [(ngModel)]="bank.name" required>
-                        <option value="ing">ING</option>
-                        <option value="rabobank">Rabobank</option>
+                    <select class="form-control" id="name" name="name" [(ngModel)]="bank.url" required>
+                        <option value="http://localhost:8080/ing/authorize">ING</option>
+                        <option value="http://localhost:8080/rabo/authorize">Rabobank</option>
                     </select>
                 </div>
+              //Redirect naar bankpagina op basis gekozen optie
                 <div class="col-sm-12 form-group">
-                    <label for="iban">IBAN</label>
-                    <input type="text" class="form-control" id="iban" name="iban" placeholder="IBAN"
-                           [(ngModel)]="bank.iban"
-                           required>
-                </div>
-                <div class="col-sm-12 form-group">
-                    <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10" [disabled]="!addBankForm.valid" value="Koppel">
+                  <a href="{{bank.url}}"><button class="btn btn-primary" [disabled]="!addBankForm.valid" value="">Koppel</button></a>
+
                 </div>
             </div>
         </form>
