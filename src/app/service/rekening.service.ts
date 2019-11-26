@@ -8,7 +8,7 @@ import {Rekening} from '../rekening/rekening';
 })
 export class RekeningService {
     private token = localStorage.getItem('token');
-    private apiUrl = `http://localhost:8080/rabo/accounts?token=${this.token}`;
+    private apiUrl = `http://localhost:8080/accounts?token=${this.token}`;
     constructor(private http: HttpClient) {
     }
 
