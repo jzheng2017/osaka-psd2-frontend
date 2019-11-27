@@ -1,0 +1,97 @@
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 8px 0;
+}
+
+p {
+    margin: 0;
+}
+
+#overzichtContainer {
+    padding: 5rem;
+    display: block;
+    margin: 0 auto;
+    max-width: 80rem;
+}
+
+.content {
+    display: block;
+    margin: 0 auto;
+}
+
+.transactieRight {
+    float: right;
+    margin-top: -10px;
+
+}
+
+.infoButton {
+    display: inline-flex;
+
+}
+
+.bedrag {
+    margin-right: 100px;
+
+}
+
+#overzichtHeader {
+    clear: both;
+}
+
+#overzichtHeaderKnop {
+    float: right;
+    margin: auto;
+}
+
+#IBAN {
+    position: relative;
+    left: 0.4rem;
+    bottom: -1rem;
+}
+
+a:hover {
+    color: #125699;
+}
+
+footer {
+    position: fixed;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+
+}
+
+@media screen and (max-width: 575px) {
+
+}
+
+@media all and (max-width: 768px) {
+    .full-width {
+        width: 100% !important;
+    }
+}
+

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Transactie</h2>
+            <button class="btn btn-primary margin-bottom-20" (click)="back()">Ga terug</button>
+        </div>
+
+        <div class="col-sm-12" *ngIf="isLoading">
+            Transactiegegevens worden opgehaald...
+        </div>
+        <div class="col-sm-12" *ngIf="!isLoading">
+            <div class="card">
+                <div class="card-header text-center">
+                    <b>{{transaction.bankAccountNumberSender}}</b> naar <b>{{transaction.bankAccountNumber}}</b>
+                </div>
+                <div class="card-body row">
+                    <div class="col-sm-12">
+                        <b>Transactie ID:</b> {{transaction.id}}
+                        <br>
+                        <b>Datum:</b> {{transaction.datetime}}
+                        <br>
+                        <b>Bedrag:</b> &euro;{{transaction.amount}}
+                    </div>
+                    <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="comment">Opmerking</label>
+                                <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
+                                          id="comment"></textarea>
+                            </div>
+
+                            <div class="col-sm-12 form-group">
+                                <label for="mark">Markeer de rekening:</label>
+                                <select class="form-control" id="mark" name="mark" [(ngModel)]="transaction.mark">
+                                    <option value="">Geen</option>
+                                    <option value="red-mark">Rood</option>
+                                    <option value="green-mark">Groen</option>
+                                    <option value="yellow-mark">Geel</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <input type="submit" class="btn btn-primary float-right" value="Opslaan">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
