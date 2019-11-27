@@ -9,3 +9,7 @@
 @media all and (min-width:768px) {
     .margin-top-40 { margin-top:40px; }
 }
+
+.margin-top-40-sm-and-up{
+    margin-top:40px !important;
+}
