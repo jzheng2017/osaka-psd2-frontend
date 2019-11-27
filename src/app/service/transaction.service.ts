@@ -18,9 +18,9 @@ export class TransactionService {
     }
 
 
-    getTransacties(id: string, tableid: string): Observable<Transaction[]> {
+    getTransacties(id: string, tableid: string): Observable<any> {
         const transactieUrl = this.apiUrl + `/accounts/${id}/details?token=${localStorage.getItem('token')}&tableid=${tableid}`;
-        return this.http.get<Transaction[]>(transactieUrl);
+        return this.http.get<any>(transactieUrl);
     }
 
     getTransactie(id: number) {

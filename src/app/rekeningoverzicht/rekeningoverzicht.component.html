@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>Overzicht Rekeningen</h2>
-            <h5>Totale Balans: €<span [class.text-danger]="totalBalance < 0">{{totalBalance}}</span></h5>
+            <h5>Totale Balans: <span [class.text-danger]="totalBalance < 0">€{{totalBalance | number : '1.2-2'}}</span></h5>
             <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-outline-primary">Bedrag overmaken</button>
                 <button type="button" class="btn btn-outline-primary" routerLink="/bank-koppelen">Rekening toevoegen
@@ -11,14 +11,14 @@
         </div>
         <div class="col-sm-12">
             <div *ngIf="isLoading">Bankrekeningen worden opgehaald...</div>
-            <div class="text-center" *ngIf="rekeningen.length <= 0">Er zijn geen rekeningen.</div>
+            <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let rekening of rekeningen">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6"> {{rekening.name}} / {{rekening.iban}} </div>
-                                <div class="col-sm-3 ">Balans: €{{rekening.balance}}</div>
+                                <div class="col-sm-3 ">Balans: <span [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}}</span></div>
                                 <div class="col-sm-3 text-right">
                                     <a class="btn btn-primary"
                                        [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk</a>
