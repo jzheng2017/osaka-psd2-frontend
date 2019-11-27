@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/transaction.service';
 import {Transaction} from '../transaction';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-transactieoverzicht',
@@ -12,7 +13,7 @@ export class TransactieoverzichtComponent implements OnInit {
     transactions: Transaction[];
     isLoading = true;
 
-    constructor(private transactionService: TransactionService) {
+    constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -20,8 +21,8 @@ export class TransactieoverzichtComponent implements OnInit {
     }
 
     getTransactions() {
-        this.transactionService.getTransacties().subscribe(transactions => {
-            this.transactions = transactions;
+        this.transactionService.getTransacties(this.activatedRoute.snapshot.paramMap.get('id'), this.activatedRoute.snapshot.paramMap.get('tableid')).subscribe(transactions => {
+            this.transactions = transactions.transactions;
             this.isLoading = false;
         });
     }
