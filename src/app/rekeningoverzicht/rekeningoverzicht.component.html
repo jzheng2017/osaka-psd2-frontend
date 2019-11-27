@@ -3,7 +3,11 @@
         <div class="col-sm-12">
             <h2>Overzicht Rekeningen</h2>
             <h5>Totale Balans: €<span [class.text-danger]="totalBalance < 0">{{totalBalance}}</span></h5>
-                <a class="btn btn-outline-primary float-right" routerLink="/overboeken">Overboeken</a>
+            <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary">Bedrag overmaken</button>
+                <button type="button" class="btn btn-outline-primary" routerLink="/bank-koppelen">Rekening toevoegen
+                </button>
+            </div>
         </div>
         <div class="col-sm-12">
             <div *ngIf="isLoading">Bankrekeningen worden opgehaald...</div>

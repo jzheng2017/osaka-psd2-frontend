@@ -5,6 +5,7 @@ import {RegistrationComponent} from './registration/registration.component';
 import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
 import {RekeningComponent} from './rekening/rekening.component';
 import {TransactionComponent} from './transaction/transaction.component';
+import {AddBankComponent} from './add-bank/add-bank.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     {path: 'overzicht/rekeningen', component: RekeningoverzichtComponent},
     {path: 'rekening/:id/details', component: RekeningComponent},
     {path: 'transactie/:id/details', component: TransactionComponent},
+    {path: 'bank-koppelen', component: AddBankComponent},
     { path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full' },
 ];
 

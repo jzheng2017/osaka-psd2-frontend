@@ -1,0 +1,4 @@
+@media all and (max-width:768px) {
+  .btn-block-sm { width: 100%; display:block; }
+  .margin-top-10 {margin-top:10px;}
+}

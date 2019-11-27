@@ -11,6 +11,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TransactionComponent } from './transaction/transaction.component';
+import { AddBankComponent } from './add-bank/add-bank.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { TransactionComponent } from './transaction/transaction.component';
         RekeningoverzichtComponent,
         TransactieoverzichtComponent,
         RekeningComponent,
-        TransactionComponent
+        TransactionComponent,
+        AddBankComponent
     ],
     imports: [
         BrowserModule,

@@ -27,61 +27,19 @@ p {
   max-width: 80rem;
 }
 
-.content{
-  display: block;
-  margin: 0 auto;
-}
-
-.transactieRight{
-  float: right;
-  margin-top: -10px;
-
-}
-
-.infoButton{
-  display: inline-flex;
-
-}
 .bedrag{
   margin-right: 100px;
 
 }
 
-#overzichtHeader{
-  clear: both;
-}
-#overzichtHeaderKnop{
-  float: right;
-  margin:auto;
-}
-#IBAN{
-  position: relative;
-  left: 0.4rem;
-  bottom: -1rem;
+.yellow-mark{
+  border-left: 5px solid yellow;
 }
 
-a:hover {
-  color: #125699;
+.red-mark {
+  border-left: 5px solid red;
 }
 
-footer {
-  position: fixed;
-  bottom: 1rem;
-  width: 100%;
-  text-align: center;
-}
-
-footer a {
-  display: flex;
-  align-items: center;
-
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-
-}
-
-@media screen and (max-width: 575px) {
-
+.green-mark {
+  border-left: 5px solid green;
 }

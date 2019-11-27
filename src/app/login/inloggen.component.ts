@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Login} from './login';
 import {Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
@@ -28,5 +28,6 @@ export class InloggenComponent implements OnInit {
   public login() {
     this.loginService.login(this.user);
   }
+
 
 }
