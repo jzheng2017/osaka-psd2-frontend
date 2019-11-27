@@ -1,26 +1,32 @@
 import {Component, OnInit} from '@angular/core';
-import {AddBank} from "./add-bank";
+import {AddBank} from './add-bank';
+import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-add-bank',
-  templateUrl: './add-bank.component.html',
-  styleUrls: ['./add-bank.component.css']
+    selector: 'app-add-bank',
+    templateUrl: './add-bank.component.html',
+    styleUrls: ['./add-bank.component.css']
 })
 export class AddBankComponent implements OnInit {
 
-  bank = new AddBank('', '');
-  token = localStorage.getItem('token');
-  constructor() {
-  }
+    bank = new AddBank('', '');
+    token = localStorage.getItem('token');
 
-  ngOnInit() {
-  }
+    constructor(private location: Location) {
+    }
 
-  onSubmit() {
-    console.log(this.bank);
-  }
+    ngOnInit() {
+    }
 
-  goTo(url: string) {
-    window.location.href = url;
-  }
+    onSubmit() {
+        console.log(this.bank);
+    }
+
+    goTo(url: string) {
+        window.location.href = url;
+    }
+
+    back() {
+        this.location.back();
+    }
 }

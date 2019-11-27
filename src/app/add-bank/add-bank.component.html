@@ -1,9 +1,12 @@
-<div class="container">
+    <div class="container">
     <!-- Login -->
     <div id="row">
-        <form class="offset-sm-3 col-sm-6 margin-top-40" #addBankForm="ngForm" (ngSubmit)="onSubmit()">
+        <form class="offset-sm-3 col-sm-6" #addBankForm="ngForm" (ngSubmit)="onSubmit()">
+            <button (click)="back()" class="btn btn-primary margin-top-40-sm-and-up">Ga terug</button>
+
             <div class="row">
                 <div class="col-sm-12 form-group">
+
                     <h2>Bankaccount koppelen</h2>
                     <label for="name">Selecteer een bank:</label>
                     <select class="form-control" id="name" name="name" [(ngModel)]="bank.url" required>
