@@ -11,6 +11,7 @@
         </div>
         <div class="col-sm-12">
             <div *ngIf="isLoading">Bankrekeningen worden opgehaald...</div>
+            <div class="text-center" *ngIf="rekeningen.length <= 0">Er zijn geen rekeningen.</div>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let rekening of rekeningen">
                     <div class="row">
