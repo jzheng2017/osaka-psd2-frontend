@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Rekening} from '../rekening/rekening';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +12,8 @@ export class RekeningService {
     }
 
 
-    getRekeningen(): Observable<Rekening[]> {
-        return this.http.get<Rekening[]>(this.apiUrl);
+    getRekeningen(): Observable<any> {
+        return this.http.get<any>(this.apiUrl);
     }
 
 }
