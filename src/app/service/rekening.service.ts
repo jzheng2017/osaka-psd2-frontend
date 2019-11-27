@@ -6,14 +6,15 @@ import {HttpClient} from '@angular/common/http';
     providedIn: 'root'
 })
 export class RekeningService {
-    private token = localStorage.getItem('token');
-    private apiUrl = `http://localhost:8080/accounts?token=${this.token}`;
+    private apiUrl = 'http://localhost:8080';
+
     constructor(private http: HttpClient) {
     }
 
 
     getRekeningen(): Observable<any> {
-        return this.http.get<any>(this.apiUrl);
+        const rekeningUrl = this.apiUrl + `/accounts/?token=${localStorage.getItem('token')}`;
+        return this.http.get<any>(rekeningUrl);
     }
 
 }
