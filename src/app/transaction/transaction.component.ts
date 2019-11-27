@@ -21,10 +21,10 @@ export class TransactionComponent implements OnInit {
     }
 
     getTransaction(id: number) {
-        this.transactionService.getTransactie(id).subscribe(transaction => {
-            this.transaction = transaction;
-            this.isLoading = false;
-        });
+        // this.transactionService.getTransacties().subscribe(transaction => {
+        //     this.transaction = transaction;
+        //     this.isLoading = false;
+        // });
     }
 
     back() {
