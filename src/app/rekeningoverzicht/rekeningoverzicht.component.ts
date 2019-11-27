@@ -23,10 +23,7 @@ export class RekeningoverzichtComponent implements OnInit {
     getRekeningen() {
         this.rekeningService.getRekeningen().subscribe(rekeningen => {
                 this.rekeningen = rekeningen.accounts;
-                this.totalBalance = 0;
-                for (const rekening of this.rekeningen) {
-                    this.totalBalance = this.totalBalance + rekening.balance;
-                }
+                this.totalBalance = rekeningen.balance;
                 this.isLoading = false;
             }
         );
