@@ -7,14 +7,13 @@
                     <h2>Bankaccount koppelen</h2>
                     <label for="name">Selecteer een bank:</label>
                     <select class="form-control" id="name" name="name" [(ngModel)]="bank.url" required>
-                        <option value="http://localhost:8080/ing/authorize">ING</option>
-                        <option value="http://localhost:8080/rabo/authorize">Rabobank</option>
+                        <option value="http://localhost:8080/connect/ING?token={{token}}">ING</option>
+                        <option value="http://localhost:8080/connect/RABOBANK?token={{token}}">Rabobank</option>
                     </select>
                 </div>
               <!--Redirect naar bankpagina op basis gekozen optie-->
                 <div class="col-sm-12 form-group">
-                  <a href="{{bank.url}}"><button class="btn btn-primary" [disabled]="!addBankForm.valid" value="">Koppel</button></a>
-
+                  <button (click)="goTo(bank.url)" class="btn btn-primary" [disabled]="!addBankForm.valid" value="">Koppel</button>
                 </div>
             </div>
         </form>
