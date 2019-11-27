@@ -21,7 +21,7 @@
                                 <div class="col-sm-3 ">Balans: <span [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}}</span></div>
                                 <div class="col-sm-3 text-right">
                                     <a class="btn btn-primary"
-                                       [routerLink]="['/rekening', rekening.iban, 'details']">Bekijk</a>
+                                       [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk</a>
                                 </div>
                             </div>
                         </div>

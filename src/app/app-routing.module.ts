@@ -12,11 +12,12 @@ import {AuthGuardService} from './service/auth-guard.service';
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
     {path: 'login', component: InloggenComponent},
+    {path: 'rekening/:id/details/:tableid', component: RekeningComponent, canActivate: [AuthGuardService]},
     {path: 'overzicht/rekeningen', component: RekeningoverzichtComponent, canActivate: [AuthGuardService]},
     {path: 'rekening/:id/details', component: RekeningComponent, canActivate: [AuthGuardService]},
     {path: 'transactie/:id/details', component: TransactionComponent, canActivate: [AuthGuardService]},
     {path: 'bank-koppelen', component: AddBankComponent, canActivate: [AuthGuardService]},
-    { path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full' },
+    {path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full'},
 ];
 
 @NgModule({

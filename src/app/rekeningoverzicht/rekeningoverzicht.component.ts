@@ -20,6 +20,7 @@ export class RekeningoverzichtComponent implements OnInit {
         this.getRekeningen();
     }
 
+
     getRekeningen() {
         this.rekeningService.getRekeningen().subscribe(rekeningen => {
                 this.rekeningen = rekeningen.accounts;
