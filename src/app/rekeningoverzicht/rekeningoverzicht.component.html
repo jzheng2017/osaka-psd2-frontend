@@ -4,7 +4,7 @@
       <h2>Overzicht Rekeningen</h2>
       <h5>Totale Balans: <span [class.text-danger]="totalBalance < 0">€{{totalBalance | number : '1.2-2'}}</span></h5>
       <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-outline-primary">Bedrag overmaken</button>
+        <button type="button" class="btn btn-outline-primary" routerLink="/overmaken">Bedrag overmaken</button>
         <button type="button" class="btn btn-outline-primary" routerLink="/bank-koppelen">Rekening toevoegen
         </button>
       </div>

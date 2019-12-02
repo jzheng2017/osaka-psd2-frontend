@@ -1,1 +1,17 @@
-<p>transfer works!</p>
+<div class="container">
+  <div class="row">
+    <form class="offset-sm-3 col-sm-6">
+      <h1>Bedrag overmaken</h1>
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <label for="amount">Bedrag:</label>
+          <input type="number" class="form-control" id="amount" name="amount" #amount="ngModel" required min="0.01">
+        </div>
+
+        <div class="form-group col-sm-12">
+          <input type="submit" value="Verstuur geld" class="btn btn-primary float-right btn-block-sm">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
