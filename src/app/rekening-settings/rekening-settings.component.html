@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <form class="offset-sm-3 col-sm-6" #formSettings="ngForm">
+    <form class="offset-sm-3 col-sm-6" #formSettings="ngForm" (ngSubmit)="onSubmit()">
       <button class="btn btn-primary margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
       <h1>Instellingen</h1>
       <div class="row">
         <div class="form-group col-sm-12">
           <label for="category">Selecteer een categorie:</label>
           <select class="form-control" id="category" name="category" [(ngModel)]="settings.category" required>
-            <option value="1">Betaalrekening</option>
-            <option value="1">Spaarrekening</option>
+            <option value="betaalrekening">Betaalrekening</option>
+            <option value="spaarrekening">Spaarrekening</option>
           </select>
         </div>
         <div class="col-sm-12 form-group">

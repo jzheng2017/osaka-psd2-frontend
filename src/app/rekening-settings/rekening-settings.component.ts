@@ -20,4 +20,8 @@ export class RekeningSettingsComponent implements OnInit {
   back() {
     this.location.back();
   }
+
+  onSubmit() {
+    console.log(this.settings);
+  }
 }
