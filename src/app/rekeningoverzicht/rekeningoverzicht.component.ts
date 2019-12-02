@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
 import {Title} from '@angular/platform-browser';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-rekeningoverzicht',
@@ -14,11 +15,12 @@ export class RekeningoverzichtComponent implements OnInit {
   totalBalance: number;
   isLoading = true;
 
-  constructor(private rekeningService: RekeningService, private titleService: Title) {
+  constructor(private rekeningService: RekeningService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    this.spinner.show();
     this.getRekeningen();
   }
 
