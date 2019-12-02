@@ -12,6 +12,7 @@ import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AddBankComponent } from './add-bank/add-bank.component';
+import { RekeningSettingsComponent } from './rekening-settings/rekening-settings.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { AddBankComponent } from './add-bank/add-bank.component';
         TransactieoverzichtComponent,
         RekeningComponent,
         TransactionComponent,
-        AddBankComponent
+        AddBankComponent,
+        RekeningSettingsComponent
     ],
     imports: [
         BrowserModule,
