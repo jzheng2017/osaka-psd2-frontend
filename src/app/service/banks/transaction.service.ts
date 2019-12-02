@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Transaction} from '../transaction';
+import {Transaction} from '../../transaction/dto/transaction';
 import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 

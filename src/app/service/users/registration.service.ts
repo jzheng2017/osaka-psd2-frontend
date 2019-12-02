@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Registration} from '../registration/registration';
+import {Registration} from '../../registration/dto/registration';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {RegistrationRequest} from '../registration/registrationrequests';
+import {RegistrationRequest} from '../../registration/dto/registrationrequests';
 import {Router} from '@angular/router';
 
 @Injectable({

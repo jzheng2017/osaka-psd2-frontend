@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Login} from './login';
-import {LoginService} from '../service/login.service';
+import {Login} from './dto/login';
+import {LoginService} from '../service/users/login.service';
 
 @Component({
     selector: 'app-inloggen',

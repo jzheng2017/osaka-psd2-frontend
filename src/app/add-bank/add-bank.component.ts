@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AddBank} from './add-bank';
+import {AddBank} from './dto/add-bank';
 import {Location} from '@angular/common';
 
 @Component({

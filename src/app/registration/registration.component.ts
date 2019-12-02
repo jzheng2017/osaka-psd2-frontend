@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {Registration} from './registration';
+import {Registration} from './dto/registration';
 import {Router} from '@angular/router';
-import {RegistrationService} from '../service/registration.service';
+import {RegistrationService} from '../service/users/registration.service';
 
 @Component({
     selector: 'app-registration',

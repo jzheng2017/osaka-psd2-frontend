@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Rekening} from '../rekening/rekening';
-import {RekeningService} from '../service/rekening.service';
+import {Rekening} from '../rekening/dto/rekening';
+import {RekeningService} from '../service/banks/rekening.service';
 
 @Component({
     selector: 'app-rekeningoverzicht',

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {LoginRequest} from '../login/loginrequest';
+import {LoginRequest} from '../../login/dto/loginrequest';
 import {HttpClient} from '@angular/common/http';
-import {Login} from '../login/login';
+import {Login} from '../../login/dto/login';
 import {Router} from "@angular/router";
 
 @Injectable({

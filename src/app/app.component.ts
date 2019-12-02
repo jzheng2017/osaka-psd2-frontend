@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {AuthService} from './service/auth.service';
-import {UserService} from "./service/user.service";
+import {AuthService} from './service/auth/auth.service';
+import {UserService} from "./service/users/user.service";
 import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
