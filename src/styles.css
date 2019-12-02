@@ -11,3 +11,7 @@
 .margin-top-40-sm-and-up{
     margin-top:40px !important;
 }
+
+@media all and (max-width:768px) {
+  .btn-block-sm { width: 100%; display:block; }
+}

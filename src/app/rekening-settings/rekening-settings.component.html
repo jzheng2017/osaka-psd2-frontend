@@ -1,5 +1,22 @@
 <div class="container">
-  <button class="btn btn-primary margin-bottom-20 margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
+  <button class="btn btn-primary margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
 
   <h1>Instellingen</h1>
+
+  <div class="row">
+    <form class="col-sm-12">
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <label for="category">Selecteer een categorie:</label>
+          <select class="form-control" id="category" name="category" required>
+            <option value="1">Betaalrekening</option>
+            <option value="1">Spaarrekening</option>
+          </select>
+        </div>
+        <div class="col-sm-12 form-group">
+          <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10" value="Opslaan">
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
