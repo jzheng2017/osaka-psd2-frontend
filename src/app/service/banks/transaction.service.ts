@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
     providedIn: 'root'
 })
 export class TransactionService {
-    private apiUrl = 'http://localhost:8080'
+    private apiUrl = 'http://localhost:8080';
 
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -19,7 +19,8 @@ export class TransactionService {
 
 
     getTransacties(id: string, tableid: string): Observable<any> {
-        const transactieUrl = this.apiUrl + `/accounts/${id}/details?token=${localStorage.getItem('token')}&tableid=${tableid}`;
+        const token = localStorage.getItem('token');
+        const transactieUrl = this.apiUrl + `/accounts/${id}/details?token=${token}&tableid=${tableid}`;
         return this.http.get<any>(transactieUrl);
     }
 
