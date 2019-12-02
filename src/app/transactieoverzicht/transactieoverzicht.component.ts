@@ -1,30 +1,36 @@
 import {Component, OnInit} from '@angular/core';
-import {TransactionService} from '../service/transaction.service';
-import {Transaction} from '../transaction';
+import {TransactionService} from '../service/banks/transaction.service';
+import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
-    selector: 'app-transactieoverzicht',
-    templateUrl: './transactieoverzicht.component.html',
-    styleUrls: ['./transactieoverzicht.component.css']
+  selector: 'app-transactieoverzicht',
+  templateUrl: './transactieoverzicht.component.html',
+  styleUrls: ['./transactieoverzicht.component.css']
 })
 export class TransactieoverzichtComponent implements OnInit {
 
-    transactions: Transaction[];
-    isLoading = true;
+  transactions: Transaction[];
+  isLoading = true;
+  private title = 'Transactieoverzicht';
 
-    constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {
-    }
+  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private titleService: Title) {
+  }
 
-    ngOnInit() {
-        this.getTransactions();
-    }
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
+    this.getTransactions();
+  }
 
-    getTransactions() {
-        this.transactionService.getTransacties(this.activatedRoute.snapshot.paramMap.get('id'), this.activatedRoute.snapshot.paramMap.get('tableid')).subscribe(transactions => {
-            this.transactions = transactions.transactions;
-            this.isLoading = false;
-        });
-    }
+  getTransactions() {
+    const bankAccountId = this.activatedRoute.snapshot.paramMap.get('id');
+    const tableId = this.activatedRoute.snapshot.paramMap.get('tableid');
+
+    this.transactionService.getTransacties(bankAccountId, tableId).subscribe(transactions => {
+      this.transactions = transactions.transactions;
+      this.isLoading = false;
+    });
+  }
 }
 
