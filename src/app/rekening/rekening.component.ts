@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {RekeningService} from '../service/rekening.service';
-import {Rekening} from './rekening';
+import {RekeningService} from '../service/banks/rekening.service';
+import {Rekening} from './dto/rekening';
 import {Location} from '@angular/common';
 
 @Component({
