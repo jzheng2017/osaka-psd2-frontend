@@ -13,7 +13,7 @@ export class RegistrationComponent {
 
     submitted = false;
 
-    user = new Registration('','', '', '');
+    user = new Registration('', '', '', '');
 
     constructor(private router: Router, private registrationService: RegistrationService) {
     }
@@ -27,6 +27,8 @@ export class RegistrationComponent {
     }
 
     newUser() {
-        this.user = new Registration('','', '', '');
+        this.user = new Registration('', '', '', '');
     }
 }
+
+

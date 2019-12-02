@@ -12,6 +12,7 @@ import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AddBankComponent } from './add-bank/add-bank.component';
+import { NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { AddBankComponent } from './add-bank/add-bank.component';
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        RouterModule
+        RouterModule,
+        NgxSpinnerModule
     ],
     providers: [],
     bootstrap: [AppComponent],

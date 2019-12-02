@@ -36,5 +36,5 @@ export class RegistrationService {
             this.router.navigate(['overzicht/rekeningen']);
         }
     }
-
 }
+
