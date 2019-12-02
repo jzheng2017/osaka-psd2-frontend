@@ -13,7 +13,8 @@ export class RekeningService {
 
 
     getRekeningen(): Observable<any> {
-        const rekeningUrl = this.apiUrl + `/accounts/?token=${localStorage.getItem('token')}`;
+        const token = localStorage.getItem('token');
+        const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
         return this.http.get<any>(rekeningUrl);
     }
 

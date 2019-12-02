@@ -1,22 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {Login} from './login';
-import {LoginService} from '../service/login.service';
+import {Login} from './dto/login';
+import {LoginService} from '../service/users/login.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
-    selector: 'app-inloggen',
-    templateUrl: './inloggen.component.html',
-    styleUrls: ['./inloggen.component.css']
+  selector: 'app-inloggen',
+  templateUrl: './inloggen.component.html',
+  styleUrls: ['./inloggen.component.css']
 })
 export class InloggenComponent implements OnInit {
-  title = 'Registratie Formulier';
+  title = 'Login';
 
 
   user = new Login('', '');
 
   ngOnInit() {
+    this.titleService.setTitle(this.title);
   }
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private titleService: Title) {
   }
 
   onSubmit() {

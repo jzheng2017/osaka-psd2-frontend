@@ -1,32 +1,37 @@
-import {Component} from '@angular/core';
-import {Registration} from './registration';
+import {Component, OnInit} from '@angular/core';
+import {Registration} from './dto/registration';
 import {Router} from '@angular/router';
-import {RegistrationService} from '../service/registration.service';
+import {RegistrationService} from '../service/users/registration.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
-    selector: 'app-registration',
-    templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
-    title = 'Registratie Formulier';
+export class RegistrationComponent implements OnInit {
+  title = 'Registratie';
 
-    submitted = false;
+  submitted = false;
 
-    user = new Registration('','', '', '');
+  user = new Registration('', '', '', '');
 
-    constructor(private router: Router, private registrationService: RegistrationService) {
-    }
+  constructor(private router: Router, private registrationService: RegistrationService, private titleService: Title) {
+  }
 
-    onSubmit() {
-        this.register();
-    }
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
+  }
 
-    register() {
-      this.registrationService.register(this.user);
-    }
+  onSubmit() {
+    this.register();
+  }
 
-    newUser() {
-        this.user = new Registration('','', '', '');
-    }
+  register() {
+    this.registrationService.register(this.user);
+  }
+
+  newUser() {
+    this.user = new Registration('', '', '', '');
+  }
 }
