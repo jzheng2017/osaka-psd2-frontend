@@ -9,8 +9,16 @@
                 </button>
             </div>
         </div>
+
         <div class="col-sm-12">
-            <div *ngIf="isLoading">Bankrekeningen worden opgehaald...</div>
+            <div *ngIf="isLoading"><ngx-spinner
+                    bdColor="#ffffff"
+                    size="default"
+                    color="#000000"
+                    type="ball-pulse"
+                    style="position: center"
+                    [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p></ngx-spinner>
+            </div>
             <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let rekening of rekeningen">

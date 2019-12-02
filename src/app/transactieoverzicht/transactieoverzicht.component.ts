@@ -32,6 +32,5 @@ export class TransactieoverzichtComponent implements OnInit {
       this.isLoading = false;
     });
   }
-
-
 }
+

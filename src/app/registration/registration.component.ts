@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Registration} from './dto/registration';
 import {Router} from '@angular/router';
 import {RegistrationService} from '../service/users/registration.service';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-registration',
@@ -35,3 +35,5 @@ export class RegistrationComponent implements OnInit {
     this.user = new Registration('', '', '', '');
   }
 }
+
+
