@@ -9,8 +9,9 @@ import {Location} from '@angular/common';
 })
 export class AddBankComponent implements OnInit {
 
-    bank = new AddBank('', '');
-    token = localStorage.getItem('token');
+    private bank = new AddBank('', '');
+    private token = localStorage.getItem('token');
+    private apiUrl = 'http://localhost:8080/connect';
 
     constructor(private location: Location) {
     }
@@ -18,8 +19,8 @@ export class AddBankComponent implements OnInit {
     ngOnInit() {
     }
 
-    onSubmit() {
-        console.log(this.bank);
+    onSubmit(url: string) {
+      this.goTo(url);
     }
 
     goTo(url: string) {
