@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Transfer} from './transfer';
 import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-transfer',
@@ -14,7 +15,7 @@ export class TransferComponent implements OnInit {
   rekeningen: Rekening[];
   isLoading = true;
 
-  constructor(private rekeningService: RekeningService) {
+  constructor(private rekeningService: RekeningService, private location: Location) {
   }
 
   ngOnInit() {
@@ -26,5 +27,9 @@ export class TransferComponent implements OnInit {
       this.rekeningen = rekeningen.accounts;
       this.isLoading = false;
     });
+  }
+
+  back() {
+    this.location.back();
   }
 }
