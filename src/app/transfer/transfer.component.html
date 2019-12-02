@@ -5,9 +5,10 @@
       <div class="row">
         <div class="form-group col-sm-12">
           <label for="debtor">Uw rekening</label>
-          <div *ngIf="isLoading">Uw rekeningen worden opgehaald...</div>
-          <select *ngIf="!isLoading" class="form-control" id="debtor" name="debtor" #debtor="ngModel"
+          <select class="form-control" id="debtor" name="debtor" #debtor="ngModel"
                   [(ngModel)]="transfer.debtor" required>
+            <option *ngIf="isLoading" disabled selected>Uw rekeningen worden opgehaald...</option>
+
             <option *ngFor="let rekening of rekeningen" value="{{rekening.iban}}">{{rekening.name}}
               / {{rekening.iban}}</option>
           </select>
