@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/banks/transaction.service';
 import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-transactieoverzicht',
@@ -12,11 +13,13 @@ export class TransactieoverzichtComponent implements OnInit {
 
   transactions: Transaction[];
   isLoading = true;
+  private title = 'Transactieoverzicht';
 
-  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {
+  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle(this.title);
     this.getTransactions();
   }
 

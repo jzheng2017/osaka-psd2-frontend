@@ -1,7 +1,7 @@
     <div class="container">
     <!-- Login -->
     <div id="row">
-        <form class="offset-sm-3 col-sm-6" #addBankForm="ngForm" (ngSubmit)="onSubmit(bank.value)">
+        <form class="offset-sm-3 col-sm-6" #addBankForm="ngForm" (ngSubmit)="onSubmit(bankSelect.value)">
             <button (click)="back()" class="btn btn-primary margin-top-40-sm-and-up">Ga terug</button>
 
             <div class="row">
@@ -9,7 +9,7 @@
 
                     <h2>Bankaccount koppelen</h2>
                     <label for="name">Selecteer een bank:</label>
-                    <select class="form-control" id="name" name="name" #bank="ngModel" [(ngModel)]="bank.url" required>
+                    <select class="form-control" id="name" name="name" #bankSelect="ngModel" [(ngModel)]="bank.url" required>
                         <option value="{{apiUrl}}/ING?token={{token}}">ING</option>
                         <option value="{{apiUrl}}/RABOBANK?token={{token}}">Rabobank</option>
                     </select>
