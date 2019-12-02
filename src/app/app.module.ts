@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AddBankComponent } from './add-bank/add-bank.component';
 import { NgxSpinnerModule} from 'ngx-spinner';
+import { RekeningSettingsComponent } from './rekening-settings/rekening-settings.component';
+
 
 @NgModule({
     declarations: [
@@ -23,7 +25,8 @@ import { NgxSpinnerModule} from 'ngx-spinner';
         TransactieoverzichtComponent,
         RekeningComponent,
         TransactionComponent,
-        AddBankComponent
+        AddBankComponent,
+        RekeningSettingsComponent
     ],
     imports: [
         BrowserModule,
