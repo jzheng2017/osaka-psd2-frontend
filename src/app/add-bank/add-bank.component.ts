@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AddBank} from './dto/add-bank';
 import {Location} from '@angular/common';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-add-bank',
