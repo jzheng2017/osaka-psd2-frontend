@@ -14,6 +14,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { AddBankComponent } from './add-bank/add-bank.component';
 import { NgxSpinnerModule} from 'ngx-spinner';
 import { RekeningSettingsComponent } from './rekening-settings/rekening-settings.component';
+import { TransferComponent } from './transfer/transfer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RekeningSettingsComponent } from './rekening-settings/rekening-settings
         RekeningComponent,
         TransactionComponent,
         AddBankComponent,
-        RekeningSettingsComponent
+        RekeningSettingsComponent,
+        TransferComponent
     ],
     imports: [
         BrowserModule,
