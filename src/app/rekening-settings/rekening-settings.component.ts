@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from "@angular/common";
+import {RekeningSettings} from "./dto/rekening-settings";
 
 @Component({
   selector: 'app-rekening-settings',
@@ -7,6 +8,8 @@ import {Location} from "@angular/common";
   styleUrls: ['./rekening-settings.component.css']
 })
 export class RekeningSettingsComponent implements OnInit {
+
+  private settings = new RekeningSettings('');
 
   constructor(private location: Location) {
   }
