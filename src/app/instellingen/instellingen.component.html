@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>Instellingen</h3>
+
+  <div>
+    <h5>Accountinformatie</h5>
+    <p>Naam: </p>
+    <p>E-mailadres: </p>
+    <p>Wachtwoord: ********</p>
+  </div>
+
+  <h5>Gekoppelde rekeningen</h5>
+  <div class="col-sm-12">
+    <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p>Koppeling A - Rabobank</p>
+        <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
+      </li>
+      <li class="list-group-item">
+        <p>Koppeling B - ING</p> <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
+      </li>
+    </ul>
+
+  </div>
+
+
+</div>
