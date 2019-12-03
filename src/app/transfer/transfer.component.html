@@ -13,13 +13,17 @@
             <option *ngFor="let rekening of rekeningen" value="{{rekening.iban}}">{{rekening.name}}
               / {{rekening.iban}}</option>
           </select>
+          <div *ngIf="debtor.invalid && debtor.dirty" class="alert alert-danger">
+            <li *ngIf="debtor.errors.required">Een rekening is verplicht</li>
+          </div>
+
         </div>
 
         <div class="form-group col-sm-12">
           <label for="creditorIBAN">Naar (IBAN):</label>
           <input type="text" class="form-control" id="creditorIBAN" name="creditorIBAN" #creditorIBAN="ngModel"
                  [(ngModel)]="transfer.creditorIBAN" ibanValidator required>
-          <div *ngIf="creditorIBAN.invalid && creditorIBAN.dirty"  class="alert alert-danger">
+          <div *ngIf="creditorIBAN.invalid && creditorIBAN.dirty" class="alert alert-danger">
             <li *ngIf="creditorIBAN.errors.required">Een IBAN is verplicht</li>
             <li *ngIf="creditorIBAN.errors.iban">Ongeldige IBAN</li>
           </div>
@@ -35,12 +39,34 @@
         </div>
 
         <div class="form-group col-sm-12">
-          <label for="amount">Bedrag:</label>
-          <input type="number" class="form-control" id="amount" name="amount" #amount="ngModel"
-                 [(ngModel)]="transfer.amount" required min="0.01">
-          <div *ngIf="amount.invalid && creditorIBAN.dirty" class="alert alert-danger">
-            <li *ngIf="amount.errors.required">Een bedrag is verplicht</li>
+          <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-3">
+              <label for="currency">Valuta:</label>
+              <select name="currency" id="currency" class="form-control" #currency="ngModel"
+                      [(ngModel)]="transfer.currency">
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+              <div *ngIf="currency.invalid && currency.dirty" class="alert alert-danger">
+                <li *ngIf="currency.errors.required">Een valuta is verplicht</li>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <label for="amount">Bedrag:</label>
+              <input type="number" class="form-control" id="amount" name="amount" #amount="ngModel"
+                     [(ngModel)]="transfer.amount" required min="0.01">
+              <div *ngIf="amount.invalid && creditorIBAN.dirty" class="alert alert-danger">
+                <li *ngIf="amount.errors.required">Een bedrag is verplicht</li>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="form-group col-sm-12">
+          <label for="comment">
+            <textarea class="form-control" id="comment" name="comment" #comment="ngModel"
+                      [(ngModel)]="transfer.comment"></textarea>
+          </label>
         </div>
 
         <div class="form-group col-sm-12">
