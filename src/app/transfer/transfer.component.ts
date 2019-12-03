@@ -39,7 +39,6 @@ export class TransferComponent implements OnInit {
      * Op dit moment wordt er nog een random boolean gegenereerd en op basis daarvan een fout of succesmelding getoond.
      * Dit moet vervangen worden met een echte HTTP request naar de backend
      */
-    console.log(this.transfer.amount);
     this.transfered = Math.random() >= 0.5;
   }
 }
