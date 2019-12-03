@@ -20,7 +20,7 @@
 
           <label for="debtor">Uw rekening</label>
           <select class="form-control" id="debtor" name="debtor" #debtor="ngModel"
-                  [(ngModel)]="transfer.debtor" required>
+                  [(ngModel)]="transfer.sender.name" required>
             <option *ngIf="isLoading" disabled selected>Uw rekeningen worden opgehaald...</option>
 
             <option *ngFor="let rekening of rekeningen" value="{{rekening.iban}}">{{rekening.name}}
@@ -35,7 +35,7 @@
         <div class="form-group col-sm-12">
           <label for="creditorIBAN">Naar (IBAN):</label>
           <input type="text" class="form-control" id="creditorIBAN" name="creditorIBAN" #creditorIBAN="ngModel"
-                 [(ngModel)]="transfer.creditorIBAN" ibanValidator required>
+                ibanValidator [(ngModel)]="transfer.receiver.iban" required>
           <div *ngIf="creditorIBAN.invalid && creditorIBAN.dirty" class="alert alert-danger">
             <li *ngIf="creditorIBAN.errors.required">Een IBAN is verplicht</li>
             <li *ngIf="creditorIBAN.errors.iban">Ongeldige IBAN</li>
@@ -45,7 +45,7 @@
         <div class="form-group col-sm-12">
           <label for="creditorName">Naar (Naam):</label>
           <input type="text" class="form-control" id="creditorName" name="creditorName" #creditorName="ngModel"
-                 [(ngModel)]="transfer.creditorName" required>
+                 [(ngModel)]="transfer.receiver.name" required>
           <div *ngIf="creditorName.invalid && creditorName.dirty" class="alert alert-danger">
             <li *ngIf="creditorName.errors.required">Een naam is verplicht</li>
           </div>
@@ -56,7 +56,7 @@
             <div class="col-sm-12 col-md-4 col-lg-3">
               <label for="currency">Valuta:</label>
               <select name="currency" id="currency" class="form-control" #currency="ngModel"
-                      [(ngModel)]="transfer.currency">
+                      [(ngModel)]="transfer.currency" required>
                 <option value="EUR">EUR</option>
                 <option value="USD">USD</option>
               </select>
@@ -77,8 +77,9 @@
 
         <div class="form-group col-sm-12">
           <label for="comment">Opmerking:</label>
-            <textarea class="form-control" id="comment" name="comment" #comment="ngModel"
-                      [(ngModel)]="transfer.comment"></textarea>
+          <textarea class="form-control" id="comment" name="comment" #comment="ngModel"
+                    [(ngModel)]="transfer.comment"></textarea>
+
         </div>
 
         <div class="form-group col-sm-12">
