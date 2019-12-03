@@ -11,7 +11,7 @@ import {Location} from "@angular/common";
 })
 export class TransferComponent implements OnInit {
 
-  public transfer = new Transfer('', '', '', 0);
+  public transfer = new Transfer('', '', '', 0, '', '');
   rekeningen: Rekening[];
   isLoading = true;
   transfered = undefined;
