@@ -18,9 +18,10 @@
         <div class="form-group col-sm-12">
           <label for="creditorIBAN">Naar (IBAN):</label>
           <input type="text" class="form-control" id="creditorIBAN" name="creditorIBAN" #creditorIBAN="ngModel"
-                 [(ngModel)]="transfer.creditorIBAN" required>
-          <div *ngIf="creditorIBAN.invalid && creditorIBAN.dirty" class="alert alert-danger">
+                 [(ngModel)]="transfer.creditorIBAN" ibanValidator required>
+          <div *ngIf="creditorIBAN.invalid && creditorIBAN.dirty"  class="alert alert-danger">
             <li *ngIf="creditorIBAN.errors.required">Een IBAN is verplicht</li>
+            <li *ngIf="creditorIBAN.errors.iban">Ongeldige IBAN</li>
           </div>
         </div>
 
