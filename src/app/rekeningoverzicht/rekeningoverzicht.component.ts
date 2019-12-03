@@ -3,6 +3,7 @@ import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
 import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-rekeningoverzicht',
@@ -14,6 +15,7 @@ export class RekeningoverzichtComponent implements OnInit {
   rekeningen: Rekening[];
   totalBalance: number;
   isLoading = true;
+  error = '';
 
   constructor(private rekeningService: RekeningService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
@@ -30,8 +32,11 @@ export class RekeningoverzichtComponent implements OnInit {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
         this.isLoading = false;
-      }
+      }, err => {
+        this.error = err.error.errorMessage;
+        }
     );
+
   }
 }
 

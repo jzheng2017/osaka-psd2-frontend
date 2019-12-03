@@ -10,16 +10,28 @@
       </div>
     </div>
 
+
     <div class="col-sm-12">
-      <div *ngIf="isLoading">
-        <ngx-spinner
-          bdColor="#ffffff"
-          size="default"
-          color="#000000"
-          type="ball-pulse"
-          style="position: center"
-          [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p></ngx-spinner>
-      </div>
+        <!--<p>een tekst: {{error[0]}}</p>-->
+        <!--<p *ngIf="error[0] == 'INVALID_TOKEN'">kaas</p>-->
+        <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center" >
+            <ul  style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
+                <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
+                <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.</li>
+                <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
+            </ul>
+        </div>
+        <div *ngIf="!error">
+          <div *ngIf="isLoading" >
+            <ngx-spinner
+              bdColor="#ffffff"
+              size="default"
+              color="#000000"
+              type="ball-pulse"
+              style="position: center"
+              [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p></ngx-spinner>
+          </div>
+        </div>
       <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let rekening of rekeningen">
