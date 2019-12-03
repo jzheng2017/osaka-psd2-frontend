@@ -15,7 +15,8 @@ import {AddBankComponent} from './add-bank/add-bank.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.component';
 import {TransferComponent} from './transfer/transfer.component';
-import {AngularIbanModule} from "angular-iban";
+import {AngularIbanModule} from 'angular-iban';
+import {InstellingenComponent} from './instellingen/instellingen.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {AngularIbanModule} from "angular-iban";
     TransactionComponent,
     AddBankComponent,
     RekeningSettingsComponent,
-    TransferComponent
+    TransferComponent,
+    InstellingenComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,5 @@ import {AngularIbanModule} from "angular-iban";
   providers: [],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {
 }
