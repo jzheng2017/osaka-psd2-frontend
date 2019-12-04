@@ -31,7 +31,7 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
     AddBankComponent,
     RekeningSettingsComponent,
     TransferComponent,
-    InstellingenComponent
+    InstellingenComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +40,7 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
     HttpClientModule,
     RouterModule,
     NgxSpinnerModule,
-    AngularIbanModule
+    AngularIbanModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
