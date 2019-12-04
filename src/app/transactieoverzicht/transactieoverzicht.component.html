@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage"
                                                  *ngIf="transaction.comment"></i></div>
-                        <!--<div class="col-sm-2"><a class="btn btn-primary float-right">Details</a></div>-->
+                        <div class="col-sm-2"><button class="btn btn-primary float-right" [routerLink]="['/transactie', transaction.id, 'details']">Details</button></div>
                         <div id="IBAN" *ngIf="transaction.creditorAccount.iban != undefined" class="col-sm-6">
                             <i>IBAN: {{transaction.creditorAccount.iban}}</i></div>
                     </div>

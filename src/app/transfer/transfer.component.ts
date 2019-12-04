@@ -11,9 +11,10 @@ import {Location} from "@angular/common";
 })
 export class TransferComponent implements OnInit {
 
-  public transfer = new Transfer('', '', 0);
+  public transfer = new Transfer('', '', '', 0, '', '');
   rekeningen: Rekening[];
   isLoading = true;
+  transfered = undefined;
 
   constructor(private rekeningService: RekeningService, private location: Location) {
   }
@@ -31,5 +32,13 @@ export class TransferComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  onSubmit() {
+    /**
+     * Op dit moment wordt er nog een random boolean gegenereerd en op basis daarvan een fout of succesmelding getoond.
+     * Dit moet vervangen worden met een echte HTTP request naar de backend
+     */
+    this.transfered = Math.random() >= 0.5;
   }
 }

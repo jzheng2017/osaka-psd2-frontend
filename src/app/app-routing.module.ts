@@ -7,8 +7,9 @@ import {RekeningComponent} from './rekening/rekening.component';
 import {TransactionComponent} from './transaction/transaction.component';
 import {AddBankComponent} from './add-bank/add-bank.component';
 import {AuthGuardService} from './service/auth/auth-guard.service';
-import {RekeningSettingsComponent} from "./rekening-settings/rekening-settings.component";
-import {TransferComponent} from "./transfer/transfer.component";
+import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.component';
+import {TransferComponent} from './transfer/transfer.component';
+import {InstellingenComponent} from './instellingen/instellingen.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'bank-koppelen', component: AddBankComponent, canActivate: [AuthGuardService]},
     {path: 'rekening/:id/instellingen', component: RekeningSettingsComponent, canActivate: [AuthGuardService]},
     {path: 'overmaken', component: TransferComponent, canActivate: [AuthGuardService]},
+    {path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuardService]},
     {path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full'},
 ];
 

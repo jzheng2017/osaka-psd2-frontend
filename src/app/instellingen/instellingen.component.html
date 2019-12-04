@@ -1,0 +1,27 @@
+<div class="container">
+  <h3>Instellingen</h3>
+  <br>
+
+  <div>
+    <h5>Accountinformatie</h5>
+    <p>Naam: </p>
+    <p>E-mailadres: </p>
+    <p>Wachtwoord: ********</p>
+  </div>
+
+  <h5>Gekoppelde rekeningen</h5>
+    <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
+
+    <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit account.</div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let rekening of rekeningen">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <p>Koppeling A - Rabobank</p>
+            <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>

@@ -1,26 +1,38 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {Rekening} from '../../rekening/dto/rekening';
+import {Observable, throwError} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {catchError, retry} from "rxjs/operators";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class RekeningService {
-    private apiUrl = 'http://localhost:8080';
-    r: HttpErrorResponse;
+  private apiUrl = 'http://localhost:8080';
 
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
+  }
+
+
+  getRekeningen(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
+    return this.http.get<any>(rekeningUrl).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
-
-    getRekeningen(): Observable<Rekening> {
-        const token = localStorage.getItem('token');
-        const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
-        // const rekeningUrl = this.apiUrl + `/accounts`;
-        return this.http.get<Rekening>(rekeningUrl);
-
-    }
+    return throwError(errorMessage);
+  }
 
 }
 
