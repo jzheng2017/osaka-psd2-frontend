@@ -4,21 +4,24 @@
 
   <div>
     <h5>Accountinformatie</h5>
-    <p>Naam: </p>
-    <p>E-mailadres: </p>
-    <p>Wachtwoord: ********</p>
+    <p>Naam: {{user.name}}</p>
+    <p>E-mailadres: {{user.email}}</p>
   </div>
 
   <h5>Gekoppelde rekeningen</h5>
     <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
 
-    <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit account.</div>
+    <div class="text-center" *ngIf="!isLoading && accounts.length <= 0">Er zijn geen rekeningen gekoppeld aan dit account.</div>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let rekening of rekeningen">
+      <li class="list-group-item" *ngFor="let account of accounts">
         <ul class="list-group">
           <li class="list-group-item">
-            <p>Koppeling A - Rabobank</p>
-            <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
+            <p>Koppeling: {{account.bank}} </p>
+
+            <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
+
+            </div>
           </li>
         </ul>
       </li>
