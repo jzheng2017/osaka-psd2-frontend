@@ -4,6 +4,9 @@ import {RekeningService} from '../service/banks/rekening.service';
 import {UserService} from '../service/users/user.service';
 import {User} from '../user';
 import {Account} from '../account';
+import {Spinner} from 'ngx-spinner/lib/ngx-spinner.enum';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-instellingen',
@@ -17,13 +20,13 @@ export class InstellingenComponent implements OnInit {
   user: User;
   accounts: Account[];
 
-  constructor(private rekeningService: RekeningService, private userService: UserService)  { }
+  constructor(private rekeningService: RekeningService, private userService: UserService, private spinner: NgxSpinnerService)  { }
 
   ngOnInit() {
     this.getUserDetails();
     this.getAttachedBankAccounts();
-    this.getRekeningen();
-
+    // this.getRekeningen();
+    this.spinner.show();
   }
 
   getRekeningen() {
@@ -36,12 +39,18 @@ export class InstellingenComponent implements OnInit {
   }
 
   getAttachedBankAccounts() {
-    this.userService.getAttachedBankAccounts().subscribe( data => {this.accounts = data;
-                                                                   console.log(this.accounts); });
+    this.userService.getAttachedBankAccounts().subscribe( data => {
+        this.accounts = data;
+        this.isLoading = true;
+        console.log(this.accounts); });
   }
 
   getUserDetails() {
     this.userService.getUser().subscribe(data => {this.user = data; });
+  }
+
+  disconnectAccount(id: number) {
+      this.userService.disconnectBankAccount(id);
 
   }
 

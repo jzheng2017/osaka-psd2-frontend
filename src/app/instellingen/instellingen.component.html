@@ -9,8 +9,18 @@
   </div>
 
   <h5>Gekoppelde rekeningen</h5>
-    <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
-
+    <br>
+    <div *ngIf="isLoading" style="position: relative">
+      <ngx-spinner
+              bdColor="#ffffff"
+              size="default"
+              color="#000000"
+              type="ball-pulse"
+              style="position: center"
+              [fullScreen]="false"><p>Rekeningen worden opgehaald.<br><br></p>
+      </ngx-spinner>
+    </div>
+    <br>
     <div class="text-center" *ngIf="!isLoading && accounts.length <= 0">Er zijn geen rekeningen gekoppeld aan dit account.</div>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let account of accounts">
@@ -19,7 +29,7 @@
             <p>Koppeling: {{account.bank}} </p>
 
             <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
+              <button type="button" class="btn btn-outline-primary" (click)="disconnectAccount(account.id)">Ontkoppel</button>
 
             </div>
           </li>
