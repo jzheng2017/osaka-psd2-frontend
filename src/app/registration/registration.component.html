@@ -8,6 +8,9 @@
                 <div class="col-sm-12 form-group">
                     <h2>Registreren</h2>
                     <p>Registreer hier een account.</p>
+                    <div *ngIf="error" class="pl-2 alert-danger card align-content-center">
+                        Er is een fout opgetreden.<br>Probeer het opnieuw.
+                    </div>
                     <label for="name">Naam</label>
                     <input type="text" class="form-control" id="name" name="name"
                            [(ngModel)]="user.name"

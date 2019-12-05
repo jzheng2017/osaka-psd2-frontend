@@ -14,6 +14,7 @@ export class TransactieoverzichtComponent implements OnInit {
   transactions: Transaction[];
   isLoading = true;
   private title = 'Transactieoverzicht';
+  error = '';
 
   constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private titleService: Title) {
   }
@@ -30,8 +31,10 @@ export class TransactieoverzichtComponent implements OnInit {
     this.transactionService.getTransacties(bankAccountId, tableId).subscribe(transactions => {
       this.transactions = transactions.transactions;
       this.isLoading = false;
+      console.log(this.transactions);
+    }, err => {
+        this.error = err.error.errorMessage;
     });
   }
-
-
 }
+
