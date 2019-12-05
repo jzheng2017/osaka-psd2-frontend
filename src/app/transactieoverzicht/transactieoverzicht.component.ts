@@ -37,10 +37,5 @@ export class TransactieoverzichtComponent implements OnInit {
     });
   }
 
-  unlinkAccount() {
-    if (confirm('Weet je zeker dat je deze rekening wilt ontkoppelen?')) {
-      console.log('Implement delete functionality here');
-    }
-  }
 }
 
