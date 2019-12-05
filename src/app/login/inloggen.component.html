@@ -7,6 +7,9 @@
                     <h2>Login</h2>
                     <p>Log hier in met je gebruikersgegevens.</p>
                     <br>
+                    <div *ngIf="error" class="pl-2 alert-danger card align-content-center">
+                        Het e-mailadres en wachtwoord komen niet overeen.<br>Probeer het opnieuw.
+                    </div>
                     <label for="email">E-mailadres</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="E-mail"
                            [(ngModel)]="user.email" required email #email="ngModel">
