@@ -31,6 +31,7 @@ export class TransactieoverzichtComponent implements OnInit {
     this.transactionService.getTransacties(bankAccountId, tableId).subscribe(transactions => {
       this.transactions = transactions.transactions;
       this.isLoading = false;
+      console.log(this.transactions);
     }, err => {
         this.error = err.error.errorMessage;
     });
