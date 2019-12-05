@@ -1,7 +1,6 @@
 <h2>Transacties</h2>
 
 <div *ngIf="isLoading">Transacties worden opgehaald...</div>
-<h2>Transacties</h2><br>
 <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
   <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
     <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
@@ -21,12 +20,8 @@
   </div>
 </div>
 <div *ngIf="!isLoading">
-  <button type=button class="btn btn-primary" (click)="unlinkAccount()">Ontkoppel rekening</button>
   <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
   <ul class="list-group">
-    <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-outline-primary">Ontkoppel rekening</button>
-    </div>
     <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
       <div class="row">
 
