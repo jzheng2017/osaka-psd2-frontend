@@ -1,25 +1,28 @@
 <div class="container">
-  <h3>Instellingen</h3>
-  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Instellingen</h3>
+      <h5>Accountinformatie</h5>
+      <ul class="list-unstyled">
+        <li>Naam:</li>
+        <li>E-mailadres:</li>
+        <li>Wachtwoord: ********</li>
+      </ul>
+    </div>
+    <div class="col-sm-12">
+      <h5>Gekoppelde rekeningen</h5>
+      <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
 
-  <div>
-    <h5>Accountinformatie</h5>
-    <p>Naam: </p>
-    <p>E-mailadres: </p>
-    <p>Wachtwoord: ********</p>
+      <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
+        account.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let rekening of rekeningen">
+          <span>Koppeling A - Rabobank</span>
+          <button type="button" class="btn btn-outline-primary float-right">Ontkoppel</button>
+        </li>
+      </ul>
+    </div>
   </div>
-
-  <h5>Gekoppelde rekeningen</h5>
-  <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
-
-  <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
-    account.
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let rekening of rekeningen">
-      <span>Koppeling A - Rabobank</span>
-      <button type="button" class="btn btn-outline-primary float-right">Ontkoppel</button>
-    </li>
-  </ul>
-
 </div>
+
