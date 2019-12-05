@@ -34,9 +34,7 @@ export class UserService {
       const token = localStorage.getItem('token');
       console.log(token);
       console.log(id);
-      this.httpClient.delete(url + `/?token=${token}&tableid=${id}`).subscribe();
-      location.reload();
-
+      return this.httpClient.delete(url + `/?token=${token}&tableid=${id}`);
   }
 
 

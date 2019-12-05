@@ -15,8 +15,6 @@ import {Router} from '@angular/router';
 })
 export class InstellingenComponent implements OnInit {
   isLoading = true;
-  rekeningen: Rekening[];
-  totalBalance: number;
   user: User;
   accounts: Account[];
 
@@ -25,24 +23,14 @@ export class InstellingenComponent implements OnInit {
   ngOnInit() {
     this.getUserDetails();
     this.getAttachedBankAccounts();
-    // this.getRekeningen();
-    this.spinner.show();
-  }
-
-  getRekeningen() {
-    this.rekeningService.getRekeningen().subscribe(rekeningen => {
-        this.rekeningen = rekeningen.accounts;
-        this.totalBalance = rekeningen.balance;
-        this.isLoading = false;
-      }
-    );
+    if (this.isLoading) {this.spinner.show();}
   }
 
   getAttachedBankAccounts() {
     this.userService.getAttachedBankAccounts().subscribe( data => {
         this.accounts = data;
         this.isLoading = false;
-        console.log(this.accounts); });
+    });
   }
 
   getUserDetails() {
@@ -50,8 +38,7 @@ export class InstellingenComponent implements OnInit {
   }
 
   disconnectAccount(id: number) {
-      this.userService.disconnectBankAccount(id);
-
+      this.userService.disconnectBankAccount(id).subscribe( () => this.getAttachedBankAccounts());
   }
 
 }
