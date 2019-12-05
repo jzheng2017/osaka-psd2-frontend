@@ -1,5 +1,5 @@
 export class Transfer {
 
-  constructor(public debtor: string, public creditorIBAN: string, public creditorName: string, public amount: number, public currency: string, public comment: string) {
+  constructor(public sender: { iban: string }, public receiver: { iban: string, name: string }, public amount: number, public currency: string, public information: string) {
   }
 }

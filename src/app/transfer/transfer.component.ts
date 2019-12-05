@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Transfer} from './transfer';
 import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
-import {Location} from "@angular/common";
+import {Location} from '@angular/common';
+import {TransactionService} from '../service/banks/transaction.service';
+
 
 @Component({
   selector: 'app-transfer',
@@ -11,12 +13,13 @@ import {Location} from "@angular/common";
 })
 export class TransferComponent implements OnInit {
 
-  public transfer = new Transfer('', '', '', 0, '', '');
+  public transfer = new Transfer({iban: ''}, {iban: '', name: ''}, 0, '', '');
   rekeningen: Rekening[];
+  selectedRekening = {iban: '', tableId: ''};
   isLoading = true;
   transfered = undefined;
 
-  constructor(private rekeningService: RekeningService, private location: Location) {
+  constructor(private rekeningService: RekeningService, private transactionService: TransactionService, private location: Location) {
   }
 
   ngOnInit() {
@@ -35,10 +38,9 @@ export class TransferComponent implements OnInit {
   }
 
   onSubmit() {
-    /**
-     * Op dit moment wordt er nog een random boolean gegenereerd en op basis daarvan een fout of succesmelding getoond.
-     * Dit moet vervangen worden met een echte HTTP request naar de backend
-     */
-    this.transfered = Math.random() >= 0.5;
+    this.transfer.sender.iban = this.selectedRekening.iban;
+    this.transactionService.createTransaction(this.transfer, this.selectedRekening.tableId)
+      .subscribe(() => this.transfered = true,
+        () => this.transfered = false);
   }
 }
