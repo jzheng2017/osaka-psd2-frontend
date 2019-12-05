@@ -22,7 +22,8 @@
         <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
             <div class="row">
                 <div class="col-sm-12">
-                    <small>{{transaction.date}}</small>
+                    <small *ngIf="transaction.booked">{{transaction.date}}</small>
+                    <small *ngIf="!transaction.booked">Nog niet overgeboekt</small>
                 </div>
                 <div class="col-sm-12">
                     <div class="row">
