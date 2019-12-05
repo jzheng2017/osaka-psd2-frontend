@@ -29,7 +29,7 @@
                         <div *ngIf="transaction.sender.name != undefined" class="col-sm-6">
                             {{transaction.sender.name}}
                         </div>
-                        <div *ngIf="transaction.sender.name == undefined" class="col-sm-6"><i>Onbekend</i>
+                        <div *ngIf="transaction.sender.name === undefined" class="col-sm-6"><i>Onbekend</i>
                         </div>
                         <div class="col-sm-3"> Bedrag: <span
                                 [class.text-danger]="transaction.amount < 0">€ {{transaction.amount | number : "1.2-2"}}</span>
