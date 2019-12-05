@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
 import {UserService} from '../service/users/user.service';
@@ -18,27 +18,37 @@ export class InstellingenComponent implements OnInit {
   user: User;
   accounts: Account[];
 
-  constructor(private rekeningService: RekeningService, private userService: UserService, private spinner: NgxSpinnerService)  { }
+  constructor(private rekeningService: RekeningService, private userService: UserService, private spinner: NgxSpinnerService) {
+  }
 
   ngOnInit() {
     this.getUserDetails();
     this.getAttachedBankAccounts();
-    if (this.isLoading) {this.spinner.show();}
+    if (this.isLoading) {
+      this.spinner.show();
+    }
   }
 
   getAttachedBankAccounts() {
-    this.userService.getAttachedBankAccounts().subscribe( data => {
-        this.accounts = data;
-        this.isLoading = false;
+    this.userService.getAttachedBankAccounts().subscribe(data => {
+      this.accounts = data;
+      this.isLoading = false;
     });
   }
 
   getUserDetails() {
-    this.userService.getUser().subscribe(data => {this.user = data; });
+    this.userService.getUser().subscribe(data => {
+      this.user = data;
+    });
   }
 
   disconnectAccount(id: number) {
-      this.userService.disconnectBankAccount(id).subscribe( () => this.getAttachedBankAccounts());
+    if (this.unlinkAccount()) {
+      this.userService.disconnectBankAccount(id).subscribe(() => this.getAttachedBankAccounts());
+    }
   }
 
+  unlinkAccount() {
+    return confirm('Weet je zeker dat je deze rekening wilt ontkoppelen?');
+  }
 }

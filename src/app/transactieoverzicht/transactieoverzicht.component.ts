@@ -36,5 +36,6 @@ export class TransactieoverzichtComponent implements OnInit {
         this.error = err.error.errorMessage;
     });
   }
+
 }
 
