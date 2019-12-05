@@ -10,18 +10,16 @@
   </div>
 
   <h5>Gekoppelde rekeningen</h5>
-    <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
+  <div *ngIf="isLoading">Gekoppelde accounts worden opgehaald worden opgehaald...</div>
 
-    <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit account.</div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let rekening of rekeningen">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <p>Koppeling A - Rabobank</p>
-            <button type="button" class="btn btn-outline-primary">Ontkoppel</button>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
+  <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
+    account.
   </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let rekening of rekeningen">
+      <span>Koppeling A - Rabobank</span>
+      <button type="button" class="btn btn-outline-primary float-right">Ontkoppel</button>
+    </li>
+  </ul>
+
+</div>

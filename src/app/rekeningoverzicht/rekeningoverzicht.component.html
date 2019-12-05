@@ -12,9 +12,7 @@
 
 
     <div class="col-sm-12">
-        <!--<p>een tekst: {{error[0]}}</p>-->
-        <!--<p *ngIf="error[0] == 'INVALID_TOKEN'">kaas</p>-->
-        <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center" >
+       <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center" >
             <ul  style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
                 <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
                 <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.</li>
