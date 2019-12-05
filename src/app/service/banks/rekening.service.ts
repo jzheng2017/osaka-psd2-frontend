@@ -1,21 +1,38 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {catchError, retry} from "rxjs/operators";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class RekeningService {
-    private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:8080';
 
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
+  }
+
+
+  getRekeningen(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
+    return this.http.get<any>(rekeningUrl).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
-
-    getRekeningen(): Observable<any> {
-        const token = localStorage.getItem('token');
-        const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
-        return this.http.get<any>(rekeningUrl);
-    }
+    return throwError(errorMessage);
+  }
 
 }
+

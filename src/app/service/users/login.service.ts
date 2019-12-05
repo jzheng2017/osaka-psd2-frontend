@@ -18,12 +18,13 @@ export class LoginService {
   public login(r: Login) {
     this.loginRequest = new LoginRequest(r.email, r.password);
     const loginUrl = this.apiUrl + '/users/login';
-    this.httpClient.post<any>(loginUrl, this.loginRequest).subscribe(data => {
-        if (data.token != null) {
-          localStorage.setItem('token', data.token);
-          this.router.navigate(['overzicht/rekening']);
-        }
-      }
-    );
+    // this.httpClient.post<any>(loginUrl, this.loginRequest).subscribe(data => {
+    //     if (data.token != null) {
+    //       localStorage.setItem('token', data.token);
+    //       this.router.navigate(['overzicht/rekening']);
+    //     }
+    //   }
+    // );
+    return this.httpClient.post<any>(loginUrl, this.loginRequest);
   }
 }
