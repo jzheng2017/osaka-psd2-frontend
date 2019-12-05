@@ -41,7 +41,7 @@ export class InstellingenComponent implements OnInit {
   getAttachedBankAccounts() {
     this.userService.getAttachedBankAccounts().subscribe( data => {
         this.accounts = data;
-        this.isLoading = true;
+        this.isLoading = false;
         console.log(this.accounts); });
   }
 
