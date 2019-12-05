@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Transaction} from '../../transaction/dto/transaction';
 import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Transfer} from "../../transfer/transfer";
+import {Transfer} from '../../transfer/transfer';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +34,10 @@ export class TransactionService {
     return this.http.put(this.apiUrl, transaction, this.httpOptions);
   }
 
-  createTransaction(transaction: Transfer) {
-    const transactionUrl = `${this.apiUrl}/payment`;
-    console.log(transaction);
-    return this.http.post(transactionUrl, transaction);
+  createTransaction(transaction: Transfer, tableId: string) {
+    const token = localStorage.getItem('token');
+    const transactionUrl = `${this.apiUrl}/payment?token=${token}&tableid=${tableId}`;
+    return this.http.post(transactionUrl, transaction, this.httpOptions);
   }
 }
 
