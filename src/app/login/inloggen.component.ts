@@ -29,13 +29,13 @@ export class InloggenComponent implements OnInit {
 
   public login() {
     this.loginService.login(this.user).subscribe(data => {
-            if (data.token != null) {
-                localStorage.setItem('token', data.token);
-                this.router.navigate(['overzicht/rekening']);
-            }
-        }, err => {
-            this.error = true;
+        if (data.token != null) {
+          localStorage.setItem('token', data.token);
+          this.router.navigate(['overzicht/rekening']);
         }
+      }, () => {
+        this.error = true;
+      }
     );
   }
 
