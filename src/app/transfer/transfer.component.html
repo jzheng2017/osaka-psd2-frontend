@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-    <form class="offset-sm-3 col-sm-6" #formTransfer="ngForm" (ngSubmit)="onSubmit()">
+    <div class="offset-sm-3 col-sm-6">
       <button (click)="back()" class="btn btn-primary margin-top-40-sm-and-up">Ga terug</button>
       <h1>Bedrag overmaken</h1>
-      {{errors}}
+    </div>
+    <form class="offset-sm-3 col-sm-6" #formTransfer="ngForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="form-group col-sm-12">
 
@@ -24,7 +25,8 @@
                   [(ngModel)]="selectedRekening" required>
             <option *ngIf="isLoading" disabled selected>Uw rekeningen worden opgehaald...</option>
 
-            <option *ngFor="let rekening of rekeningen"  [ngValue]="{iban: rekening.iban, tableId: rekening.tableId}">{{rekening.name}}
+            <option *ngFor="let rekening of rekeningen"
+                    [ngValue]="{iban: rekening.iban, tableId: rekening.tableId}">{{rekening.name}}
               / {{rekening.iban}}</option>
           </select>
           <div *ngIf="debtor.invalid && debtor.dirty" class="alert alert-danger">
@@ -35,7 +37,8 @@
 
         <div class="form-group col-sm-12">
           <label for="creditorIBAN">Naar (IBAN):</label>
-          <input type="text" class="form-control" id="creditorIBAN" name="creditorIBAN" #creditorIBAN="ngModel" [(ngModel)]="transfer.receiver.iban" required>
+          <input type="text" class="form-control" id="creditorIBAN" name="creditorIBAN" #creditorIBAN="ngModel"
+                 [(ngModel)]="transfer.receiver.iban" required>
           <div *ngIf="creditorIBAN.invalid && creditorIBAN.dirty" class="alert alert-danger">
             <li *ngIf="creditorIBAN.errors.required">Een IBAN is verplicht</li>
             <li *ngIf="creditorIBAN.errors.iban">Ongeldige IBAN</li>

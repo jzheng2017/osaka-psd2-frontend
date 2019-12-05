@@ -20,6 +20,6 @@ export class RegistrationService {
   public register(r: Registration) {
     this.registrationRequest = new RegistrationRequest(r.name, r.email, r.password);
     const registerUrl = this.apiUrl + '/users/register';
-    return this.httpClient.post<any>(registerUrl, this.registrationRequest)
+    return this.httpClient.post<any>(registerUrl, this.registrationRequest);
   }
 }
