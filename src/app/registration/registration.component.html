@@ -8,8 +8,8 @@
         <div class="col-sm-12 form-group">
           <h2>Registreren</h2>
           <p>Registreer hier een account.</p>
-          <div *ngIf="!error" class="alert-danger card">
-            <ul class="card-body margin-bottom-0 list-unstyled">
+          <div *ngIf="error" class="alert alert-danger">
+            <ul class="margin-bottom-0 list-unstyled">
               <li> Er is een fout opgetreden.</li>
                <li>Probeer het opnieuw.</li>
             </ul>
