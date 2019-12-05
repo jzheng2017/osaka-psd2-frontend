@@ -49,12 +49,6 @@ export class InstellingenComponent implements OnInit {
   }
 
   unlinkAccount() {
-    if (confirm('Weet je zeker dat je deze rekening wilt ontkoppelen?')) {
-      console.log('Implement delete functionality here');
-      return true;
-    } else {
-      return false;
-    }
+    return confirm('Weet je zeker dat je deze rekening wilt ontkoppelen?');
   }
-
 }
