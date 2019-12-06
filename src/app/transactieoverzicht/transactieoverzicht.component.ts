@@ -38,7 +38,6 @@ export class TransactieoverzichtComponent implements OnInit {
       this.transactions = transactions.transactions;
       this.isLoading = false;
       this.account = transactions.account;
-      console.log(this.account);
       this.parentAccount.emit(this.account);
     }, err => {
         this.error = err.error.errorMessage;

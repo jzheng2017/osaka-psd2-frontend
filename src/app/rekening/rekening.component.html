@@ -3,15 +3,9 @@
     <div class="col-sm-12">
       <div class="card margin-top-40-sm-and-up" *ngIf="!isLoading">
         <div class="card-body">
-          <div class="row">
-            <div class="col-sm-6">
-              <h1 class="typebig" *ngIf="account.type">{{account.type}}</h1>
-              <h3 [class.text-danger]="account.balance < 0">€ {{account.balance | number : "1.2-2"}}</h3>
-              <h6 *ngIf="account.iban">{{account.iban}}</h6>
-            </div>
-            <div class="col-sm-6">
-            </div>
-          </div>
+          <h1 class="typebig" *ngIf="account.type">{{account.type}}</h1>
+          <h3 [class.text-danger]="account.balance < 0">€ {{account.balance | number : "1.2-2"}}</h3>
+          <h6 *ngIf="account.iban">{{account.iban}}</h6>
         </div>
       </div>
     </div>
