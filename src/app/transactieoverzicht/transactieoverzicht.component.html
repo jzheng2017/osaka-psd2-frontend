@@ -1,6 +1,5 @@
 <h2>Transacties</h2>
 
-<div *ngIf="isLoading">Transacties worden opgehaald...</div>
 <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
   <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
     <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
