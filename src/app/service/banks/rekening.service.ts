@@ -16,10 +16,7 @@ export class RekeningService {
   getRekeningen(): Observable<any> {
     const token = localStorage.getItem('token');
     const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
-    return this.http.get<any>(rekeningUrl).pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+    return this.http.get<any>(rekeningUrl);
   }
 
   private handleError(error) {
