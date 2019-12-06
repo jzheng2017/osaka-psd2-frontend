@@ -21,13 +21,19 @@ p {
 }
 
 .btn-group {
-    width:100%;
+    width: 100%;
 }
 
 button:hover {
     background-color: #007bff;
     transition: all 0.5s;
     color: white;
+}
+
+.verticalCenter {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
 #overzichtContainer {
@@ -104,4 +110,5 @@ footer a {
         width: 100% !important;
     }
 }
+
 
