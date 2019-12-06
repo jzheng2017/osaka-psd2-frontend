@@ -12,24 +12,23 @@
 
 
     <div class="col-sm-12">
-       <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center" >
-            <ul  style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
-                <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
-                <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.</li>
-                <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
-            </ul>
-        </div>
-        <div *ngIf="!error">
-          <div *ngIf="isLoading" >
-            <ngx-spinner
-              bdColor="#ffffff"
-              size="default"
-              color="#000000"
-              type="ball-pulse"
-              style="position: center"
-              [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p></ngx-spinner>
-          </div>
-        </div>
+      <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
+        <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
+          <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
+          <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het
+            opnieuw.
+          </li>
+          <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
+        </ul>
+      </div>
+      <ngx-spinner *ngIf="!error && isLoading"
+                   bdColor="#ffffff"
+                   size="default"
+                   color="#000000"
+                   type="ball-pulse"
+                   style="position: center"
+                   [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p>
+      </ngx-spinner>
       <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let rekening of rekeningen">
@@ -38,7 +37,8 @@
               <div class="row">
                 <div class="col-sm-6"> {{rekening.name}} / {{rekening.iban}} </div>
                 <div class="col-sm-3 ">Balans: <span
-                  [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}} {{rekening.balance === undefined ? "niet beschikbaar" : ""}}</span></div>
+                  [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}} {{rekening.balance === undefined ? "niet beschikbaar" : ""}}</span>
+                </div>
                 <div class="col-sm-3 text-right">
                   <div class="dropodown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
