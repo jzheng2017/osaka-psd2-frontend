@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from "@angular/common";
-import {RekeningSettings} from "./dto/rekening-settings";
+import {Location} from '@angular/common';
+import {RekeningSettings} from './dto/rekening-settings';
+import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-rekening-settings',
@@ -10,8 +12,10 @@ import {RekeningSettings} from "./dto/rekening-settings";
 export class RekeningSettingsComponent implements OnInit {
 
   private settings = new RekeningSettings('');
+  // categorien: Category[];
 
-  constructor(private location: Location) {
+  constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
+
   }
 
   ngOnInit() {
@@ -23,5 +27,18 @@ export class RekeningSettingsComponent implements OnInit {
 
   onSubmit() {
     console.log(this.settings);
+    this.addCategory();
   }
+
+  private addCategory() {
+      this.categoryService.addCategory(this.settings).subscribe(data => {
+          this.categorizeAccount(data.id);
+      });
+  }
+
+  private categorizeAccount(id: number) {
+      const iban = this.activatedRoute.snapshot.paramMap.get('id');
+      this.categoryService.categorizeAccount(id, iban);
+  }
+
 }

@@ -21,7 +21,7 @@ export class RekeningService {
 
   getRekeningenByCategory(categoryId): Observable<any> {
     const token = localStorage.getItem('token');
-    const rekeningUrl = this.apiUrl + `/accounts/categoryid=${categoryId}`;
+    const rekeningUrl = this.apiUrl + `/accounts/${categoryId}?token=${token}`;
     return this.http.get<any>(rekeningUrl);
   }
 
