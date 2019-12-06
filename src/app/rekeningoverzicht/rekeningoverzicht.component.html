@@ -12,9 +12,9 @@
 
 
     <div class="col-sm-12">
-      <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
+      <div *ngIf="error && rekeningen.length > 0" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
         <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
-          <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
+          <li *ngSwitchCase="'INVALID_TOKEN'" >Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
           <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het
             opnieuw.
           </li>
@@ -29,7 +29,7 @@
                    style="position: center"
                    [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p>
       </ngx-spinner>
-      <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
+      <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan dit account.</div>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let rekening of rekeningen">
           <div class="row">
