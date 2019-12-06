@@ -13,29 +13,33 @@
       </div>
     </div>
     <div class="col-sm-12">
-      <h5>Gekoppelde rekeningen</h5>
-      <div *ngIf="isLoading" style="position: relative">
-        <ngx-spinner
-          bdColor="#ffffff"
-          size="default"
-          color="#000000"
-          type="ball-pulse"
-          style="position: center"
-          [fullScreen]="false"><p>Rekeningen worden opgehaald.<br><br></p>
-        </ngx-spinner>
+      <div class="card">
+        <div class="card-body">
+          <h5>Gekoppelde rekeningen</h5>
+          <div *ngIf="isLoading" style="position: relative">
+            <ngx-spinner
+              bdColor="#ffffff"
+              size="default"
+              color="#000000"
+              type="ball-pulse"
+              style="position: center"
+              [fullScreen]="false"><p>Rekeningen worden opgehaald.<br><br></p>
+            </ngx-spinner>
+          </div>
+          <br>
+          <div class="text-center" *ngIf="!isLoading && accounts.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
+            account.
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let account of accounts">
+              <span>Koppeling: {{account.bank}} </span>
+              <button type="button" class="btn btn-outline-primary float-right" (click)="disconnectAccount(account.id)">
+                Ontkoppel
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
-      <br>
-      <div class="text-center" *ngIf="!isLoading && accounts.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
-        account.
-      </div>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let account of accounts">
-          <span>Koppeling: {{account.bank}} </span>
-          <button type="button" class="btn btn-outline-primary float-right" (click)="disconnectAccount(account.id)">
-            Ontkoppel
-          </button>
-        </li>
-      </ul>
     </div>
   </div>
 </div>
