@@ -32,10 +32,8 @@
                         <div class="col-sm-6">
                             {{transaction.sender.name === undefined ? "Onbekend" : transaction.sender.name}}
                         </div>
-                        <div class="col-sm-3"> Bedrag: <span
-                                [class.text-danger]="transaction.received == false"><span
-                                *ngIf="transaction.received == false">-</span><span
-                                *ngIf="transaction.received == true">+</span>€ {{transaction.amount | number : "1.2-2"}}</span>
+                        <div class="col-sm-3"> Bedrag: {{transaction.received ? "+" : "-"}} <span
+                                [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
                         </div>
                         <div class="col-sm-1"><i class="far fa-file-alt"
                                                  title="Deze transactie heeft een bijlage"
