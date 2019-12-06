@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TransactionService} from '../service/banks/transaction.service';
 import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
@@ -15,6 +15,7 @@ export class TransactieoverzichtComponent implements OnInit {
 
   transactions: Transaction[];
   account: any;
+  @Output() parentAccount = new EventEmitter();
   isLoading = true;
   private title = 'Transactieoverzicht';
   error = '';
@@ -37,6 +38,8 @@ export class TransactieoverzichtComponent implements OnInit {
       this.transactions = transactions.transactions;
       this.isLoading = false;
       this.account = transactions.account;
+      console.log(this.account);
+      this.parentAccount.emit(this.account);
     }, err => {
         this.error = err.error.errorMessage;
     });

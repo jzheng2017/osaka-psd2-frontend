@@ -1,23 +1,7 @@
-<br>
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-6">
-                <h1 class="typebig" *ngIf="account.type">{{account.type}}</h1>
-                <h3 [class.text-danger]="account.balance < 0">€ {{account.balance | number : "1.2-2"}}</h3>
-                <h6 *ngIf="account.iban">{{account.iban}}</h6>
-            </div>
-            <div class="col-sm-6">
-            </div>
-        </div>
-    </div>
-</div>
-<br>
 <h2>Transacties</h2>
-<div>
+<div class="margin-bottom-20">
     <button (click)="back()" class="btn btn-primary">Ga terug</button>
 </div>
-<br>
 
 <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
   <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
