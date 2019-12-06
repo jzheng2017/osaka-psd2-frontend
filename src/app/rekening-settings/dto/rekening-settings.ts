@@ -1,5 +1,5 @@
 export class RekeningSettings {
 
-  constructor(public category: string) {
+  constructor(public name: string) {
   }
 }
