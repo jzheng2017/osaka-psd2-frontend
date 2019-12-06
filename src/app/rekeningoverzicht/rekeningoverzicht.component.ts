@@ -34,7 +34,9 @@ export class RekeningoverzichtComponent implements OnInit {
         this.isLoading = false;
       }, err => {
         this.error = err.error.errorMessage;
-      }
+        console.log(err.error.errorMessage);
+        console.log(this.error);
+        }
     );
 
   }
