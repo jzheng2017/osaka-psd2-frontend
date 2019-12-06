@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {TransactionService} from '../service/banks/transaction.service';
 import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-transactieoverzicht',
@@ -10,13 +11,14 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./transactieoverzicht.component.css']
 })
 export class TransactieoverzichtComponent implements OnInit {
-
   transactions: Transaction[];
+  account: any;
   isLoading = true;
   private title = 'Transactieoverzicht';
   error = '';
 
-  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private titleService: Title) {
+  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute,
+              private titleService: Title,  private location: Location) {
   }
 
   ngOnInit() {
@@ -31,10 +33,14 @@ export class TransactieoverzichtComponent implements OnInit {
     this.transactionService.getTransacties(bankAccountId, tableId).subscribe(transactions => {
       this.transactions = transactions.transactions;
       this.isLoading = false;
+      this.account = transactions.account;
     }, err => {
         this.error = err.error.errorMessage;
     });
   }
 
+  back() {
+    this.location.back();
+  }
 }
 

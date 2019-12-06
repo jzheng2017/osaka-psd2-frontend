@@ -1,57 +1,81 @@
+<br>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 class="typebig" *ngIf="account.type">{{account.type}}</h1>
+                <h3 [class.text-danger]="account.balance < 0">€ {{account.balance | number : "1.2-2"}}</h3>
+                <h6 *ngIf="account.iban">{{account.iban}}</h6>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 <h2>Transacties</h2>
+<div>
+    <button (click)="back()" class="btn btn-primary">Ga terug</button>
+</div>
+<br>
+
 
 <div *ngIf="isLoading">Transacties worden opgehaald...</div>
 <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
-  <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
-    <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
-    <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.</li>
-    <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
-  </ul>
+    <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
+        <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
+        <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.
+        </li>
+        <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
+    </ul>
 </div>
 <div *ngIf="!error">
-  <div *ngIf="isLoading">
-    <ngx-spinner
-      bdColor="#ffffff"
-      size="default"
-      color="#000000"
-      type="ball-pulse"
-      style="position: center"
-      [fullScreen]="false"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p></ngx-spinner>
-  </div>
+    <div *ngIf="isLoading">
+        <ngx-spinner
+                bdColor="#ffffff"
+                size="default"
+                color="#000000"
+                type="ball-pulse"
+                style="position: center"
+                [fullScreen]="false"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p>
+        </ngx-spinner>
+    </div>
 </div>
 <div *ngIf="!isLoading">
-  <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
-  <ul class="list-group">
-    <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
-      <div class="row">
-
-        <div class="col-sm-12">
-          <small *ngIf="transaction.booked">{{transaction.date}}</small>
-          <small *ngIf="!transaction.booked">Nog niet overgeboekt</small>
-        </div>
-        <div class="col-sm-12">
-          <div class="row">
-            <div *ngIf="transaction.sender.name != undefined" class="col-sm-6">
-              {{transaction.sender.name}}
+    <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
+    <ul class="list-group">
+        <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
+            <div class="row">
+                <div class="col-sm-12">
+                    <small *ngIf="!transaction.booked">Nog niet overgeboekt.</small>
+                    <small *ngIf="transaction.booked">{{transaction.date}}</small>
+                </div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div *ngIf="transaction.sender.name != undefined" class="col-sm-6">
+                            {{transaction.sender.name}}
+                        </div>
+                        <div *ngIf="transaction.sender.name === undefined" class="col-sm-6"><i>Onbekend</i>
+                        </div>
+                        <div class="col-sm-3"> Bedrag: <span
+                                [class.text-danger]="transaction.received == false"><span
+                                *ngIf="transaction.received == false">-</span><span
+                                *ngIf="transaction.received == true">+</span>€ {{transaction.amount | number : "1.2-2"}}</span>
+                        </div>
+                        <div class="col-sm-1"><i class="far fa-file-alt"
+                                                 title="Deze transactie heeft een bijlage"
+                                                 *ngIf="transaction.comment"></i></div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary float-right"
+                                    [routerLink]="['/transactie', transaction.id, 'details']">
+                                Details
+                            </button>
+                        </div>
+                        <div id="IBAN" *ngIf="transaction.sender.iban != undefined" class="col-sm-6">
+                            <i>IBAN: {{transaction.sender.iban}}</i></div>
+                    </div>
+                </div>
             </div>
-            <div *ngIf="transaction.sender.name === undefined" class="col-sm-6"><i>Onbekend</i>
-            </div>
-            <div class="col-sm-3"> Bedrag: <span
-              [class.text-danger]="transaction.amount < 0"><span *ngIf="transaction.received == false">-</span><span
-              *ngIf="transaction.received == true">+</span>€ {{transaction.amount | number : "1.2-2"}}</span>
-            </div>
-            <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage"
-                                     *ngIf="transaction.comment"></i></div>
-            <div class="col-sm-2">
-              <button class="btn btn-primary float-right" [routerLink]="['/transactie', transaction.id, 'details']">
-                Details
-              </button>
-            </div>
-            <div id="IBAN" *ngIf="transaction.sender.iban != undefined" class="col-sm-6">
-              <i>IBAN: {{transaction.sender.iban}}</i></div>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+        </li>
+    </ul>
 </div>

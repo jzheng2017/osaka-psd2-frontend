@@ -1,63 +1,92 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h2>Overzicht rekeningen</h2>
-      <h5>Totale balans: <span [class.text-danger]="totalBalance < 0">€{{totalBalance | number : '1.2-2'}}</span></h5>
-      <div class="btn-group float-right margin-bottom-20 full-width" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-outline-primary" routerLink="/overmaken">Bedrag overmaken</button>
-        <button type="button" class="btn btn-outline-primary" routerLink="/bank-koppelen">Rekening toevoegen
-        </button>
-      </div>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Overzicht rekeningen</h2>
+                    <h5>Totale balans: <span
+                            [class.text-danger]="totalBalance < 0">€{{totalBalance | number : '1.2-2'}}</span></h5>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group margin-bottom-20 full-width" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary" routerLink="/overmaken">Bedrag overmaken</button>
+                <button type="button" class="btn btn-outline-primary" routerLink="/bank-koppelen">Rekening toevoegen
+                </button>
+            </div>
+        </div>
 
 
-    <div class="col-sm-12">
-       <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center" >
-            <ul  style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
-                <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
-                <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.</li>
-                <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
+        <div class="col-sm-12">
+            <div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
+                <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
+                    <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
+                    <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer
+                        het opnieuw.
+                    </li>
+                    <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
+                </ul>
+            </div>
+            <div *ngIf="!error">
+                <div *ngIf="isLoading">
+                    <ngx-spinner
+                            bdColor="#ffffff"
+                            size="default"
+                            color="#000000"
+                            type="ball-pulse"
+                            style="position: center"
+                            [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden
+                        opgehaald.</p></ngx-spinner>
+                </div>
+            </div>
+            <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let rekening of rekeningen">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4><i>{{rekening.type}}</i></h4>
+                                    <h5 class="text-dark">{{rekening.name}}</h5>
+                                    <h5 class="text-dark"><i>{{rekening.iban}}</i></h5>
+                                </div>
+                                <div class="col-sm-3 ">Balans: <span
+                                        [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}} {{rekening.balance === undefined ? "niet beschikbaar" : ""}}</span>
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <div class="dropodown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Acties
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item"
+                                               [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk
+                                                rekening</a>
+                                            <a class="dropdown-item"
+                                               [routerLink]="['/rekening', rekening.id, 'instellingen']">Instellingen</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div *ngIf="!error">
-          <div *ngIf="isLoading" >
-            <ngx-spinner
-              bdColor="#ffffff"
-              size="default"
-              color="#000000"
-              type="ball-pulse"
-              style="position: center"
-              [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p></ngx-spinner>
-          </div>
-        </div>
-      <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen.</div>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let rekening of rekeningen">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="row">
-                <div class="col-sm-6"> {{rekening.name}} / {{rekening.iban}} </div>
-                <div class="col-sm-3 ">Balans: <span
-                  [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}} {{rekening.balance === undefined ? "niet beschikbaar" : ""}}</span></div>
-                <div class="col-sm-3 text-right">
-                  <div class="dropodown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Acties
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item"
-                         [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk rekening</a>
-                      <a class="dropdown-item"
-                         [routerLink]="['/rekening', rekening.id, 'instellingen']">Instellingen</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
-  </div>
 </div>
