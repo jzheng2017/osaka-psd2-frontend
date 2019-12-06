@@ -16,6 +16,7 @@ export class RekeningoverzichtComponent implements OnInit {
   totalBalance: number;
   isLoading = true;
   error = '';
+  categoryId: number;
 
   constructor(private rekeningService: RekeningService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
@@ -28,18 +29,34 @@ export class RekeningoverzichtComponent implements OnInit {
     this.getRekeningen();
   }
 
-
   getRekeningen() {
     this.rekeningService.getRekeningen().subscribe(rekeningen => {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
         this.isLoading = false;
       }, err => {
-      this.isLoading = false;
-      this.rekeningen = [];
-      this.error = err.error.errorMessage;
+        this.isLoading = false;
+        this.rekeningen = [];
+        this.error = err.error.errorMessage;
       }
     );
+  }
+
+  getRekeningenByCategory() {
+    this.rekeningService.getRekeningenByCategory(this.categoryId).subscribe(rekeningen => {
+        this.rekeningen = rekeningen.accounts;
+        this.totalBalance = rekeningen.balance;
+        this.isLoading = false;
+      }, err => {
+        this.isLoading = false;
+        this.rekeningen = [];
+        this.error = err.error.errorMessage;
+      }
+    );
+  }
+
+  onSubmit() {
+    this.getRekeningenByCategory();
   }
 }
 

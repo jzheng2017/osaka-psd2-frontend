@@ -19,6 +19,12 @@ export class RekeningService {
     return this.http.get<any>(rekeningUrl);
   }
 
+  getRekeningenByCategory(categoryId): Observable<any> {
+    const token = localStorage.getItem('token');
+    const rekeningUrl = this.apiUrl + `/accounts/categoryid=${categoryId}`;
+    return this.http.get<any>(rekeningUrl);
+  }
+
   private handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
