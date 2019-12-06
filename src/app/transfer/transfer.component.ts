@@ -40,7 +40,9 @@ export class TransferComponent implements OnInit {
   onSubmit() {
     this.transfer.sender.iban = this.selectedRekening.iban;
     this.transactionService.createTransaction(this.transfer, this.selectedRekening.tableId)
-      .subscribe(() => this.transfered = true,
+      .subscribe(response => {
+          return window.location.href = response.url;
+        },
         () => this.transfered = false);
   }
 }
