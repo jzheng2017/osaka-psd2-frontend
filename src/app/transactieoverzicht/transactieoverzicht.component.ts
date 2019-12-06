@@ -4,6 +4,8 @@ import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {Location} from '@angular/common';
+import {Title} from "@angular/platform-browser";
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-transactieoverzicht',
@@ -17,13 +19,14 @@ export class TransactieoverzichtComponent implements OnInit {
   private title = 'Transactieoverzicht';
   error = '';
 
-  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute,
-              private titleService: Title,  private location: Location) {
+  constructor(private spinner: NgxSpinnerService, private transactionService: TransactionService,
+          private activatedRoute: ActivatedRoute, private titleService: Title,private location: Location) {
   }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
     this.getTransactions();
+    this.spinner.show();
   }
 
   getTransactions() {
