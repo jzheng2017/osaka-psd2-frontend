@@ -22,7 +22,9 @@ export class RekeningoverzichtComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
-    if (this.isLoading) { this.spinner.show(); }
+    if (this.isLoading) {
+      this.spinner.show();
+    }
     this.getRekeningen();
   }
 
@@ -33,10 +35,11 @@ export class RekeningoverzichtComponent implements OnInit {
         this.totalBalance = rekeningen.balance;
         this.isLoading = false;
       }, err => {
-        this.error = err.error.errorMessage;
+      this.isLoading = false;
+      this.rekeningen = [];
+      this.error = err.error.errorMessage;
       }
     );
-
   }
 }
 
