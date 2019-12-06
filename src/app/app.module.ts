@@ -6,7 +6,7 @@ import {RegistrationComponent} from './registration/registration.component';
 import {InloggenComponent} from './login/inloggen.component';
 import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
 import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -31,7 +31,7 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
     AddBankComponent,
     RekeningSettingsComponent,
     TransferComponent,
-    InstellingenComponent,
+    InstellingenComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +41,7 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
     RouterModule,
     NgxSpinnerModule,
     AngularIbanModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
