@@ -1,7 +1,7 @@
-import { CategorizeRequest } from './categorize-request';
+import { CategoryRequest } from './category-request';
 
-describe('CategorizeRequest', () => {
-  it('should create an instance', () => {
-    expect(new CategorizeRequest()).toBeTruthy();
-  });
-});
+// describe('CategoryRequest', () => {
+//   it('should create an instance', () => {
+//     expect(new CategoryRequest()).toBeTruthy();
+//   });
+// });

@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {RekeningSettings} from './dto/rekening-settings';
 import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
 import {ActivatedRoute} from '@angular/router';
+import {CategoryRequest} from './dto/category-request';
 
 @Component({
   selector: 'app-rekening-settings',
@@ -10,9 +11,9 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./rekening-settings.component.css']
 })
 export class RekeningSettingsComponent implements OnInit {
-
+  categories: CategoryRequest[];
   private settings = new RekeningSettings('');
-  // categorien: Category[];
+  // categorien: CategoryRequest[];
 
   constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
 
@@ -28,6 +29,13 @@ export class RekeningSettingsComponent implements OnInit {
   onSubmit() {
     console.log(this.settings);
     this.addCategory();
+  }
+
+  private getCategories() {
+      this.categoryService.getCategories().subscribe(data => {
+          this.categories = data;
+          }
+      );
   }
 
   private addCategory() {

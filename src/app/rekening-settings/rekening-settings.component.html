@@ -19,15 +19,11 @@
 <!--            </li>-->
 <!--          </ul>-->
 
-          <div class="radio">
-            <label><input type="radio" name="optradio" checked> Studie kinderen</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="optradio"> Pensioen</label>
-          </div>
-          <div class="radio disabled">
-            <label><input type="radio" name="optradio"> Beleggen</label>
-          </div>
+            <select>
+                <div *ngFor="let category of categories">
+                    <option value="{{category.id}}">{{category.iban}}</option>
+                </div>
+            </select>
 
           <h5>Maak een eigen categorie voor deze rekening</h5>
 
