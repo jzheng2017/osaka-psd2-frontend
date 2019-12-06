@@ -22,6 +22,7 @@ export class RekeningcategoryService {
       const token = localStorage.getItem('token');
       const url = `http://localhost:8080/accounts/categorize?token=${token}`;
       this.httpClient.post<any>(url, new CategorizeRequest(id, iban)).subscribe();
+      window.location.reload();
 
   }
 
