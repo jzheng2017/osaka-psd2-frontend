@@ -7,17 +7,14 @@
     <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
   </ul>
 </div>
-<div *ngIf="!error">
-  <div *ngIf="isLoading">
-    <ngx-spinner
-      bdColor="#ffffff"
-      size="default"
-      color="#000000"
-      type="ball-pulse"
-      style="position: center"
-      [fullScreen]="false"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p></ngx-spinner>
-  </div>
-</div>
+<ngx-spinner *ngIf="!error && isLoading"
+             bdColor="#ffffff"
+             size="default"
+             color="#000000"
+             type="ball-pulse"
+             style="position: center"
+             [fullScreen]="false"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p>
+</ngx-spinner>
 <div *ngIf="!isLoading">
   <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
   <ul class="list-group">
@@ -36,8 +33,7 @@
             <div *ngIf="transaction.sender.name === undefined" class="col-sm-6"><i>Onbekend</i>
             </div>
             <div class="col-sm-3"> Bedrag: <span
-              [class.text-danger]="transaction.amount < 0"><span *ngIf="transaction.received == false">-</span><span
-              *ngIf="transaction.received == true">+</span>€ {{transaction.amount | number : "1.2-2"}}</span>
+              [class.text-danger]="transaction.amount < 0"> {{transaction.received ? "+" : "-"}} €{{transaction.amount | number : "1.2-2"}}</span>
             </div>
             <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage"
                                      *ngIf="transaction.comment"></i></div>
