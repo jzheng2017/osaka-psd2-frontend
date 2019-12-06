@@ -29,10 +29,8 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="row">
-                        <div *ngIf="transaction.sender.name != undefined" class="col-sm-6">
-                            {{transaction.sender.name}}
-                        </div>
-                        <div *ngIf="transaction.sender.name === undefined" class="col-sm-6"><i>Onbekend</i>
+                        <div class="col-sm-6">
+                            {{transaction.sender.name === undefined ? "Onbekend" : transaction.sender.name}}
                         </div>
                         <div class="col-sm-3"> Bedrag: <span
                                 [class.text-danger]="transaction.received == false"><span
