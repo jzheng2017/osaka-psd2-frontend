@@ -29,18 +29,15 @@ export class UserService {
       return this.httpClient.get<any>(getAttachedBankAccountsUrl);
   }
 
-  public disconnectBankAccount(id: number) {
+  public disconnectBankAccount(id: number) {con
       const url = 'http://localhost:8080/disconnect';
       const token = localStorage.getItem('token');
-      console.log(token);
-      console.log(id);
       return this.httpClient.delete(url + `/?token=${token}&tableid=${id}`);
   }
 
 
     logout() {
         localStorage.removeItem('token');
-        this.router.navigate(['login']);
     }
 }
 
