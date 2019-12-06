@@ -29,9 +29,10 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-6">
-                            {{transaction.sender.name === undefined ? "Onbekend" : transaction.sender.name}}
-                        </div>
+                        <ul class="col-sm-6 list-unstyled">
+                          <li>{{transaction.sender.name === undefined ? "Onbekend" : transaction.sender.name}}</li>
+                          <li>{{transaction.category.name}}</li>
+                        </ul>
                         <div class="col-sm-3"> Bedrag: {{transaction.received ? "+" : "-"}} <span
                                 [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
                         </div>
