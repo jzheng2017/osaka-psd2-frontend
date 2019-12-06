@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {RekeningSettings} from "./dto/rekening-settings";
+import {RekeningSettings} from './dto/rekening-settings';
 
 @Component({
   selector: 'app-rekening-settings',
@@ -10,8 +10,10 @@ import {RekeningSettings} from "./dto/rekening-settings";
 export class RekeningSettingsComponent implements OnInit {
 
   private settings = new RekeningSettings('');
+  // categorien: Category[];
 
   constructor(private location: Location) {
+
   }
 
   ngOnInit() {

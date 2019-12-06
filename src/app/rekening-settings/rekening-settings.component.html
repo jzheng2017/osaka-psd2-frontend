@@ -3,23 +3,34 @@
     <form class="offset-sm-3 col-sm-6" #formSettings="ngForm" (ngSubmit)="onSubmit()">
       <button class="btn btn-primary margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
       <h1>Instellingen</h1>
-      <h4>Rekening type</h4>
       <div class="row">
-        <div class="form-group col-sm-12">
-
-          <label for="category">Selecteer een type:</label>
-          <select class="form-control" id="category" name="category" [(ngModel)]="settings.category" required>
-            <option value="betaalrekening">Betaalrekening</option>
-            <option value="spaarrekening">Spaarrekening</option>
-          </select>
-
-        </div>
 
         <div class="form-group col-sm-12">
           <h4>Rekening categorie</h4>
-          <p>Maak een eigen categorie voor deze rekening:</p>
+          <p>Deze rekening: Geen categorie</p>
 
-          <label for="customCategory">Categorie</label><br>
+          <h5>Gebruik een bestaande categorie voor deze rekening</h5>
+
+<!--          <ul class="list-group">-->
+<!--            <li class="list-group-item" *ngFor="let category of categorien">-->
+<!--              <div class="radio">-->
+<!--                <label><input type="radio" name="optradio" checked> Studie kinderen</label>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--          </ul>-->
+
+          <div class="radio">
+            <label><input type="radio" name="optradio" checked> Studie kinderen</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optradio"> Pensioen</label>
+          </div>
+          <div class="radio disabled">
+            <label><input type="radio" name="optradio"> Beleggen</label>
+          </div>
+
+          <h5>Maak een eigen categorie voor deze rekening</h5>
+
           <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
           <input type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
                  [(ngModel)]="settings.category" #customCategory="ngModel">
