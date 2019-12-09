@@ -14,7 +14,7 @@ import {Category} from './dto/category';
 export class RekeningSettingsComponent implements OnInit {
   categories: Category[];
   private settings = new RekeningSettings(null, null);
-  option: string;
+  option = 'iban';
   // categorien: CategoryRequest[];
 
   constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
