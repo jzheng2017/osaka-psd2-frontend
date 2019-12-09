@@ -4,6 +4,7 @@ import {RekeningSettings} from './dto/rekening-settings';
 import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
 import {ActivatedRoute} from '@angular/router';
 import {CategoryRequest} from './dto/category-request';
+import {Category} from './dto/category';
 
 @Component({
   selector: 'app-rekening-settings',
@@ -11,8 +12,9 @@ import {CategoryRequest} from './dto/category-request';
   styleUrls: ['./rekening-settings.component.css']
 })
 export class RekeningSettingsComponent implements OnInit {
-  categories: CategoryRequest[];
-  private settings = new RekeningSettings('');
+  categories: Category[];
+  private settings = new RekeningSettings(null, null);
+  option: string;
   // categorien: CategoryRequest[];
 
   constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
@@ -20,6 +22,7 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.getCategories();
   }
 
   back() {
@@ -27,8 +30,11 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.settings);
-    this.addCategory();
+      if (this.option === 'categorize') {
+          this.categorizeAccount(this.settings.id);
+      } else if (this.option === 'new') {
+          this.addCategory();
+      }
   }
 
   private getCategories() {
@@ -45,6 +51,7 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   private categorizeAccount(id: number) {
+      console.log('im in: ' + id);
       const iban = this.activatedRoute.snapshot.paramMap.get('id');
       this.categoryService.categorizeAccount(id, iban);
   }

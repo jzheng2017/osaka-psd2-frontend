@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {RekeningSettings} from '../../rekening-settings/dto/rekening-settings';
 import {Observable} from 'rxjs';
 import {CategoryRequest} from '../../rekening-settings/dto/category-request';
+import {Category} from '../../rekening-settings/dto/category';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,9 @@ export class RekeningcategoryService {
 
   }
 
-  public getCategories(): Observable<CategoryRequest[]> {
+  public getCategories(): Observable<Category[]> {
       const token = localStorage.getItem('token');
       const url = `http://localhost:8080/accounts/categories?token=${token}`;
-      return this.httpClient.get<CategoryRequest[]>(url);
+      return this.httpClient.get<Category[]>(url);
   }
 }

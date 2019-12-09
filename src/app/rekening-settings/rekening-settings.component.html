@@ -9,27 +9,27 @@
           <h4>Rekening categorie</h4>
           <p>Deze rekening: Geen categorie</p>
 
-          <h5>Gebruik een bestaande categorie voor deze rekening</h5>
+            <h5><i>Kies hoe u wilt categoriseren</i></h5>
+            <input [(ngModel)]="option" type="radio" name="option" [value]="'categorize'"> Bestaande categorie
+            <input [(ngModel)]="option" type="radio" name="option" [value]="'new'"> Nieuwe categorie <br><br>
 
-<!--          <ul class="list-group">-->
-<!--            <li class="list-group-item" *ngFor="let category of categorien">-->
-<!--              <div class="radio">-->
-<!--                <label><input type="radio" name="optradio" checked> Studie kinderen</label>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--          </ul>-->
+            <div *ngIf="option == 'categorize'">
+            <h5>Gebruik een bestaande categorie voor deze rekening</h5>
 
-            <select>
-                <div *ngFor="let category of categories">
-                    <option value="{{category.id}}">{{category.iban}}</option>
-                </div>
+            <select [(ngModel)]="settings.id" name="categoryChoose">
+                <option [value]=""></option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
+            </div>
 
+            <div *ngIf="option == 'new'">
           <h5>Maak een eigen categorie voor deze rekening</h5>
+          <i><p>De categorie wordt meteen aan de rekening gegeven.</p></i>
 
           <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
-          <input type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
+          <input *ngIf="option == 'new'" type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
                  [(ngModel)]="settings.name" #customCategory="ngModel">
+            </div>
         </div>
 
         <div class="col-sm-12 form-group">
