@@ -9,25 +9,6 @@
           <h4>Rekening categorie</h4>
           <p>Deze rekening: Geen categorie</p>
 
-          <h5>Gebruik een bestaande categorie voor deze rekening</h5>
-
-          <!--          <ul class="list-group">-->
-          <!--            <li class="list-group-item" *ngFor="let category of categorien">-->
-          <!--              <div class="radio">-->
-          <!--                <label><input type="radio" name="optradio" checked> Studie kinderen</label>-->
-          <!--              </div>-->
-          <!--            </li>-->
-          <!--          </ul>-->
-
-          <div class="radio">
-            <label><input type="radio" name="optradio" checked> Studie kinderen</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="optradio"> Pensioen</label>
-          </div>
-          <div class="radio disabled">
-            <label><input type="radio" name="optradio"> Beleggen</label>
-          </div>
             <h5><i>Kies hoe u wilt categoriseren</i></h5>
             <input [(ngModel)]="option" type="radio" name="option" [value]="'categorize'"> Bestaande categorie
             <input [(ngModel)]="option" type="radio" name="option" [value]="'new'"> Nieuwe categorie <br><br>
