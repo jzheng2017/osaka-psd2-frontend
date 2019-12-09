@@ -9,7 +9,7 @@ import {GetUserRequest} from '../../login/dto/getuserrequest';
 export class UserService {
 
   private getUserRequest: GetUserRequest;
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://steinmilder.nl:8080';
 
     constructor(private httpClient: HttpClient, private router: Router) {
     }
