@@ -4,6 +4,8 @@ import {Transaction} from '../../transaction/dto/transaction';
 import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Transfer} from '../../transfer/transfer';
+import {CategorizeRequest} from '../../transaction-categorize/dto/categorize-request';
+import {TransactionCategory} from '../../transaction-categorize/dto/transaction-category';
 
 export interface PaymentResponse {
   url: string;
@@ -21,7 +23,6 @@ export class TransactionService {
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }
-
 
   getTransacties(id: string, tableid: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -42,6 +43,24 @@ export class TransactionService {
     const token = localStorage.getItem('token');
     const transactionUrl = `${this.apiUrl}/payment?token=${token}&tableid=${tableId}`;
     return this.http.post<PaymentResponse>(transactionUrl, transaction, this.httpOptions);
+  }
+
+  createCategory(request: CategorizeRequest) {
+    const token = localStorage.getItem('token');
+    const url = `${this.apiUrl}/transactions/categories/create?token=${token}`;
+    return this.http.post<any>(url, request);
+  }
+
+  categorizeTransaction(request: CategorizeRequest) {
+    const token = localStorage.getItem('token');
+    const url = `${this.apiUrl}/transactions/categories/${request.id}/assign?token=${token}`;
+    return this.http.post<any>(url, request);
+  }
+
+  getCategories() {
+    const token = localStorage.getItem('token');
+    const url = `${this.apiUrl}/transactions/categories?token=${token}`;
+    return this.http.get<TransactionCategory[]>(url);
   }
 }
 

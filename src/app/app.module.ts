@@ -17,7 +17,7 @@ import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.c
 import {TransferComponent} from './transfer/transfer.component';
 import {AngularIbanModule} from 'angular-iban';
 import {InstellingenComponent} from './instellingen/instellingen.component';
-
+import {TransactionCategorizeComponent} from './transaction-categorize/transaction-categorize.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
     AddBankComponent,
     RekeningSettingsComponent,
     TransferComponent,
-    InstellingenComponent
+    InstellingenComponent,
+    TransactionCategorizeComponent
   ],
   imports: [
     BrowserModule,
