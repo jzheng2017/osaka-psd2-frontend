@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card margin-top-40-sm-and-up margin-bottom-20">
+        <div class="card-body">
+          <h3>Instellingen</h3>
+          <ul class="list-unstyled">
+            <h5>Accountinformatie</h5>
+            <li>Naam: {{user.name}}</li>
+            <li>E-mailadres: {{user.email}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5>Gekoppelde rekeningen</h5>
+          <div *ngIf="isLoading" style="position: relative">
+            <ngx-spinner
+              bdColor="#ffffff"
+              size="default"
+              color="#000000"
+              type="ball-pulse"
+              style="position: center"
+              [fullScreen]="false"><p>Rekeningen worden opgehaald.<br><br></p>
+            </ngx-spinner>
+          </div>
+          <br>
+          <div class="text-center" *ngIf="!isLoading && accounts.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
+            account.
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let account of accounts">
+              <span>Koppeling: {{account.bank}} </span>
+              <button type="button" class="btn btn-outline-primary float-right" (click)="disconnectAccount(account.id)">
+                Ontkoppel
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

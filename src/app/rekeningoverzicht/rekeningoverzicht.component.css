@@ -20,6 +20,16 @@ p {
     margin: 0;
 }
 
+.btn-group {
+    width:100%;
+}
+
+button:hover {
+    background-color: #007bff;
+    transition: all 0.5s;
+    color: white;
+}
+
 #overzichtContainer {
     padding: 5rem;
     display: block;
