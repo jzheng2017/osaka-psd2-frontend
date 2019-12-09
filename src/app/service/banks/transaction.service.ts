@@ -5,6 +5,10 @@ import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Transfer} from '../../transfer/transfer';
 
+export interface PaymentResponse {
+  url: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +41,7 @@ export class TransactionService {
   createTransaction(transaction: Transfer, tableId: string) {
     const token = localStorage.getItem('token');
     const transactionUrl = `${this.apiUrl}/payment?token=${token}&tableid=${tableId}`;
-    return this.http.post(transactionUrl, transaction, this.httpOptions);
+    return this.http.post<PaymentResponse>(transactionUrl, transaction, this.httpOptions);
   }
 }
 

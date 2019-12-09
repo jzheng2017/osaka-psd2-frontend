@@ -5,7 +5,6 @@ import {RekeningService} from '../service/banks/rekening.service';
 import {Location} from '@angular/common';
 import {TransactionService} from '../service/banks/transaction.service';
 
-
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
