@@ -3,6 +3,7 @@ import {LoginRequest} from '../../login/dto/loginrequest';
 import {HttpClient} from '@angular/common/http';
 import {Login} from '../../login/dto/login';
 import {Router} from '@angular/router';
+import {ConfigService} from "../config/config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,10 @@ import {Router} from '@angular/router';
 export class LoginService {
 
   private loginRequest: LoginRequest;
-  private apiUrl = 'http://steinmilder.nl:8080';
+  private apiUrl = this.configService.getConfig();
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+
+  constructor(private httpClient: HttpClient, private router: Router, private configService: ConfigService) {
   }
 
   public login(r: Login) {
