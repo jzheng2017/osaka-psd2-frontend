@@ -12,10 +12,15 @@ export class RekeningService {
   constructor(private http: HttpClient) {
   }
 
-
   getRekeningen(): Observable<any> {
     const token = localStorage.getItem('token');
     const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
+    return this.http.get<any>(rekeningUrl);
+  }
+
+  getRekeningenByCategory(categoryId): Observable<any> {
+    const token = localStorage.getItem('token');
+    const rekeningUrl = this.apiUrl + `/accounts/${categoryId}?token=${token}`;
     return this.http.get<any>(rekeningUrl);
   }
 
@@ -31,5 +36,10 @@ export class RekeningService {
     return throwError(errorMessage);
   }
 
+  getConnections(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const connectionsUrl = this.apiUrl + `/connections?token=${token}`;
+    return this.http.get<any>(connectionsUrl);
+  }
 }
 

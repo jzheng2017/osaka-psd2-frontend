@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from "@angular/common";
-import {RekeningSettings} from "./dto/rekening-settings";
+import {Location} from '@angular/common';
+import {RekeningSettings} from './dto/rekening-settings';
+import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
+import {ActivatedRoute} from '@angular/router';
+import {CategoryRequest} from './dto/category-request';
+import {Category} from './dto/category';
 
 @Component({
   selector: 'app-rekening-settings',
@@ -8,13 +12,17 @@ import {RekeningSettings} from "./dto/rekening-settings";
   styleUrls: ['./rekening-settings.component.css']
 })
 export class RekeningSettingsComponent implements OnInit {
+  categories: Category[];
+  private settings = new RekeningSettings(null, null);
+  option: string;
+  // categorien: CategoryRequest[];
 
-  private settings = new RekeningSettings('');
+  constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
 
-  constructor(private location: Location) {
   }
 
   ngOnInit() {
+      this.getCategories();
   }
 
   back() {
@@ -22,6 +30,29 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.settings);
+      if (this.option === 'categorize') {
+          this.categorizeAccount(this.settings.id);
+      } else if (this.option === 'new') {
+          this.addCategory();
+      }
   }
+
+  private getCategories() {
+      this.categoryService.getCategories().subscribe(data => {
+          this.categories = data;
+          }
+      );
+  }
+
+  private addCategory() {
+      this.categoryService.addCategory(this.settings).subscribe(data => {
+          this.categorizeAccount(data.id);
+      });
+  }
+
+  private categorizeAccount(id: number) {
+      const iban = this.activatedRoute.snapshot.paramMap.get('id');
+      this.categoryService.categorizeAccount(id, iban);
+  }
+
 }
