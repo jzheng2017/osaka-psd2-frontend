@@ -12,7 +12,7 @@ export class AddBankComponent implements OnInit {
   private title = 'Bank koppelen';
   private bank = new AddBank('', '');
   private token = localStorage.getItem('token');
-  private apiUrl = 'http://localhost:8080/connect';
+  private apiUrl = 'http://steinmilder.nl:8080/connect';
 
   constructor(private location: Location, private titleService: Title) {
   }

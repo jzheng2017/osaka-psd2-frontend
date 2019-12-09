@@ -7,7 +7,7 @@ import {catchError, retry} from "rxjs/operators";
   providedIn: 'root'
 })
 export class RekeningService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://steinmilder.nl:8080';
 
   constructor(private http: HttpClient) {
   }
@@ -16,6 +16,12 @@ export class RekeningService {
   getRekeningen(): Observable<any> {
     const token = localStorage.getItem('token');
     const rekeningUrl = this.apiUrl + `/accounts?token=${token}`;
+    return this.http.get<any>(rekeningUrl);
+  }
+
+  getRekeningenByCategory(categoryId): Observable<any> {
+    const token = localStorage.getItem('token');
+    const rekeningUrl = this.apiUrl + `/accounts/${categoryId}?token=${token}`;
     return this.http.get<any>(rekeningUrl);
   }
 

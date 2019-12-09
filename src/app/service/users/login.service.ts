@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class LoginService {
 
   private loginRequest: LoginRequest;
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://steinmilder.nl:8080';
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
