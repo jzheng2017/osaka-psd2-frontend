@@ -10,18 +10,20 @@ import {Category} from '../../rekening-settings/dto/category';
 })
 export class RekeningcategoryService {
     id;
+  private apiUrl = 'http://steinmilder.nl:8080';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   public addCategory(settings: RekeningSettings): Observable<any> {
       const token = localStorage.getItem('token');
-      const url = `http://localhost:8080/accounts/categories?token=${token}`;
+      const url = `${this.apiUrl}/categories?token=${token}`;
       return this.httpClient.post<any>(url, settings);
   }
 
   public categorizeAccount(id: number, iban: string) {
       const token = localStorage.getItem('token');
-      const url = `http://localhost:8080/accounts/categorize?token=${token}`;
+      const url = `${this.apiUrl}/accounts/categorize?token=${token}`;
       this.httpClient.post<any>(url, new CategoryRequest(id, iban)).subscribe();
       window.location.reload();
 
@@ -29,7 +31,7 @@ export class RekeningcategoryService {
 
   public getCategories(): Observable<Category[]> {
       const token = localStorage.getItem('token');
-      const url = `http://localhost:8080/accounts/categories?token=${token}`;
+      const url = `${this.apiUrl}/accounts/categories?token=${token}`;
       return this.httpClient.get<Category[]>(url);
   }
 }

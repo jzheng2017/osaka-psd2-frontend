@@ -31,7 +31,8 @@
           </select>
         </div>
         <div class="col-sm-2">
-          <input type="submit" [disabled]="!formCategory.valid" class="btn btn-primary btn-block" value="Kies categorie">
+          <input type="submit" [disabled]="!formCategory.valid" class="btn btn-primary btn-block"
+                 value="Kies categorie">
         </div>
       </div>
     </form>
@@ -72,16 +73,19 @@
                       <div class="font-weight-bold">{{rekening.name}}</div>
                       <div class="text-dark">{{rekening.iban}}</div>
                     </div>
-                    <div class="col-sm-3 ">Balans: <span [class.text-danger]="rekening.balance < 0">{{ rekening.balance === undefined ? "niet beschikbaar" : "€ "+(rekening.balance | number : '1.2-2') }}</span>
+                    <div class="col-sm-3 ">Balans: <span
+                      [class.text-danger]="rekening.balance < 0">{{ rekening.balance === undefined ? "niet beschikbaar" : "€ " + (rekening.balance | number : '1.2-2') }}</span>
                     </div>
                     <div class="col-sm-3 text-right">
+                      <button class="btn btn-primary dropdown-toggle" type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown" aria-haspopup="true"
+                              aria-expanded="false">Acties
+                      </button>
                       <div class="dropodown">
-                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">Acties</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk rekening</a>
+                          <a class="dropdown-item"
+                             [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk rekening</a>
                           <a class="dropdown-item" [routerLink]="['/rekening', rekening.iban, 'instellingen']">Instellingen</a>
                         </div>
                       </div>
