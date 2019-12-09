@@ -27,6 +27,7 @@
       <div class="row">
         <div class="col-sm-10">
           <select class="form-control" [(ngModel)]="categoryId" id="categoryId" name="categoryId">
+            <option *ngFor="let category of categories" value="{{category.category_id}}">{{category.name}}</option>
             <option value="1">as</option>
           </select>
         </div>
