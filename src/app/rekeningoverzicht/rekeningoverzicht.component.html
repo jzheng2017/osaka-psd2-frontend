@@ -22,6 +22,8 @@
                 </button>
             </div>
         </div>
+
+
         <div class="col-sm-12">
             <div *ngIf="error && rekeningen.length > 0"
                  class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
@@ -49,29 +51,32 @@
                 <li class="list-group-item" *ngFor="let rekening of rekeningen">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h4><i>{{rekening.type}}</i></h4>
-                                        <h5 class="text-dark">{{rekening.name}}</h5>
-                                        <h5 class="text-dark"><i>{{rekening.iban}}</i></h5>
-                                    </div>
-                                    <div class="col-sm-3 ">Balans: <span
-                                            [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}} {{rekening.balance === undefined ? "niet beschikbaar" : ""}}</span>
-                                    </div>
-                                    <div class="col-sm-3 text-right">
-                                        <div class="dropodown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Acties
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item"
-                                                   [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk
-                                                    rekening</a>
-                                                <a class="dropdown-item"
-                                                   [routerLink]="['/rekening', rekening.id, 'instellingen']">Instellingen</a>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i>{{rekening.type}}</i></h4>
+                                            <h5 class="text-dark">{{rekening.name}}</h5>
+                                            <h5 class="text-dark"><i>{{rekening.iban}}</i></h5>
+                                        </div>
+                                        <div class="col-sm-3 ">Balans: <span
+                                                [class.text-danger]="rekening.balance < 0">€{{rekening.balance | number : '1.2-2'}} {{rekening.balance === undefined ? "niet beschikbaar" : ""}}</span>
+                                        </div>
+                                        <div class="col-sm-3 text-right">
+                                            <div class="dropodown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    Acties
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item"
+                                                       [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk
+                                                        rekening</a>
+                                                    <a class="dropdown-item"
+                                                       [routerLink]="['/rekening', rekening.id, 'instellingen']">Instellingen</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
