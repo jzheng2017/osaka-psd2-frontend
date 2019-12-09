@@ -23,7 +23,7 @@ export class RegistrationService {
         this.req = new RegistrationRequest(r.name, r.email, r.password);
 
         const body = this.req;
-        const url = 'http://localhost:8080/users/register';
+        const url = 'http://steinmilder.nl:8080/users/register';
 
         this.httpClient.post<any>(url, body).subscribe(data => {
             this.handleResponse(data);

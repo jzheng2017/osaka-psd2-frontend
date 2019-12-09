@@ -6,15 +6,13 @@ import {HttpClient} from '@angular/common/http';
     providedIn: 'root'
 })
 export class RekeningService {
-    private apiUrl = 'http://localhost:8080';
+    private apiUrl = 'http://steinmilder.nl:8080';
 
     constructor(private http: HttpClient) {
     }
-
 
     getRekeningen(): Observable<any> {
         const rekeningUrl = this.apiUrl + `/accounts/?token=${localStorage.getItem('token')}`;
         return this.http.get<any>(rekeningUrl);
     }
-
 }

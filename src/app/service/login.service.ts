@@ -18,7 +18,7 @@ export class LoginService {
         this.req = new LoginRequest(r.email, r.password);
 
         const body = this.req;
-        const url = 'http://localhost:8080/users/login';
+        const url = 'http://steinmilder.nl:8080/users/login';
         this.httpClient.post<any>(url, body).subscribe(data => {
                 if (data.token != null) {
                     localStorage.setItem('token', data.token);

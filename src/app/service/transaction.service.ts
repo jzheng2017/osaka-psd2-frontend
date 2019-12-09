@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
     providedIn: 'root'
 })
 export class TransactionService {
-    private apiUrl = 'http://localhost:8080'
+    private apiUrl = 'http://steinmilder.nl:8080'
 
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
