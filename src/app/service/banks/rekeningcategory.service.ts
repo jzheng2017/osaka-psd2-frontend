@@ -4,7 +4,6 @@ import {RekeningSettings} from '../../rekening-settings/dto/rekening-settings';
 import {Observable} from 'rxjs';
 import {CategoryRequest} from '../../rekening-settings/dto/category-request';
 import {Category} from '../../rekening-settings/dto/category';
-import {ConfigService} from "../config/config.service";
 
 @Injectable({
   providedIn: 'root'
