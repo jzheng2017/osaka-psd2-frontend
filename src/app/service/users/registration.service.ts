@@ -11,7 +11,7 @@ export class RegistrationService {
 
   private registrationRequest: RegistrationRequest;
 
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://steinmilder.nl:8080';
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
