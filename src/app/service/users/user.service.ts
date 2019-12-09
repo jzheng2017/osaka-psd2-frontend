@@ -27,7 +27,7 @@ export class UserService {
   }
 
   public disconnectBankAccount(id: number) {
-      const url = 'http://localhost:8080/disconnect';
+      const url = 'http://steinmilder.nl:8080/disconnect';
       const token = localStorage.getItem('token');
       return this.httpClient.delete(url + `/?token=${token}&tableid=${id}`);
   }
