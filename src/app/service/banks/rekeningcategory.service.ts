@@ -11,9 +11,10 @@ import {ConfigService} from "../config/config.service";
 })
 export class RekeningcategoryService {
     id;
-  private apiUrl = this.configService.getConfig();
+  private apiUrl = 'http://steinmilder.nl:8080';
 
-  constructor(private httpClient: HttpClient, private configService: ConfigService) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   public addCategory(settings: RekeningSettings): Observable<any> {
       const token = localStorage.getItem('token');

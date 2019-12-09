@@ -2,16 +2,14 @@ import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {catchError, retry} from "rxjs/operators";
-import {ConfigService} from "../config/config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RekeningService {
-  private apiUrl = this.configService.getConfig();
+  private apiUrl = 'http://steinmilder.nl:8080';
 
-
-  constructor(private http: HttpClient, private configService: ConfigService) {
+  constructor(private http: HttpClient) {
   }
 
 

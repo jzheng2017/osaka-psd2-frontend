@@ -4,7 +4,6 @@ import {Transaction} from '../../transaction/dto/transaction';
 import {Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Transfer} from '../../transfer/transfer';
-import {ConfigService} from "../config/config.service";
 
 export interface PaymentResponse {
   url: string;
@@ -14,13 +13,13 @@ export interface PaymentResponse {
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = this.configService.getConfig();
+  private apiUrl = 'http://steinmilder.nl:8080';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private configService: ConfigService) {
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }
 
 
