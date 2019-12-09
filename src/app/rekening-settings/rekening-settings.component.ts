@@ -51,7 +51,6 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   private categorizeAccount(id: number) {
-      console.log('im in: ' + id);
       const iban = this.activatedRoute.snapshot.paramMap.get('id');
       this.categoryService.categorizeAccount(id, iban);
   }
