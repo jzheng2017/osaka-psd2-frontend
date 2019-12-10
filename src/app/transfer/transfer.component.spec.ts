@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {FormsModule} from '@angular/forms';
 import { TransferComponent } from './transfer.component';
 
 describe('TransferComponent', () => {
@@ -8,7 +8,10 @@ describe('TransferComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransferComponent ]
+      declarations: [ TransferComponent ],
+      imports: [
+        FormsModule,
+      ],
     })
     .compileComponents();
   }));

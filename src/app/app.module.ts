@@ -67,6 +67,7 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     RouterModule,
     NgxSpinnerModule,
     AngularIbanModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [

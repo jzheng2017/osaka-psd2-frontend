@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import {FormsModule} from '@angular/forms';
 import {LoginComponent} from './login.component';
 
 describe('InloggenComponent', () => {
@@ -8,16 +8,26 @@ describe('InloggenComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LoginComponent]
+            declarations: [LoginComponent],
+          imports: [
+            FormsModule,
+          ],
         })
             .compileComponents();
-    }));
 
-    beforeEach(() => {
+      // create component and test fixture
         fixture = TestBed.createComponent(LoginComponent);
+
+      // get test component from the fixture
         component = fixture.componentInstance;
         fixture.detectChanges();
-    });
+    }));
+
+    // beforeEach(() => {
+    //     fixture = TestBed.createComponent(InloggenComponent);
+    //     component = fixture.componentInstance;
+    //     fixture.detectChanges();
+    // });
 
     it('should create', () => {
         expect(component).toBeTruthy();

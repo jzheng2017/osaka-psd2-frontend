@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, NgModule, OnInit, Output} from '@angular/core';
 import {TransactionService} from '../service/banks/transaction.service';
 import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
@@ -12,6 +12,7 @@ import {DetailResponse} from '../transaction/dto/detail-response';
   templateUrl: './transactieoverzicht.component.html',
   styleUrls: ['./transactieoverzicht.component.css']
 })
+
 export class TransactieoverzichtComponent implements OnInit {
   private tableId;
 

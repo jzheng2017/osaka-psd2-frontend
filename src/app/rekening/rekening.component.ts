@@ -1,14 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RekeningService} from '../service/banks/rekening.service';
 import {Rekening} from './dto/rekening';
 import {Location} from '@angular/common';
+import {TransactieoverzichtComponent} from '../transactieoverzicht/transactieoverzicht.component';
 
 @Component({
   selector: 'app-rekening',
   templateUrl: './rekening.component.html',
-  styleUrls: ['./rekening.component.css']
+  styleUrls: ['./rekening.component.css'],
 })
+
+
 export class RekeningComponent implements OnInit {
 
   account = {iban: '', balance: 0, type: ''};

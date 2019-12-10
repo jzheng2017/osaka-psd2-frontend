@@ -19,6 +19,10 @@ describe('RekeningComponent', () => {
     fixture.detectChanges();
   });
 
+  // it('should instantiate', () => {
+  //   expect(component).toBeDefined();
+  // });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
