@@ -4,6 +4,8 @@ import {RekeningService} from '../service/banks/rekening.service';
 import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {HttpErrorResponse} from '@angular/common/http';
+import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
+import {Category} from "../rekening-settings/dto/category";
 
 @Component({
   selector: 'app-rekeningoverzicht',
@@ -16,16 +18,20 @@ export class RekeningoverzichtComponent implements OnInit {
   totalBalance: number;
   isLoading = true;
   error = '';
+  categories: Category[];
+  selectedCategory = new Category(0, '');
 
-  constructor(private rekeningService: RekeningService, private titleService: Title, private spinner: NgxSpinnerService) {
+  constructor(private rekeningService: RekeningService, private rekeningCategoryService: RekeningcategoryService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
-    this.spinner.show();
+    if (this.isLoading) {
+      this.spinner.show();
+    }
     this.getRekeningen();
+    this.getCategories();
   }
-
 
   getRekeningen() {
     this.rekeningService.getRekeningen().subscribe(rekeningen => {
@@ -33,10 +39,36 @@ export class RekeningoverzichtComponent implements OnInit {
         this.totalBalance = rekeningen.balance;
         this.isLoading = false;
       }, err => {
+        this.isLoading = false;
+        this.rekeningen = [];
         this.error = err.error.errorMessage;
-        }
+      }
     );
+  }
 
+  getRekeningenByCategory() {
+    console.log(this.selectedCategory.id);
+    this.rekeningService.getRekeningenByCategory(this.selectedCategory.id).subscribe(rekeningen => {
+        this.rekeningen = rekeningen.accounts;
+        this.totalBalance = rekeningen.balance;
+        this.isLoading = false;
+      }, err => {
+        this.isLoading = false;
+        this.rekeningen = [];
+        this.error = err.error.errorMessage;
+      }
+    );
+  }
+
+  getCategories() {
+    this.rekeningCategoryService.getCategories().subscribe(categories => {
+      console.log(categories);
+      this.categories = categories;
+    });
+  }
+
+  onSubmit() {
+    this.getRekeningenByCategory();
   }
 }
 

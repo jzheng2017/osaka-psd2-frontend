@@ -3,6 +3,8 @@ import {Registration} from './dto/registration';
 import {Router} from '@angular/router';
 import {RegistrationService} from '../service/users/registration.service';
 import {Title} from '@angular/platform-browser';
+import {RegistrationRequest} from './dto/registrationrequests';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -11,12 +13,11 @@ import {Title} from '@angular/platform-browser';
 })
 export class RegistrationComponent implements OnInit {
   title = 'Registratie';
-
+  error = false;
   submitted = false;
-
   user = new Registration('', '', '', '');
 
-  constructor(private router: Router, private registrationService: RegistrationService, private titleService: Title) {
+  constructor(private httpClient: HttpClient, private router: Router, private registrationService: RegistrationService, private titleService: Title) {
   }
 
   ngOnInit() {
@@ -28,11 +29,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
-    this.registrationService.register(this.user);
-  }
-
-  newUser() {
-    this.user = new Registration('', '', '', '');
+      this.registrationService.register(this.user).subscribe(data => {
+          if (data.token != null) {
+              localStorage.setItem('token', data.token);
+              this.router.navigate(['overzicht/rekeningen']);
+          }
+      }, err => {
+          this.error = true;
+      });
   }
 }
 

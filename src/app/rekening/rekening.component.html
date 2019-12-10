@@ -1,19 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <button (click)="back()" class="btn btn-primary margin-top-40-sm-and-up">Ga terug</button>
+      <div class="card margin-top-40-sm-and-up" *ngIf="!isLoading">
+        <div class="card-body">
+          <h1 class="typebig" *ngIf="account.type">{{account.type}}</h1>
+          <h3 [class.text-danger]="account.balance < 0">€ {{account.balance | number : "1.2-2"}}</h3>
+          <h6 *ngIf="account.iban">{{account.iban}}</h6>
+        </div>
+      </div>
     </div>
-<!--    <div class="col-sm-12">-->
-<!--      <h1>Rekening</h1>-->
-<!--      <p *ngIf="isLoading">Bankgegevens ophalen...</p>-->
-<!--    </div>-->
-<!--    <div class="col-sm-12" *ngIf="!isLoading">-->
-<!--      <h2>{{rekening.name}}</h2>-->
-<!--      <h4>{{rekening.bankAccountNumber}}</h4>-->
-<!--      <h6>Balans: &euro; {{rekening.balance}}</h6>-->
-<!--    </div>-->
     <div class="col-sm-12">
-      <app-transactieoverzicht></app-transactieoverzicht>
+      <app-transactieoverzicht (parentAccount)="getAccount($event)"></app-transactieoverzicht>
     </div>
   </div>
 </div>

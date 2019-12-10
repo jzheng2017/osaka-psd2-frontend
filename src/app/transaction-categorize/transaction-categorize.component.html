@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <form class="offset-sm-3 col-sm-6" #transactionCategorize="ngForm" (ngSubmit)="onSubmit()">
+      <a class="btn btn-primary margin-top-40-sm-and-up text-white" (click)="back()">Ga terug</a>
+      <h2>Transactie categoriseren</h2>
+
+      <div class="form-group">
+        <label>Op basis van welke gegevens wilt u deze transactie categoriseren?</label>
+        <div class="custom-control custom-radio">
+          <input name="mark_option" [(ngModel)]="request.content" value="{{ name }}" type="radio" id="mark_option_1"
+                 class="custom-control-input" checked>
+          <label class="custom-control-label" for="mark_option_1">De naam van de afzender ({{ name }})</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input name="mark_option" [(ngModel)]="request.content" value="{{ iban }}" type="radio" id="mark_option_2"
+                 class="custom-control-input">
+          <label class="custom-control-label" for="mark_option_2">Het IBAN-nummer van de afzender ({{ iban }})</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Wilt u deze transactie in een bestaande categorie of een nieuwe categorie plaatsen?</label>
+        <div class="custom-control custom-radio">
+          <input [(ngModel)]="request.type" value="new" type="radio" id="category_type_1" name="category_type"
+                 class="custom-control-input" checked>
+          <label class="custom-control-label" for="category_type_1">Een nieuwe categorie</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input [(ngModel)]="request.type" value="existing" type="radio" id="category_type_2" name="category_type"
+                 class="custom-control-input">
+          <label class="custom-control-label" for="category_type_2">Een bestaande categorie</label>
+        </div>
+      </div>
+
+      <div *ngIf="request.type == 'new'; else existingCategory">
+        <div class="form-group">
+          <label for="name">Naam van categorie</label>
+          <input [(ngModel)]="request.name" name="name" type="text" class="form-control" id="name" placeholder="Bijv: Algemene uitgaven">
+        </div>
+
+        <div class="form-group">
+          <label for="color">Kleur van categorie</label>
+          <select class="form-control" id="color" name="color" [(ngModel)]="request.color">
+            <option value="" disabled>-- Kies een kleur --</option>
+            <option *ngFor="let color of colors" [ngValue]="color.hex">{{color.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <ng-template #existingCategory>
+        <div class="form-group">
+          <label>Categorie</label>
+          <select class="form-control" name="id" [(ngModel)]="request.id">
+            <option value="0" disabled>-- Kies een categorie --</option>
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" [disabled]="!canSubmit()" value="Opslaan">
+      </div>
+    </form>
+  </div>
+</div>

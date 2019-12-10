@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TransactionService} from '../service/banks/transaction.service';
 import {Transaction} from '../transaction/dto/transaction';
 import {ActivatedRoute} from '@angular/router';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
+import {Location} from '@angular/common';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {DetailResponse} from '../transaction/dto/detail-response';
 
 @Component({
   selector: 'app-transactieoverzicht',
@@ -10,30 +13,51 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./transactieoverzicht.component.css']
 })
 export class TransactieoverzichtComponent implements OnInit {
+  private tableId;
 
   transactions: Transaction[];
+  account: any;
+  @Output() parentAccount = new EventEmitter();
   isLoading = true;
   private title = 'Transactieoverzicht';
   error = '';
 
-  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private titleService: Title) {
+  constructor(private spinner: NgxSpinnerService, private transactionService: TransactionService,
+              private activatedRoute: ActivatedRoute, private titleService: Title, private location: Location) {
   }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    this.tableId = this.activatedRoute.snapshot.paramMap.get('tableid');
     this.getTransactions();
+    this.spinner.show();
   }
 
   getTransactions() {
     const bankAccountId = this.activatedRoute.snapshot.paramMap.get('id');
-    const tableId = this.activatedRoute.snapshot.paramMap.get('tableid');
 
-    this.transactionService.getTransacties(bankAccountId, tableId).subscribe(transactions => {
-      this.transactions = transactions.transactions;
-      this.isLoading = false;
-    }, err => {
-        this.error = err.error.errorMessage;
-    });
+    this.transactionService
+      .getTransacties(bankAccountId, this.tableId)
+      .subscribe((response: DetailResponse) => {
+        this.transactions = response.transactions;
+        this.isLoading = false;
+        this.account = response.account;
+        this.parentAccount.emit(this.account);
+      }, err => {
+          this.error = err.error.errorMessage;
+      });
+  }
+
+  getAccountFromTransaction(transaction: Transaction) {
+    if (transaction.received) {
+      return transaction.sender;
+    }
+
+    return transaction.receiver;
+  }
+
+  back() {
+    this.location.back();
   }
 }
 

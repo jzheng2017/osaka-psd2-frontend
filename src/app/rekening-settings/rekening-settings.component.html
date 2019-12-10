@@ -4,17 +4,40 @@
       <button class="btn btn-primary margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
       <h1>Instellingen</h1>
       <div class="row">
+
         <div class="form-group col-sm-12">
-          <label for="category">Selecteer een categorie:</label>
-          <select class="form-control" id="category" name="category" [(ngModel)]="settings.category" required>
-            <option value="betaalrekening">Betaalrekening</option>
-            <option value="spaarrekening">Spaarrekening</option>
-          </select>
+          <h4>Rekening categorie</h4>
+          <p>Deze rekening: Geen categorie</p>
+
+            <h5><i>Kies hoe u wilt categoriseren</i></h5>
+            <input [(ngModel)]="option" type="radio" name="option" [value]="'categorize'"> Bestaande categorie
+            <input [(ngModel)]="option" type="radio" name="option" [value]="'new'"> Nieuwe categorie <br><br>
+
+            <div *ngIf="option == 'categorize'">
+            <h5>Gebruik een bestaande categorie voor deze rekening</h5>
+
+            <select [(ngModel)]="settings.id" name="categoryChoose">
+                <option [value]=""></option>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+            </div>
+
+            <div *ngIf="option == 'new'">
+          <h5>Maak een eigen categorie voor deze rekening</h5>
+          <i><p>De categorie wordt meteen aan de rekening gegeven.</p></i>
+
+          <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
+          <input *ngIf="option == 'new'" type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
+                 [(ngModel)]="settings.name" #customCategory="ngModel">
+            </div>
         </div>
+
         <div class="col-sm-12 form-group">
           <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10" [disabled]="!formSettings.valid" value="Opslaan">
         </div>
       </div>
     </form>
   </div>
+
+
 </div>
