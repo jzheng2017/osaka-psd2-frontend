@@ -1,17 +1,14 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {GetUserRequest} from '../../login/dto/getuserrequest';
+import {ConfigService} from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private apiUrl = this.configService.baseUrl;
 
-  private getUserRequest: GetUserRequest;
-  private apiUrl = 'http://steinmilder.nl:8080';
-
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private configService: ConfigService) {
   }
 
   public getUser() {

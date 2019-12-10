@@ -3,6 +3,7 @@ import {Registration} from '../../registration/dto/registration';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RegistrationRequest} from '../../registration/dto/registrationrequests';
 import {Router} from '@angular/router';
+import {ConfigService} from "../config/config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class RegistrationService {
 
   private registrationRequest: RegistrationRequest;
 
-  private apiUrl = 'http://steinmilder.nl:8080';
+  private apiUrl = this.configService.baseUrl;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private configService: ConfigService) {
   }
 
 
