@@ -10,7 +10,6 @@ import {ConfigService} from '../config/config.service';
   providedIn: 'root'
 })
 export class RekeningcategoryService {
-  id;
   private apiUrl = this.configService.apiBaseUrl;
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {
@@ -25,9 +24,7 @@ export class RekeningcategoryService {
   public categorizeAccount(id: number, iban: string) {
     const token = localStorage.getItem('token');
     const url = `${this.apiUrl}/accounts/categorize?token=${token}`;
-    this.httpClient.post<any>(url, new CategoryRequest(id, iban)).subscribe();
-    window.location.reload();
-
+    this.httpClient.post<any>(url, new CategoryRequest(id, iban));
   }
 
   public getCategories(): Observable<Category[]> {
