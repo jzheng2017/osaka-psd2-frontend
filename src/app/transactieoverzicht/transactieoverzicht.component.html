@@ -25,28 +25,31 @@
             <div class="row">
                 <div class="col-sm-12">
                     <small *ngIf="!transaction.booked">Nog niet overgeboekt.</small>
-                    <small *ngIf="transaction.booked">{{transaction.date}}</small>
+                    <small *ngIf="transaction.booked" class="font-italic">{{transaction.date}}</small>
                 </div>
                 <div class="col-sm-12">
                     <div class="row">
-                        <ul class="col-sm-6 list-unstyled">
-                          <li>{{transaction.sender.name === undefined ? "Onbekend" : transaction.sender.name}}</li>
-                          <li>{{transaction.category.name}}</li>
-                        </ul>
-                        <div class="col-sm-3"> Bedrag: {{transaction.received ? "+" : "-"}} <span
-                                [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
+                        <div class="col-sm-6">
+                          <div class="font-weight-bold">{{ getAccountFromTransaction(transaction).name === undefined ? "Onbekend" : getAccountFromTransaction(transaction).name}}</div>
+                          <div>{{ getAccountFromTransaction(transaction).iban }}</div>
+                          <div class="font-weight-bold" [ngStyle]="{color: transaction.category.color}">{{transaction.category.name}}</div>
                         </div>
-                        <div class="col-sm-1"><i class="far fa-file-alt"
-                                                 title="Deze transactie heeft een bijlage"
-                                                 *ngIf="transaction.comment"></i></div>
+                        <div class="col-sm-3">
+                          Bedrag: {{transaction.received ? "+" : "-"}} <span [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
+                        </div>
+                        <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage" *ngIf="transaction.comment"></i></div>
                         <div class="col-sm-2">
-                            <button class="btn btn-primary float-right"
-                                    [routerLink]="['/transactie', transaction.id, 'details']">
-                                Details
-                            </button>
+                          <button class="btn btn-primary dropdown-toggle" type="button"
+                                  id="dropdownMenuButton"
+                                  data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false">Acties</button>
+                          <div class="dropodown">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'details']">Bekijk transactie</a>
+                              <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'categorize']" [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}">Categoriseer</a>
+                            </div>
+                          </div>
                         </div>
-                        <div id="IBAN" *ngIf="transaction.sender.iban != undefined" class="col-sm-6">
-                            <i>IBAN: {{transaction.sender.iban}}</i></div>
                     </div>
                 </div>
             </div>

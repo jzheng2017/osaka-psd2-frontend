@@ -5,7 +5,6 @@ import {RekeningService} from '../service/banks/rekening.service';
 import {Location} from '@angular/common';
 import {TransactionService} from '../service/banks/transaction.service';
 
-
 @Component({
   selector: 'app-transfer',
   templateUrl: './transfer.component.html',
@@ -41,7 +40,7 @@ export class TransferComponent implements OnInit {
     this.transfer.sender.iban = this.selectedRekening.iban;
     this.transactionService.createTransaction(this.transfer, this.selectedRekening.tableId)
       .subscribe(response => {
-          return window.location.href = response.url;
+         // return window.location.href = response.url;
         },
         () => this.transfered = false);
   }

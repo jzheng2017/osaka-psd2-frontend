@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AddBank} from './dto/add-bank';
 import {Location} from '@angular/common';
 import {Title} from '@angular/platform-browser';
+import {RekeningService} from '../service/banks/rekening.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-bank',
@@ -10,19 +12,26 @@ import {Title} from '@angular/platform-browser';
 })
 export class AddBankComponent implements OnInit {
   private title = 'Bank koppelen';
-  private bank = new AddBank('', '');
-  private token = localStorage.getItem('token');
-  private apiUrl = 'http://localhost:8080/connect';
+  private connectUrl = 'http://steinmilder.nl:8080/connect';
 
-  constructor(private location: Location, private titleService: Title) {
+  private allowedConnections;
+  private limitReached;
+  private isLoading = true;
+
+  constructor(private rekeningService: RekeningService, private location: Location, private titleService: Title, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    if (this.isLoading) {
+      this.spinner.show();
+    }
+    this.getConnections();
   }
 
   onSubmit(url: string) {
-    this.goTo(url);
+    const token = localStorage.getItem('token');
+    this.goTo(this.connectUrl + '/' + url + '?token=' + token);
   }
 
   goTo(url: string) {
@@ -31,5 +40,15 @@ export class AddBankComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  getConnections() {
+    this.rekeningService.getConnections().subscribe(connections => {
+      this.allowedConnections = connections.allowedConnections;
+      this.limitReached = connections.limitReached;
+      this.isLoading = false;
+    }, err => {
+      console.log(err);
+    });
   }
 }
