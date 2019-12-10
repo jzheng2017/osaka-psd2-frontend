@@ -56,6 +56,8 @@ export class RekeningSettingsComponent implements OnInit {
   private categorizeAccount(id: number) {
       const iban = this.activatedRoute.snapshot.paramMap.get('id');
       this.categoryService.categorizeAccount(id, iban);
+      alert('De rekening is succesvol gecategoriseerd.');
+      this.back();
   }
 
 }
