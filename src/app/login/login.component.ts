@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './dto/login';
 import {LoginService} from '../service/users/login.service';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 
 @Component({

@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {LoginRequest} from '../../login/dto/loginrequest';
 import {HttpClient} from '@angular/common/http';
 import {Login} from '../../login/dto/login';
-import {Router} from '@angular/router';
-import {ConfigService} from "../config/config.service";
+import {ConfigService} from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
