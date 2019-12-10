@@ -30,8 +30,8 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-6">
-                          <div class="font-weight-bold">{{transaction.receiver.name === undefined ? "Onbekend" : transaction.receiver.name}}</div>
-                          <div>{{ transaction.receiver.iban }}</div>
+                          <div class="font-weight-bold">{{ getAccountFromTransaction(transaction).name === undefined ? "Onbekend" : getAccountFromTransaction(transaction).name}}</div>
+                          <div>{{ getAccountFromTransaction(transaction).iban }}</div>
                           <div class="font-weight-bold" [ngStyle]="{color: transaction.category.color}">{{transaction.category.name}}</div>
                         </div>
                         <div class="col-sm-3">
@@ -46,7 +46,7 @@
                           <div class="dropodown">
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'details']">Bekijk transactie</a>
-                              <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'categorize']" [queryParams]="{iban:transaction.sender.iban, name:transaction.sender.name}">Categoriseer</a>
+                              <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'categorize']" [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}">Categoriseer</a>
                             </div>
                           </div>
                         </div>

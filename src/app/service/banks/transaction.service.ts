@@ -6,7 +6,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Transfer} from '../../transfer/transfer';
 import {CategorizeRequest} from '../../transaction-categorize/dto/categorize-request';
 import {TransactionCategory} from '../../transaction-categorize/dto/transaction-category';
-import {ConfigService} from "../config/config.service";
+import {DetailResponse} from '../../transaction/dto/detail-response';
+import {map} from 'rxjs/operators';
 
 export interface PaymentResponse {
   url: string;
@@ -16,19 +17,19 @@ export interface PaymentResponse {
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = this.configService.apiBaseUrl;
+  private apiUrl = 'http://steinmilder.nl:8080';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private configService: ConfigService) {
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }
 
-  getTransacties(id: string, tableid: string): Observable<any> {
+  getTransacties(id: string, tableid: string): Observable<DetailResponse> {
     const token = localStorage.getItem('token');
     const transactieUrl = this.apiUrl + `/accounts/${id}/details?token=${token}&tableid=${tableid}`;
-    return this.http.get<any>(transactieUrl);
+    return this.http.get<DetailResponse>(transactieUrl).pipe();
   }
 
   getTransactie(id: number) {
