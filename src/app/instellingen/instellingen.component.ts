@@ -17,6 +17,7 @@ export class InstellingenComponent implements OnInit {
   isLoading = true;
   user: User;
   accounts: Account[];
+  error = '';
 
   constructor(private rekeningService: RekeningService, private userService: UserService, private spinner: NgxSpinnerService) {
   }
@@ -33,18 +34,27 @@ export class InstellingenComponent implements OnInit {
     this.userService.getAttachedBankAccounts().subscribe(data => {
       this.accounts = data;
       this.isLoading = false;
+    }, err => {
+        this.isLoading = false;
+        this.error += 'Het ophalen van de rekeningen is mislukt. ';
     });
   }
 
   getUserDetails() {
     this.userService.getUser().subscribe(data => {
       this.user = data;
+    }, err => {
+        this.isLoading = false;
+        this.error += 'Het ophalen van de accountgegevens is mislukt. ';
     });
   }
 
   disconnectAccount(id: number) {
     if (this.unlinkAccount()) {
-      this.userService.disconnectBankAccount(id).subscribe(() => this.getAttachedBankAccounts());
+      this.userService.disconnectBankAccount(id).subscribe(() => this.getAttachedBankAccounts(),
+          err => {
+            this.error = '(' + err.status + ') Het ontkoppelen is mislukt. ';
+          });
     }
   }
 

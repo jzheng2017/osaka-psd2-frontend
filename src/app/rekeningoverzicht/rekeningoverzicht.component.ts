@@ -12,17 +12,18 @@ import {Category} from '../rekening-settings/dto/category';
   templateUrl: './rekeningoverzicht.component.html',
   styleUrls: ['./rekeningoverzicht.component.css']
 })
-
 export class RekeningoverzichtComponent implements OnInit {
   private title = 'Rekeningoverzicht';
   rekeningen: Rekening[];
   totalBalance: number;
   isLoading = true;
   error = '';
+  status: number;
   categories: Category[];
   categoryId: number;
   userId: number;
   name: string;
+  selectedCategory = new Category(0, '');
 
   constructor(private rekeningService: RekeningService, private rekeningCategoryService: RekeningcategoryService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
@@ -44,28 +45,28 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.error = err.error.errorMessage;
+        this.status = err.status;
       }
     );
   }
 
   getRekeningenByCategory() {
-    console.log(this.categoryId);
-    this.rekeningService.getRekeningenByCategory(this.categoryId).subscribe(rekeningen => {
+    console.log(this.selectedCategory.id);
+    this.rekeningService.getRekeningenByCategory(this.selectedCategory.id).subscribe(rekeningen => {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
         this.isLoading = false;
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.error = err.error.errorMessage;
+        this.status = err.status;
+        console.log('kaas');
       }
     );
   }
 
   getCategories() {
     this.rekeningCategoryService.getCategories().subscribe(categories => {
-     console.log(categories);
      this.categories = categories;
     });
   }
