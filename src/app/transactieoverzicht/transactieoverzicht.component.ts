@@ -21,6 +21,7 @@ export class TransactieoverzichtComponent implements OnInit {
   isLoading = true;
   private title = 'Transactieoverzicht';
   error = '';
+  status: number;
 
   constructor(private spinner: NgxSpinnerService, private transactionService: TransactionService,
               private activatedRoute: ActivatedRoute, private titleService: Title, private location: Location) {
@@ -44,7 +45,8 @@ export class TransactieoverzichtComponent implements OnInit {
         this.account = response.account;
         this.parentAccount.emit(this.account);
       }, err => {
-          this.error = err.error.errorMessage;
+          this.isLoading = false;
+          this.status = err.status;
       });
   }
 

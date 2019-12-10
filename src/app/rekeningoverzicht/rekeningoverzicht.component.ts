@@ -5,7 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {HttpErrorResponse} from '@angular/common/http';
 import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
-import {Category} from "../rekening-settings/dto/category";
+import {Category} from '../rekening-settings/dto/category';
 
 @Component({
   selector: 'app-rekeningoverzicht',
@@ -18,7 +18,11 @@ export class RekeningoverzichtComponent implements OnInit {
   totalBalance: number;
   isLoading = true;
   error = '';
+  status: number;
   categories: Category[];
+  categoryId: number;
+  userId: number;
+  name: string;
   selectedCategory = new Category(0, '');
 
   constructor(private rekeningService: RekeningService, private rekeningCategoryService: RekeningcategoryService, private titleService: Title, private spinner: NgxSpinnerService) {
@@ -41,7 +45,7 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.error = err.error.errorMessage;
+        this.status = err.status;
       }
     );
   }
@@ -55,15 +59,15 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.error = err.error.errorMessage;
+        this.status = err.status;
+        console.log('kaas');
       }
     );
   }
 
   getCategories() {
     this.rekeningCategoryService.getCategories().subscribe(categories => {
-      console.log(categories);
-      this.categories = categories;
+     this.categories = categories;
     });
   }
 
