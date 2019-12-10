@@ -53,10 +53,18 @@ export class TransactionCategorizeComponent implements OnInit {
     }
   }
 
+  canSubmit() {
+    if (this.request.content === '' || (!this.request.isNew() && this.request.id === 0) || (this.request.isNew() && (this.request.name === '' || this.request.color === ''))) {
+      return false;
+    }
+    return true;
+  }
+
   categorize(request: CategorizeRequest) {
     this.transactionService.categorizeTransaction(request)
       .subscribe(response => {
-        console.log(response);
+        alert('De aangegeven transactie is succesvol gemarkeerd!')
+        this.back();
       }, err => {
         console.log(err);
       });
