@@ -3,7 +3,7 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
-import {InloggenComponent} from './login/inloggen.component';
+import {LoginComponent} from './login/login.component';
 import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
 import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -47,7 +47,7 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
 @NgModule({
   declarations: [
     AppComponent,
-    InloggenComponent,
+    LoginComponent,
     RegistrationComponent,
     RekeningoverzichtComponent,
     TransactieoverzichtComponent,
