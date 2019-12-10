@@ -11,7 +11,7 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class AppComponent {
   title = 'osakapsd2-front-end';
-  isLoggedIn;
+  isLoggedIn = false;
 
   constructor(private titleService: Title, private authService: AuthService, private userService: UserService, private router: Router) {
     titleService.setTitle(this.title);

@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './dto/login';
 import {LoginService} from '../service/users/login.service';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-inloggen',
-  templateUrl: './inloggen.component.html',
-  styleUrls: ['./inloggen.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class InloggenComponent implements OnInit {
+export class LoginComponent implements OnInit {
   title = 'Login';
 
   error = false;
