@@ -3,14 +3,13 @@
     <button (click)="back()" class="btn btn-primary">Ga terug</button>
 </div>
 
-<div *ngIf="error" class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
-  <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
-    <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
-    <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer het opnieuw.</li>
-    <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
-  </ul>
+<div *ngIf="status && !isLoading"
+     class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
+    ({{status}}) Er is een fout opgetreden. Probeer het opnieuw.
 </div>
-<ngx-spinner *ngIf="!error && isLoading"
+<br>
+
+<ngx-spinner *ngIf="!status && isLoading"
              bdColor="#ffffff"
              size="default"
              color="#000000"
@@ -18,6 +17,7 @@
              style="position: center"
              [fullScreen]="false"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p>
 </ngx-spinner>
+
 <div *ngIf="!isLoading">
     <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
     <ul class="list-group">

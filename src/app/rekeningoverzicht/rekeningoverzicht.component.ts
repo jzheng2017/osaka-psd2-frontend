@@ -5,7 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {HttpErrorResponse} from '@angular/common/http';
 import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
-import {Category} from "../rekening-settings/dto/category";
+import {Category} from '../rekening-settings/dto/category';
 
 @Component({
   selector: 'app-rekeningoverzicht',
@@ -18,6 +18,7 @@ export class RekeningoverzichtComponent implements OnInit {
   totalBalance: number;
   isLoading = true;
   error = '';
+  status: number;
   categories: Category[];
   categoryId: number;
   userId: number;
@@ -43,13 +44,13 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.error = err.error.errorMessage;
+        console.log(err.status);
+        this.status = err.status;
       }
     );
   }
 
   getRekeningenByCategory() {
-    console.log(this.categoryId);
     this.rekeningService.getRekeningenByCategory(this.categoryId).subscribe(rekeningen => {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
@@ -57,15 +58,15 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.error = err.error.errorMessage;
+        this.status = err.status;
+        console.log('kaas');
       }
     );
   }
 
   getCategories() {
     this.rekeningCategoryService.getCategories().subscribe(categories => {
-     console.log(categories);
-      this.categories = categories;
+     this.categories = categories;
     });
   }
 

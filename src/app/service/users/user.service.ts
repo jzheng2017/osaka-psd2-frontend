@@ -15,14 +15,14 @@ export class UserService {
     }
 
   public getUser() {
-    const getUserUrl = this.apiUrl + '/users/user/details?token=' + localStorage.getItem('token');
-    const token = localStorage.getItem('token');
-    return this.httpClient.get<any>(getUserUrl);
+      const token = localStorage.getItem('token');
+      const getUserUrl = this.apiUrl + '/users/user/details?token=' + token;
+      return this.httpClient.get<any>(getUserUrl);
   }
 
   public getAttachedBankAccounts()  {
-      const getAttachedBankAccountsUrl = this.apiUrl + '/users/user/attachedaccounts?token=' + localStorage.getItem('token');
       const token = localStorage.getItem('token');
+      const getAttachedBankAccountsUrl = this.apiUrl + '/users/user/attachedaccounts?token=' + token;
       return this.httpClient.get<any>(getAttachedBankAccountsUrl);
   }
 

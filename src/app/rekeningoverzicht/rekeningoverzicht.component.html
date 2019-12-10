@@ -39,18 +39,12 @@
 
 
     <div class="col-sm-12">
-      <div *ngIf="error && rekeningen.length > 0"
+      <div *ngIf="status && !isLoading"
            class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
-        <ul style="list-style-type: none" [ngSwitch]="e" *ngFor="let e of error">
-          <li *ngSwitchCase="'INVALID_TOKEN'">Er is een ongeldig token gebruikt. Probeer het opnieuw.</li>
-          <li *ngSwitchCase="'INVALID_TABLEID'">Er is een ongeldig account in de database gebruikt. Probeer
-            het
-            opnieuw.
-          </li>
-          <li *ngSwitchCase="'INVALID_ID'">Er is een ongeldig ID gebruikt. Probeer het opnieuw.</li>
-        </ul>
+          ({{status}}) Er is een fout opgetreden. Probeer het opnieuw.
       </div>
-      <ngx-spinner *ngIf="!error && isLoading"
+        <br>
+      <ngx-spinner *ngIf="!status && isLoading"
                    bdColor="#ffffff"
                    size="default"
                    color="#000000"
@@ -58,7 +52,7 @@
                    style="position: center"
                    [fullScreen]="false"><p style="position: relative; top: 30px">Rekeningen worden opgehaald.</p>
       </ngx-spinner>
-      <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0">Er zijn geen rekeningen gekoppeld aan
+      <div class="text-center" *ngIf="!isLoading && rekeningen.length <= 0 && !status">Er zijn geen rekeningen gekoppeld aan
         dit account.
       </div>
       <ul class="list-group">

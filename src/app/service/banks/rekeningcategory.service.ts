@@ -17,7 +17,8 @@ export class RekeningcategoryService {
 
   public addCategory(settings: RekeningSettings): Observable<any> {
       const token = localStorage.getItem('token');
-      const url = `${this.apiUrl}/categories?token=${token}`;
+      const url = `${this.apiUrl}/accounts/categories?token=${token}`;
+      console.log(settings.name);
       return this.httpClient.post<any>(url, settings);
   }
 
