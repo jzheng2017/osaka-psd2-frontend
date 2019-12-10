@@ -38,6 +38,8 @@ export class RekeningoverzichtComponent implements OnInit {
   }
 
   getRekeningen() {
+    this.isLoading = true;
+
     this.rekeningService.getRekeningen().subscribe(rekeningen => {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
@@ -51,7 +53,8 @@ export class RekeningoverzichtComponent implements OnInit {
   }
 
   getRekeningenByCategory() {
-    console.log(this.selectedCategory.id);
+    this.isLoading = true;
+
     this.rekeningService.getRekeningenByCategory(this.selectedCategory.id).subscribe(rekeningen => {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
@@ -60,7 +63,6 @@ export class RekeningoverzichtComponent implements OnInit {
         this.isLoading = false;
         this.rekeningen = [];
         this.status = err.status;
-        console.log('kaas');
       }
     );
   }
@@ -72,7 +74,11 @@ export class RekeningoverzichtComponent implements OnInit {
   }
 
   onSubmit() {
-    this.getRekeningenByCategory();
+    if (this.selectedCategory.id > 0) {
+      this.getRekeningenByCategory();
+    } else {
+      this.getRekeningen();
+    }
   }
 }
 
