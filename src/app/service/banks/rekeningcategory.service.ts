@@ -4,15 +4,16 @@ import {RekeningSettings} from '../../rekening-settings/dto/rekening-settings';
 import {Observable} from 'rxjs';
 import {CategoryRequest} from '../../rekening-settings/dto/category-request';
 import {Category} from '../../rekening-settings/dto/category';
+import {ConfigService} from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RekeningcategoryService {
     id;
-  private apiUrl = 'http://steinmilder.nl:8080';
+  private apiUrl = this.configService.apiBaseUrl;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private configService: ConfigService) {
   }
 
   public addCategory(settings: RekeningSettings): Observable<any> {

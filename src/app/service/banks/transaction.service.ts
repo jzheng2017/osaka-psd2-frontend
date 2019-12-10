@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Transfer} from '../../transfer/transfer';
 import {CategorizeRequest} from '../../transaction-categorize/dto/categorize-request';
 import {TransactionCategory} from '../../transaction-categorize/dto/transaction-category';
+import {ConfigService} from "../config/config.service";
 
 export interface PaymentResponse {
   url: string;
@@ -15,13 +16,13 @@ export interface PaymentResponse {
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = 'http://steinmilder.nl:8080';
+  private apiUrl = this.configService.apiBaseUrl;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient, private configService: ConfigService) {
   }
 
   getTransacties(id: string, tableid: string): Observable<any> {
