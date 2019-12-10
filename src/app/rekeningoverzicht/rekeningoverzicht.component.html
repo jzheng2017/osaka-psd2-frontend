@@ -26,7 +26,7 @@
     <form class="col-sm-12 margin-bottom-20" (ngSubmit)="onSubmit()" #formCategory="ngForm">
       <div class="row">
         <div class="col-sm-10">
-          <select class="form-control" [(ngModel)]="categoryId" id="categoryId" name="categoryId">
+          <select class="form-control" [(ngModel)]="selectedCategory.id" id="categoryId" name="categoryId">
             <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select>
         </div>

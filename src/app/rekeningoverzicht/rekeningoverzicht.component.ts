@@ -23,6 +23,7 @@ export class RekeningoverzichtComponent implements OnInit {
   categoryId: number;
   userId: number;
   name: string;
+  selectedCategory = new Category(0, '');
 
   constructor(private rekeningService: RekeningService, private rekeningCategoryService: RekeningcategoryService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
@@ -44,14 +45,14 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        console.log(err.status);
         this.status = err.status;
       }
     );
   }
 
   getRekeningenByCategory() {
-    this.rekeningService.getRekeningenByCategory(this.categoryId).subscribe(rekeningen => {
+    console.log(this.selectedCategory.id);
+    this.rekeningService.getRekeningenByCategory(this.selectedCategory.id).subscribe(rekeningen => {
         this.rekeningen = rekeningen.accounts;
         this.totalBalance = rekeningen.balance;
         this.isLoading = false;

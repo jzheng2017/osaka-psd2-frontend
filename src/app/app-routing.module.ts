@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {InloggenComponent} from './login/inloggen.component';
+import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
 import {RekeningComponent} from './rekening/rekening.component';
@@ -14,7 +14,7 @@ import {InstellingenComponent} from './instellingen/instellingen.component';
 
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
-    {path: 'login', component: InloggenComponent},
+    {path: 'login', component: LoginComponent},
     {path: 'rekening/:id/details/:tableid', component: RekeningComponent, canActivate: [AuthGuardService]},
     {path: 'overzicht/rekeningen', component: RekeningoverzichtComponent, canActivate: [AuthGuardService]},
     {path: 'rekening/:id/details', component: RekeningComponent, canActivate: [AuthGuardService]},
