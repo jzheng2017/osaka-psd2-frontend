@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <form class="offset-sm-3 col-sm-6" #formSettings="ngForm" (ngSubmit)="onSubmit()">
-      <button class="btn btn-primary margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
+    <form class="offset-sm-3 col-sm-6" #transactionCategorize="ngForm" (ngSubmit)="onSubmit()">
+      <a class="btn btn-primary margin-top-40-sm-and-up text-white" (click)="back()">Ga terug</a>
       <h2>Transactie categoriseren</h2>
 
       <div class="form-group">
@@ -58,7 +58,7 @@
       </ng-template>
 
       <div class="form-group">
-        <input type="submit" class="btn btn-primary" [disabled]="!formSettings.valid" value="Opslaan">
+        <input type="submit" class="btn btn-primary" [disabled]="!canSubmit()" value="Opslaan">
       </div>
     </form>
   </div>
