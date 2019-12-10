@@ -35,7 +35,7 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
             if (x.status !== 404) {
               resolve(false);
             }
-            config.apiBaseUrl = 'http://localhost:8080';
+            config.apiBaseUrl = 'http://steinmilder.nl:8080';
             resolve(true);
             return of({});
           })
