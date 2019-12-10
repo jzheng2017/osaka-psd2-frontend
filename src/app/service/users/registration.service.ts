@@ -3,7 +3,7 @@ import {Registration} from '../../registration/dto/registration';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RegistrationRequest} from '../../registration/dto/registrationrequests';
 import {Router} from '@angular/router';
-import {ConfigService} from "../config/config.service";
+import {ConfigService} from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
