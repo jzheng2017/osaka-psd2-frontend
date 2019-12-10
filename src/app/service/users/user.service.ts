@@ -6,7 +6,7 @@ import {ConfigService} from '../config/config.service';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = this.configService.baseUrl;
+  private apiUrl = this.configService.apiBaseUrl;
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {
   }

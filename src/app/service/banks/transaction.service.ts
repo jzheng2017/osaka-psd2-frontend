@@ -16,7 +16,7 @@ export interface PaymentResponse {
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = this.configService.baseUrl;
+  private apiUrl = this.configService.apiBaseUrl;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

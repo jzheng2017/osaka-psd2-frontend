@@ -11,7 +11,7 @@ import {ConfigService} from '../config/config.service';
 })
 export class RekeningcategoryService {
     id;
-  private apiUrl = this.configService.baseUrl;
+  private apiUrl = this.configService.apiBaseUrl;
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {
   }

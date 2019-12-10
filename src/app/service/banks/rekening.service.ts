@@ -8,7 +8,7 @@ import {ConfigService} from "../config/config.service";
   providedIn: 'root'
 })
 export class RekeningService {
-  private apiUrl = this.configService.baseUrl;
+  private apiUrl = this.configService.apiBaseUrl;
 
   constructor(private http: HttpClient, private configService: ConfigService) {
   }

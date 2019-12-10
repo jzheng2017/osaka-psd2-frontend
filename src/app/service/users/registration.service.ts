@@ -12,7 +12,7 @@ export class RegistrationService {
 
   private registrationRequest: RegistrationRequest;
 
-  private apiUrl = this.configService.baseUrl;
+  private apiUrl = this.configService.apiBaseUrl;
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {
   }

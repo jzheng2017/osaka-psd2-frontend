@@ -28,14 +28,14 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
       http.get('./assets/config.json')
         .pipe(
           map((x: ConfigService) => {
-            config.baseUrl = x.baseUrl;
+            config.apiBaseUrl = x.apiBaseUrl;
             resolve(true);
           }),
           catchError((x: { status: number }, caught: Observable<void>): ObservableInput<{}> => {
             if (x.status !== 404) {
               resolve(false);
             }
-            config.baseUrl = 'http://localhost:8080';
+            config.apiBaseUrl = 'http://localhost:8080';
             resolve(true);
             return of({});
           })
