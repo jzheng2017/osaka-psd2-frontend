@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InstellingenComponent } from './instellingen.component';
+import {InstellingenComponent} from './instellingen.component';
+import {NgxSpinnerComponent} from 'ngx-spinner';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {User} from '../user';
 
 describe('InstellingenComponent', () => {
   let component: InstellingenComponent;
@@ -8,9 +12,15 @@ describe('InstellingenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InstellingenComponent ]
+      declarations: [
+        InstellingenComponent,
+        NgxSpinnerComponent,
+      ],
+      imports: [
+        HttpClientTestingModule,
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

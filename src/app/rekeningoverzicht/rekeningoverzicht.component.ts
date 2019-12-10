@@ -12,6 +12,7 @@ import {Category} from '../rekening-settings/dto/category';
   templateUrl: './rekeningoverzicht.component.html',
   styleUrls: ['./rekeningoverzicht.component.css']
 })
+
 export class RekeningoverzichtComponent implements OnInit {
   private title = 'Rekeningoverzicht';
   rekeningen: Rekening[];
@@ -67,6 +68,7 @@ export class RekeningoverzichtComponent implements OnInit {
 
   getCategories() {
     this.rekeningCategoryService.getCategories().subscribe(categories => {
+     console.log(categories);
      this.categories = categories;
     });
   }

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RekeningComponent } from './rekening.component';
+import {NgxSpinnerComponent} from 'ngx-spinner';
+import {TransactieoverzichtComponent} from '../transactieoverzicht/transactieoverzicht.component';
 
 describe('RekeningComponent', () => {
   let component: RekeningComponent;
@@ -8,7 +10,12 @@ describe('RekeningComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RekeningComponent ]
+      declarations: [ RekeningComponent,
+        NgxSpinnerComponent,
+        TransactieoverzichtComponent,
+      ],
+      imports: [
+      ]
     })
     .compileComponents();
   }));
