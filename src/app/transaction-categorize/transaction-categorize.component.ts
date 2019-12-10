@@ -12,6 +12,7 @@ import {TransactionCategoryColor} from './dto/transaction_category_color';
   templateUrl: './transaction-categorize.component.html',
   styleUrls: ['./transaction-categorize.component.css']
 })
+
 export class TransactionCategorizeComponent implements OnInit {
   private iban;
   private name;
@@ -27,7 +28,6 @@ export class TransactionCategorizeComponent implements OnInit {
   ];
 
   constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute, private transactionService: TransactionService) {
-
   }
 
   ngOnInit() {
@@ -38,7 +38,6 @@ export class TransactionCategorizeComponent implements OnInit {
 
       this.request.content = this.name;
     });
-
   }
 
   back() {
@@ -53,10 +52,15 @@ export class TransactionCategorizeComponent implements OnInit {
     }
   }
 
+  canSubmit() {
+    return !(this.request.content === '' || (!this.request.isNew() && this.request.id === 0) || (this.request.isNew() && (this.request.name === '' || this.request.color === '')));
+  }
+
   categorize(request: CategorizeRequest) {
     this.transactionService.categorizeTransaction(request)
       .subscribe(response => {
-        console.log(response);
+        alert('De aangegeven transactie is succesvol gemarkeerd!')
+        this.back();
       }, err => {
         console.log(err);
       });
