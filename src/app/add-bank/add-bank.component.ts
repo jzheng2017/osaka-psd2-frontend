@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {Title} from '@angular/platform-browser';
 import {RekeningService} from '../service/banks/rekening.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ConfigService} from '../service/config/config.service';
 
 @Component({
   selector: 'app-add-bank',
@@ -11,13 +12,17 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class AddBankComponent implements OnInit {
   private title = 'Bank koppelen';
-  private connectUrl = 'http://steinmilder.nl:8080/connect';
+  private connectUrl = `${this.configService.apiBaseUrl}/connect`;
 
   private allowedConnections;
   private limitReached;
   private isLoading = true;
 
-  constructor(private rekeningService: RekeningService, private location: Location, private titleService: Title, private spinner: NgxSpinnerService) {
+  constructor(private rekeningService: RekeningService,
+              private location: Location,
+              private titleService: Title,
+              private spinner: NgxSpinnerService,
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
