@@ -11,7 +11,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class AddBankComponent implements OnInit {
   private title = 'Bank koppelen';
-  private connectUrl = 'http://steinmilder.nl:8080/connect';
+  private connectUrl = 'http://localhost:8080/connect';
 
   private allowedConnections;
   private limitReached;
