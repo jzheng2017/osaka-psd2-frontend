@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {CategoryRequest} from '../../rekening-settings/dto/category-request';
 import {Category} from '../../rekening-settings/dto/category';
 import {ConfigService} from '../config/config.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

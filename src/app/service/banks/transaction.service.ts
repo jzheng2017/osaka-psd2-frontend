@@ -26,13 +26,13 @@ export class TransactionService {
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }
 
-  getTransacties(id: string, tableid: string): Observable<DetailResponse> {
+  getTransactions(id: string, tableid: string): Observable<any> {
     const token = localStorage.getItem('token');
     const transactieUrl = this.apiUrl + `/accounts/${id}/details?token=${token}&tableid=${tableid}`;
     return this.http.get<DetailResponse>(transactieUrl).pipe();
   }
 
-  getTransactie(id: number) {
+  getTransaction(id: number) {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Transaction>(url);
   }

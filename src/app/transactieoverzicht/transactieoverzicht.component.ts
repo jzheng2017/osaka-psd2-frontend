@@ -36,18 +36,14 @@ export class TransactieoverzichtComponent implements OnInit {
 
   getTransactions() {
     const bankAccountId = this.activatedRoute.snapshot.paramMap.get('id');
-
-    this.transactionService
-      .getTransacties(bankAccountId, this.tableId)
-      .subscribe((response: DetailResponse) => {
-        this.transactions = response.transactions;
-        this.isLoading = false;
-        this.account = response.account;
-        this.parentAccount.emit(this.account);
-      }, err => {
-          this.isLoading = false;
-          this.status = err.status;
-      });
+    this.transactionService.getTransactions(bankAccountId, this.tableId).subscribe(transactions => {
+      this.transactions = transactions.transactions;
+      this.isLoading = false;
+      this.account = transactions.account;
+      this.parentAccount.emit(this.account);
+    }, err => {
+      this.error = err.error.errorMessage;
+    });
   }
 
   getAccountFromTransaction(transaction: Transaction) {
