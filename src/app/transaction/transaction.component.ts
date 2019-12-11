@@ -22,8 +22,8 @@ export class TransactionComponent implements OnInit {
 
   getTransaction(id: number) {
     this.transactionService.getTransaction(id).subscribe(transaction => {
-        this.transaction = transaction;
-        this.isLoading = false;
+      this.transaction = transaction;
+      this.isLoading = false;
     });
   }
 

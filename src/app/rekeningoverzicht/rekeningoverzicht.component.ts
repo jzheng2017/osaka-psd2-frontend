@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
 import {Title} from '@angular/platform-browser';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {HttpErrorResponse} from '@angular/common/http';
 import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
 import {Category} from '../rekening-settings/dto/category';
 
@@ -13,17 +12,15 @@ import {Category} from '../rekening-settings/dto/category';
   styleUrls: ['./rekeningoverzicht.component.css']
 })
 export class RekeningoverzichtComponent implements OnInit {
-  private title = 'Rekeningoverzicht';
   rekeningen: Rekening[];
   totalBalance: number;
   isLoading = true;
   error = '';
   status: number;
   categories: Category[];
-  categoryId: number;
-  userId: number;
   name: string;
   selectedCategory = new Category(0, '');
+  private title = 'Rekeningoverzicht';
 
   constructor(private rekeningService: RekeningService, private rekeningCategoryService: RekeningcategoryService, private titleService: Title, private spinner: NgxSpinnerService) {
   }
@@ -69,7 +66,7 @@ export class RekeningoverzichtComponent implements OnInit {
 
   getCategories() {
     this.rekeningCategoryService.getCategories().subscribe(categories => {
-     this.categories = categories;
+      this.categories = categories;
     });
   }
 

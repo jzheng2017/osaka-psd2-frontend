@@ -3,7 +3,6 @@ import {Registration} from './dto/registration';
 import {Router} from '@angular/router';
 import {RegistrationService} from '../service/users/registration.service';
 import {Title} from '@angular/platform-browser';
-import {RegistrationRequest} from './dto/registrationrequests';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -29,14 +28,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
-      this.registrationService.register(this.user).subscribe(data => {
-          if (data.token != null) {
-              localStorage.setItem('token', data.token);
-              this.router.navigate(['overzicht/rekeningen']);
-          }
-      }, err => {
-          this.error = true;
-      });
+    this.registrationService.register(this.user).subscribe(data => {
+      if (data.token != null) {
+        localStorage.setItem('token', data.token);
+        this.router.navigate(['overzicht/rekeningen']);
+      }
+    }, err => {
+      this.error = true;
+    });
   }
 }
 
