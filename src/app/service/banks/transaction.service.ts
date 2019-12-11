@@ -8,6 +8,7 @@ import {CategorizeRequest} from '../../transaction-categorize/dto/categorize-req
 import {TransactionCategory} from '../../transaction-categorize/dto/transaction-category';
 import {DetailResponse} from '../../transaction/dto/detail-response';
 import {map} from 'rxjs/operators';
+import {ConfigService} from "../config/config.service";
 
 export interface PaymentResponse {
   url: string;
@@ -17,13 +18,13 @@ export interface PaymentResponse {
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = 'http://steinmilder.nl:8080';
+  private apiUrl = this.configService.apiBaseUrl;
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private configService: ConfigService) {
   }
 
   getTransactions(id: string, tableid: string): Observable<any> {
