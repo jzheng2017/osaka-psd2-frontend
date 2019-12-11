@@ -21,6 +21,7 @@ export class TransactieoverzichtComponent implements OnInit {
   isLoading = true;
   private title = 'Transactieoverzicht';
   error = '';
+  status: number;
 
   constructor(private spinner: NgxSpinnerService, private transactionService: TransactionService,
               private activatedRoute: ActivatedRoute, private titleService: Title, private location: Location) {

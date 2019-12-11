@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RekeningSettings} from '../../rekening-settings/dto/rekening-settings';
 import {Observable} from 'rxjs';
@@ -18,19 +18,20 @@ export class RekeningcategoryService {
 
   public addCategory(settings: RekeningSettings): Observable<any> {
     const token = localStorage.getItem('token');
-    const url = `${this.apiUrl}/categories?token=${token}`;
+    const url = `${this.apiUrl}/accounts/categories?token=${token}`;
     return this.httpClient.post<any>(url, settings);
   }
 
   public categorizeAccount(id: number, iban: string) {
-    const token = localStorage.getItem('token');
-    const url = `${this.apiUrl}/accounts/categorize?token=${token}`;
-    this.httpClient.post<any>(url, new CategoryRequest(id, iban)).subscribe(() => this.router.navigate(['overzicht/rekeningen']));
+      const token = localStorage.getItem('token');
+      const url = `${this.apiUrl}/accounts/categorize?token=${token}`;
+      this.httpClient.post<any>(url, new CategoryRequest(id, iban)).subscribe();
+
   }
 
   public getCategories(): Observable<Category[]> {
-    const token = localStorage.getItem('token');
-    const url = `${this.apiUrl}/accounts/categories?token=${token}`;
-    return this.httpClient.get<Category[]>(url);
+      const token = localStorage.getItem('token');
+      const url = `${this.apiUrl}/accounts/categories?token=${token}`;
+      return this.httpClient.get<Category[]>(url);
   }
 }
