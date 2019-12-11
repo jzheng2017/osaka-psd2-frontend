@@ -13,8 +13,11 @@ import {Category} from './dto/category';
 })
 export class RekeningSettingsComponent implements OnInit {
   categories: Category[];
-  private settings = new RekeningSettings(null, null);
+  private settings = new RekeningSettings('');
+  public categoryId: number;
   option = 'iban';
+  CATEGORIZE = 'categorize';
+  NEW = 'new'
   // categorien: CategoryRequest[];
 
   constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
@@ -30,9 +33,9 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-      if (this.option === 'categorize') {
-          this.categorizeAccount(this.settings.id);
-      } else if (this.option === 'new') {
+      if (this.option === this.CATEGORIZE) {
+          this.categorizeAccount(this.categoryId);
+      } else if (this.option === this.NEW) {
           this.addCategory();
       }
   }
@@ -53,6 +56,8 @@ export class RekeningSettingsComponent implements OnInit {
   private categorizeAccount(id: number) {
       const iban = this.activatedRoute.snapshot.paramMap.get('id');
       this.categoryService.categorizeAccount(id, iban);
+      alert('De rekening is succesvol gecategoriseerd.');
+      this.back();
   }
 
 }

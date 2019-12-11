@@ -5,7 +5,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {Location} from '@angular/common';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {DetailResponse} from '../transaction/dto/detail-response';
 
 @Component({
   selector: 'app-transactieoverzicht',
@@ -13,14 +12,14 @@ import {DetailResponse} from '../transaction/dto/detail-response';
   styleUrls: ['./transactieoverzicht.component.css']
 })
 export class TransactieoverzichtComponent implements OnInit {
-  private tableId;
-
   transactions: Transaction[];
   account: any;
   @Output() parentAccount = new EventEmitter();
   isLoading = true;
-  private title = 'Transactieoverzicht';
   error = '';
+  status: number;
+  private tableId;
+  private title = 'Transactieoverzicht';
 
   constructor(private spinner: NgxSpinnerService, private transactionService: TransactionService,
               private activatedRoute: ActivatedRoute, private titleService: Title, private location: Location) {
@@ -35,17 +34,14 @@ export class TransactieoverzichtComponent implements OnInit {
 
   getTransactions() {
     const bankAccountId = this.activatedRoute.snapshot.paramMap.get('id');
-
-    this.transactionService
-      .getTransacties(bankAccountId, this.tableId)
-      .subscribe((response: DetailResponse) => {
-        this.transactions = response.transactions;
-        this.isLoading = false;
-        this.account = response.account;
-        this.parentAccount.emit(this.account);
-      }, err => {
-          this.error = err.error.errorMessage;
-      });
+    this.transactionService.getTransactions(bankAccountId, this.tableId).subscribe(transactions => {
+      this.transactions = transactions.transactions;
+      this.isLoading = false;
+      this.account = transactions.account;
+      this.parentAccount.emit(this.account);
+    }, err => {
+      this.error = err.error.errorMessage;
+    });
   }
 
   getAccountFromTransaction(transaction: Transaction) {

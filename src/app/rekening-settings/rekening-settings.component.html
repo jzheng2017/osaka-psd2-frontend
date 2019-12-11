@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <form class="offset-sm-3 col-sm-6" #formSettings="ngForm" (ngSubmit)="onSubmit()">
-      <button class="btn btn-primary margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
+      <a class="btn btn-primary margin-top-40-sm-and-up text-white" (click)="back()">Ga terug</a>
       <h1>Instellingen</h1>
       <div class="row">
 
@@ -10,24 +10,23 @@
           <p>Deze rekening: Geen categorie</p>
 
             <h5><i>Kies hoe u wilt categoriseren</i></h5>
-            <input [(ngModel)]="option" type="radio" name="option" [value]="'categorize'"> Bestaande categorie
-            <input [(ngModel)]="option" type="radio" name="option" [value]="'new'"> Nieuwe categorie <br><br>
+            <input [(ngModel)]="option" type="radio" name="option" [value]="CATEGORIZE"> Bestaande categorie
+            <input [(ngModel)]="option" type="radio" name="option" [value]="NEW"> Nieuwe categorie <br><br>
 
-            <div *ngIf="option == 'categorize'">
+            <div *ngIf="option == CATEGORIZE">
             <h5>Gebruik een bestaande categorie voor deze rekening</h5>
 
-            <select [(ngModel)]="settings.id" name="categoryChoose">
+            <select [(ngModel)]="categoryId" name="categoryChoose">
                 <option [value]=""></option>
                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
             </div>
 
-            <div *ngIf="option == 'new'">
+            <div *ngIf="option == NEW">
           <h5>Maak een eigen categorie voor deze rekening</h5>
-          <i><p>De categorie wordt meteen aan de rekening gegeven.</p></i>
 
           <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
-          <input *ngIf="option == 'new'" type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
+          <input type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
                  [(ngModel)]="settings.name" #customCategory="ngModel">
             </div>
         </div>

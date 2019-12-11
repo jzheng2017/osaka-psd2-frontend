@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {catchError, retry} from "rxjs/operators";
 import {ConfigService} from '../config/config.service';
 
 @Injectable({
@@ -25,6 +24,12 @@ export class RekeningService {
     return this.http.get<any>(rekeningUrl);
   }
 
+  getConnections(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const connectionsUrl = this.apiUrl + `/connections?token=${token}`;
+    return this.http.get<any>(connectionsUrl);
+  }
+
   private handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -35,12 +40,6 @@ export class RekeningService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
-  }
-
-  getConnections(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const connectionsUrl = this.apiUrl + `/connections?token=${token}`;
-    return this.http.get<any>(connectionsUrl);
   }
 }
 

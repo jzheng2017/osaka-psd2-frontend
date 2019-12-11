@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Transaction} from '../../transaction/dto/transaction';
 import {Observable} from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Transfer} from '../../transfer/transfer';
 import {CategorizeRequest} from '../../transaction-categorize/dto/categorize-request';
 import {TransactionCategory} from '../../transaction-categorize/dto/transaction-category';
 import {DetailResponse} from '../../transaction/dto/detail-response';
-import {map} from 'rxjs/operators';
+import {ConfigService} from "../config/config.service";
 
 export interface PaymentResponse {
   url: string;
@@ -17,22 +17,21 @@ export interface PaymentResponse {
   providedIn: 'root'
 })
 export class TransactionService {
-  private apiUrl = 'http://steinmilder.nl:8080';
-
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
+  private apiUrl = this.configService.apiBaseUrl;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private configService: ConfigService) {
   }
 
-  getTransacties(id: string, tableid: string): Observable<DetailResponse> {
+  getTransactions(id: string, tableid: string): Observable<any> {
     const token = localStorage.getItem('token');
     const transactieUrl = this.apiUrl + `/accounts/${id}/details?token=${token}&tableid=${tableid}`;
     return this.http.get<DetailResponse>(transactieUrl).pipe();
   }
 
-  getTransactie(id: number) {
+  getTransaction(id: number) {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Transaction>(url);
   }

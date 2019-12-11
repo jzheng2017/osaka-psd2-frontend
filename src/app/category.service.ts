@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,8 @@ import {HttpClient} from "@angular/common/http";
 export class CategoryService {
   private apiUrl = 'http://steinmilder.nl:8080';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getCategories(userId) {
     const token = localStorage.getItem('token');

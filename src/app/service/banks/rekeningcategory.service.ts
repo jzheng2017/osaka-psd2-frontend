@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {CategoryRequest} from '../../rekening-settings/dto/category-request';
 import {Category} from '../../rekening-settings/dto/category';
 import {ConfigService} from '../config/config.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,15 @@ export class RekeningcategoryService {
 
   public addCategory(settings: RekeningSettings): Observable<any> {
     const token = localStorage.getItem('token');
-    const url = `${this.apiUrl}/categories?token=${token}`;
+    const url = `${this.apiUrl}/accounts/categories?token=${token}`;
     return this.httpClient.post<any>(url, settings);
   }
 
   public categorizeAccount(id: number, iban: string) {
     const token = localStorage.getItem('token');
     const url = `${this.apiUrl}/accounts/categorize?token=${token}`;
-    this.httpClient.post<any>(url, new CategoryRequest(id, iban)).subscribe(() => this.router.navigate(['overzicht/rekeningen']));
+    this.httpClient.post<any>(url, new CategoryRequest(id, iban)).subscribe();
+
   }
 
   public getCategories(): Observable<Category[]> {
