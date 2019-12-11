@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
 
   user = new Login('', '');
 
-  ngOnInit() {
-    this.titleService.setTitle(this.title);
+  constructor(private loginService: LoginService, private titleService: Title, private router: Router) {
   }
 
-  constructor(private loginService: LoginService, private titleService: Title, private router: Router) {
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
   }
 
   onSubmit() {
