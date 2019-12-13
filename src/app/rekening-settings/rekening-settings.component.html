@@ -10,10 +10,10 @@
           <p>Deze rekening: Geen categorie</p>
 
             <h5><i>Kies hoe u wilt categoriseren</i></h5>
-            <input [(ngModel)]="option" type="radio" name="option" [value]="CATEGORIZE"> Bestaande categorie
-            <input [(ngModel)]="option" type="radio" name="option" [value]="NEW"> Nieuwe categorie <br><br>
+            <input [(ngModel)]="option" type="radio" name="option" value="categorize"> Bestaande categorie
+            <input [(ngModel)]="option" type="radio" name="option" value="new"> Nieuwe categorie <br><br>
 
-            <div *ngIf="option == CATEGORIZE">
+            <div *ngIf="option == 'categorize'">
             <h5>Gebruik een bestaande categorie voor deze rekening</h5>
 
             <select [(ngModel)]="categoryId" name="categoryChoose">
@@ -22,7 +22,7 @@
             </select>
             </div>
 
-            <div *ngIf="option == NEW">
+            <div *ngIf="option == 'new'">
           <h5>Maak een eigen categorie voor deze rekening</h5>
 
           <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
@@ -37,6 +37,4 @@
       </div>
     </form>
   </div>
-
-
 </div>

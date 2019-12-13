@@ -3,7 +3,6 @@ import {Location} from '@angular/common';
 import {RekeningSettings} from './dto/rekening-settings';
 import {RekeningcategoryService} from '../service/banks/rekeningcategory.service';
 import {ActivatedRoute} from '@angular/router';
-import {CategoryRequest} from './dto/category-request';
 import {Category} from './dto/category';
 
 @Component({
@@ -13,11 +12,10 @@ import {Category} from './dto/category';
 })
 export class RekeningSettingsComponent implements OnInit {
   categories: Category[];
-  private settings = new RekeningSettings('');
   public categoryId: number;
   option = 'iban';
-  CATEGORIZE = 'categorize';
-  NEW = 'new'
+  private settings = new RekeningSettings('');
+
   // categorien: CategoryRequest[];
 
   constructor(private location: Location, private categoryService: RekeningcategoryService, private activatedRoute: ActivatedRoute) {
@@ -25,7 +23,7 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.getCategories();
+    this.getCategories();
   }
 
   back() {
@@ -33,31 +31,31 @@ export class RekeningSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-      if (this.option === this.CATEGORIZE) {
-          this.categorizeAccount(this.categoryId);
-      } else if (this.option === this.NEW) {
-          this.addCategory();
-      }
+    if (this.option === 'categorize') {
+      this.categorizeAccount(this.categoryId);
+    } else if (this.option === 'new') {
+      this.addCategory();
+    }
   }
 
   private getCategories() {
-      this.categoryService.getCategories().subscribe(data => {
-          this.categories = data;
-          }
-      );
+    this.categoryService.getCategories().subscribe(data => {
+        this.categories = data;
+      }
+    );
   }
 
   private addCategory() {
-      this.categoryService.addCategory(this.settings).subscribe(data => {
-          this.categorizeAccount(data.id);
-      });
+    this.categoryService.addCategory(this.settings).subscribe(data => {
+      this.categorizeAccount(data.id);
+    });
   }
 
   private categorizeAccount(id: number) {
-      const iban = this.activatedRoute.snapshot.paramMap.get('id');
-      this.categoryService.categorizeAccount(id, iban);
-      alert('De rekening is succesvol gecategoriseerd.');
-      this.back();
+    const iban = this.activatedRoute.snapshot.paramMap.get('id');
+    this.categoryService.categorizeAccount(id, iban);
+    alert('De rekening is succesvol gecategoriseerd.');
+    this.back();
   }
 
 }
