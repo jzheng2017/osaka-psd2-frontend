@@ -23,6 +23,7 @@ import {catchError, map} from 'rxjs/operators';
 import {Observable, ObservableInput, of} from 'rxjs';
 import { StatisticsComponent } from './statistics/statistics.component';
 import {GoogleChartsModule} from "angular-google-charts";
+import { ChartComponent } from './chart/chart.component';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
@@ -60,7 +61,8 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     TransferComponent,
     InstellingenComponent,
     TransactionCategorizeComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
