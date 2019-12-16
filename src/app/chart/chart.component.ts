@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Chart} from './dto/chart';
 
 @Component({
   selector: 'app-chart',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartComponent implements OnInit {
 
-  constructor() { }
+  @Input() chart: Chart;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
