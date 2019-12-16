@@ -22,6 +22,7 @@ import {ConfigService} from './service/config/config.service';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, ObservableInput, of} from 'rxjs';
 import { StatisticsComponent } from './statistics/statistics.component';
+import {GoogleChartsModule} from "angular-google-charts";
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
@@ -69,7 +70,8 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     RouterModule,
     NgxSpinnerModule,
     AngularIbanModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleChartsModule
   ],
   providers: [
     {
