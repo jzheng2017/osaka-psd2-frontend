@@ -45,7 +45,7 @@
                                   aria-expanded="false">Acties</button>
                           <div class="dropodown">
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'details']">Bekijk transactie</a>
+                              <a class="dropdown-item" [routerLink]="['/transactie', accountid,  transaction.id, tableId, 'details']">Bekijk transactie</a>
                               <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'categorize']" [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}">Categoriseer</a>
                             </div>
                           </div>

@@ -14,6 +14,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class TransactieoverzichtComponent implements OnInit {
   transactions: Transaction[];
   account: any;
+  accountid: any;
   @Output() parentAccount = new EventEmitter();
   isLoading = true;
   error = '';
@@ -27,20 +28,20 @@ export class TransactieoverzichtComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    this.accountid = this.activatedRoute.snapshot.paramMap.get('id');
     this.tableId = this.activatedRoute.snapshot.paramMap.get('tableid');
     this.getTransactions();
     this.spinner.show();
   }
 
   getTransactions() {
-    const bankAccountId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.transactionService.getTransactions(bankAccountId, this.tableId).subscribe(transactions => {
+    this.transactionService.getTransactions(this.accountid, this.tableId).subscribe(transactions => {
       this.transactions = transactions.transactions;
       this.isLoading = false;
       this.account = transactions.account;
       this.parentAccount.emit(this.account);
     }, err => {
-      this.error = err.error.errorMessage;
+        this.error = err.error.errorMessage;
     });
   }
 
