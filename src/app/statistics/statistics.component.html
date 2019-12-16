@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
-    <google-chart class="col-sm-12" [title]="title" [height]="height" [dynamicResize]="dynamicResize" [type]="chartType"
-                  [data]="data"></google-chart>
+    <google-chart *ngFor="let chart of charts" class="col-sm-12" [title]="chart.settings.title"
+                  [dynamicResize]="chart.settings.dynamicResize" [type]="chart.settings.type"
+                  [data]="chart.data"></google-chart>
   </div>
 </div>
 

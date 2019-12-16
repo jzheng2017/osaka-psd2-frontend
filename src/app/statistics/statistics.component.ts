@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Chart} from './dto/chart';
+import {ChartSettings} from './dto/chart-settings';
 
 @Component({
   selector: 'app-statistics',
@@ -6,15 +8,13 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  data = [
-    ['12-04-2019', 5],
-    ['12-05-2019', 7],
-    ['12-06-2019', 10]
+  charts = [
+    new Chart([
+    ['12-05-2019', 1],
+    ['12-06-2019', 2],
+    ['12-07-2019', 3],
+    ], new ChartSettings('Transacties', 500, true, 'LineChart'))
   ];
-  title = 'Transacties';
-  height = 500;
-  dynamicResize = true;
-  chartType = 'LineChart';
 
   constructor() {
   }

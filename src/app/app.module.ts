@@ -61,8 +61,7 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     TransferComponent,
     InstellingenComponent,
     TransactionCategorizeComponent,
-    StatisticsComponent,
-    ChartComponent
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
