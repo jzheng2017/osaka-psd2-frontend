@@ -13,7 +13,12 @@ export class StatisticsComponent implements OnInit {
     ['12-05-2019', 1],
     ['12-06-2019', 2],
     ['12-07-2019', 3],
-    ], new ChartSettings('Transacties', 500, true, 'LineChart'))
+    ], new ChartSettings('Transacties Lijn grafiek', 500, true, 'LineChart')),
+    new Chart([
+      ['12-05-2019', 1],
+      ['12-06-2019', 2],
+      ['12-07-2019', 3],
+    ], new ChartSettings('Transacties Taart grafiek', 500, true, 'PieChart'))
   ];
 
   constructor() {
