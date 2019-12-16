@@ -1,47 +1,51 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <button class="btn btn-primary margin-bottom-20 margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
-    </div>
-    <div class="col-sm-12">
-      <h2>Transactie</h2>
-      <div class="card">
-        <div class="card-header text-center">
-          <b>{{transaction.bankAccountNumberSender}}</b> naar <b>{{transaction.bankAccountNumber}}</b>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary margin-bottom-20 margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
         </div>
-        <div class="card-body row">
-          <div class="col-sm-12">
-            <b>Transactie ID:</b> {{transaction.id}}
-            <br>
-            <b>Datum:</b> {{transaction.datetime}}
-            <br>
-            <b>Bedrag:</b> &euro;{{transaction.amount}}
-          </div>
-          <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
-            <div class="row">
-              <div class="col-sm-12 form-group">
-                <label for="comment">Opmerking</label>
-                <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
-                          id="comment"></textarea>
-              </div>
-
-              <div class="col-sm-12 form-group">
-                <label for="mark">Markeer de rekening:</label>
-                <select class="form-control" id="mark" name="mark" [(ngModel)]="transaction.mark">
-                  <option value="">Geen</option>
-                  <option value="red-mark">Rood</option>
-                  <option value="green-mark">Groen</option>
-                  <option value="yellow-mark">Geel</option>
-                </select>
-              </div>
-              <div class="col-sm-12 form-group">
-                <input type="submit" class="btn btn-primary float-right" value="Opslaan">
-              </div>
+        <div class="col-sm-12">
+            <h2>Transactie</h2>
+            <div class="card">
+                <div class="card-header text-center">
+                    <b>{{transaction.sender.iban}}</b> naar <b>{{transaction.receiver.iban}}</b>
+                </div>
+                <div class="card-body row">
+                    <div class="col-sm-12">
+                        <b>Categorie:</b>
+                        <span *ngIf="transaction.category.name == null"> Nog niet gecategoriseerd.</span>
+                        <span *ngIf="transaction.category.name">{{transaction.category.name}}</span>
+                        <br>
+                        <b>Transactie ID:</b> {{transaction.id}}
+                        <br>
+                        <b>Datum:</b>
+                        <span *ngIf="transaction.date == null"> Nog niet overgeboekt.</span>
+                        <span *ngIf="transaction.date"> {{transaction.date}}</span>
+                        <br>
+                        <b>Bedrag:</b> &euro;{{transaction.amount}}
+                    </div>
+                    <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="comment"><b>Opmerking</b></label>
+                                <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
+                                          id="comment"></textarea>
+                            </div>
+                            <div class="col-sm-12 form-group">
+                                <input type="submit" class="btn btn-primary float-right" value="Opslaan">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-sm-12 form-group">
+                        <h4>Categoriseer de transactie:</h4>
+                        <button class="btn btn-primary"
+                                [routerLink]="['/transactie', transaction.id, tableId, 'categorize']"
+                                [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}">
+                            Categoriseer
+                        </button>
+                    </div>
+                </div>
             </div>
-          </form>
-        </div>
 
-      </div>
+        </div>
     </div>
-  </div>
 </div>

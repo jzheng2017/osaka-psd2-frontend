@@ -18,7 +18,7 @@ const routes: Routes = [
     {path: 'rekening/:id/details/:tableid', component: RekeningComponent, canActivate: [AuthGuardService]},
     {path: 'overzicht/rekeningen', component: RekeningoverzichtComponent, canActivate: [AuthGuardService]},
     {path: 'rekening/:id/details', component: RekeningComponent, canActivate: [AuthGuardService]},
-    {path: 'transactie/:id/:tableId/details', component: TransactionComponent, canActivate: [AuthGuardService]},
+    {path: 'transactie/:id/:transactieId/:tableId/details', component: TransactionComponent, canActivate: [AuthGuardService]},
     {path: 'transactie/:id/:tableId/categorize', component: TransactionCategorizeComponent, canActivate: [AuthGuardService]},
     {path: 'bank-koppelen', component: AddBankComponent, canActivate: [AuthGuardService]},
     {path: 'rekening/:id/instellingen', component: RekeningSettingsComponent, canActivate: [AuthGuardService]},

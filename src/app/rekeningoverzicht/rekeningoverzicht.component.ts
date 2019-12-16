@@ -44,7 +44,7 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.status = err.status;
+        this.error = err.error.errorMessage;
       }
     );
   }
@@ -59,7 +59,7 @@ export class RekeningoverzichtComponent implements OnInit {
       }, err => {
         this.isLoading = false;
         this.rekeningen = [];
-        this.status = err.status;
+        this.error = err.error.errorMessage;
       }
     );
   }
