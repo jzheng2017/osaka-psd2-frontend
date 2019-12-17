@@ -22,8 +22,7 @@ import {ConfigService} from './service/config/config.service';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, ObservableInput, of} from 'rxjs';
 import { StatisticsComponent } from './statistics/statistics.component';
-import {GoogleChartsModule} from "angular-google-charts";
-import { ChartComponent } from './chart/chart.component';
+import {GoogleChartsModule} from 'angular-google-charts';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {

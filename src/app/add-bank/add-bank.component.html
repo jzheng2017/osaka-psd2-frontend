@@ -26,8 +26,7 @@
               <label for="bank">Selecteer uw bank:</label>
               <select class="form-control" id="bank" name="bank" ngModel required>
                 <option value="" disabled>-- Kies een bank --</option>
-                <option value="ING">ING</option>
-                <option value="RABOBANK">Rabobank</option>
+                <option *ngFor="let b of banks"  value="{{b}}">{{b}}</option>
               </select>
             </div>
 
