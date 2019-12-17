@@ -25,7 +25,6 @@ const routes: Routes = [
     {path: 'rekening/:id/instellingen', component: RekeningSettingsComponent, canActivate: [AuthGuardService]},
     {path: 'overmaken', component: TransferComponent, canActivate: [AuthGuardService]},
     {path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuardService]},
-    {path: 'statistieken', component: StatisticsComponent, canActivate: [AuthGuardService]},
     {path: 'statistieken/:id/tableId/:tableid', component: StatisticsComponent, canActivate: [AuthGuardService]},
     {path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full'},
 ];
