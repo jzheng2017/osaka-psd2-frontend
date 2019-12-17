@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Chart} from './dto/chart';
+import {TransactionService} from '../service/banks/transaction.service';
+import {ActivatedRoute} from '@angular/router';
 import {ChartSettings} from './dto/chart-settings';
 
 @Component({
@@ -8,23 +10,47 @@ import {ChartSettings} from './dto/chart-settings';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  charts = [
-    new Chart([
-    ['12-05-2019', 1],
-    ['12-06-2019', 2],
-    ['12-07-2019', 3],
-    ], new ChartSettings('Transacties Lijn grafiek', 500, true, 'LineChart')),
-    new Chart([
-      ['12-05-2019', 1],
-      ['12-06-2019', 2],
-      ['12-07-2019', 3],
-    ], new ChartSettings('Transacties Taart grafiek', 500, true, 'ColumnChart'))
-  ];
+  charts: Chart[] = [new Chart([], new ChartSettings('Aantal transacties per dag (minimaal 1 transactie)', 100, true, 'LineChart'))];
+  isLoading = true;
 
-  constructor() {
+  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.getTransactions();
   }
 
+  getTransactions() {
+    const accountId = this.activatedRoute.snapshot.paramMap.get('id');
+    const tableId = this.activatedRoute.snapshot.paramMap.get('tableid');
+    this.transactionService.getTransactions(accountId, tableId).subscribe(transactions => {
+      this.isLoading = false;
+      this.charts[0].data = this.groupTransactionsByDate(transactions.transactions);
+    }, () => {
+      this.isLoading = undefined;
+    });
+  }
+
+  groupTransactionsByDate(arr: any) {
+    if (arr === null || arr === undefined) { return null; }
+    console.log(arr);
+    let dateArray = arr.map(entity => entity.date);
+    let sum = [];
+    dateArray.some((entity) => {
+      let found = false;
+      if (sum.length === 0) {
+        sum.push([entity, 0]);
+      }
+      sum.forEach(_sum => {
+        if (_sum[0] === entity) {
+          _sum[1]++;
+          found = true;
+        }
+      });
+      if (!found) {
+        sum.push([entity, 1]);
+      }
+    });
+    return sum;
+  }
 }

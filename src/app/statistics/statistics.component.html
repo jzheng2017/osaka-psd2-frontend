@@ -1,8 +1,15 @@
 <div class="container">
   <div class="row">
-    <google-chart *ngFor="let chart of charts" class="col-sm-12" [title]="chart.settings.title"
-                  [dynamicResize]="chart.settings.dynamicResize" [type]="chart.settings.type"
-                  [data]="chart.data"></google-chart>
+    <div class="col-sm-12">
+      <h1>Statistieken transacties</h1>
+      <div class="alert alert-danger text-center margin-top-40" *ngIf="isLoading === undefined">Er is iets fouts gegaan.</div>
+      <div class="text-center" *ngIf="isLoading">Gegevens worden opgehaald...</div>
+      <div *ngIf="isLoading === false">
+        <google-chart *ngFor="let chart of charts" style="width:100%"  [title]="chart.settings.title"
+                      [dynamicResize]="chart.settings.dynamicResize" [type]="chart.settings.type"
+                      [data]="chart.data"></google-chart>
+      </div>
+    </div>
   </div>
 </div>
 
