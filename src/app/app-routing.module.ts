@@ -11,6 +11,7 @@ import {AuthGuardService} from './service/auth/auth-guard.service';
 import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.component';
 import {TransferComponent} from './transfer/transfer.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
+import {StatisticsComponent} from "./statistics/statistics.component";
 
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path: 'rekening/:id/instellingen', component: RekeningSettingsComponent, canActivate: [AuthGuardService]},
     {path: 'overmaken', component: TransferComponent, canActivate: [AuthGuardService]},
     {path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuardService]},
+    {path: 'statistieken', component: StatisticsComponent, canActivate: [AuthGuardService]},
     {path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full'},
 ];
 

@@ -18,7 +18,7 @@ export class TransactionCategorizeComponent implements OnInit {
   private name;
   private request = new CategorizeRequest(0, '', '', 'new', '');
   private categories: TransactionCategory[];
-  private colors: Array<TransactionCategoryColor> = [
+  private colors: TransactionCategoryColor[] = [
     {name: 'Rood', hex: '#ff0000'},
     {name: 'Oranje', hex: '#ffa500'},
     {name: 'Geel', hex: '#ffff00'},
