@@ -48,6 +48,9 @@ export class StatisticsComponent implements OnInit {
         }
       });
       if (!found) {
+        if (!entity){
+          entity = 'Onbekende datum';
+        }
         sum.push([entity, 1]);
       }
     });
