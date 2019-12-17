@@ -13,6 +13,7 @@ export class TransactionComponent implements OnInit {
   transaction: Transaction;
   isLoading = true;
   accountid: any;
+  btwTarief = '21';
   constructor(private location: Location, private activatedRoute: ActivatedRoute, private transactionService: TransactionService) {
   }
 
@@ -33,5 +34,10 @@ export class TransactionComponent implements OnInit {
   }
   onSubmit() {
     this.transactionService.updateTransaction(this.transaction).subscribe(() => this.location.back());
+  }
+
+  onBTWSubmit() {
+    // Stel BTW tarief vast vanauit de Front-End
+    // this.btwTarief =
   }
 }

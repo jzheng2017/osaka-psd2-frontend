@@ -6,11 +6,32 @@
         <div class="col-sm-12">
             <h2>Transactie</h2>
             <div class="card">
+
                 <div class="card-header text-center">
                     <b>{{transaction.sender.iban}}</b> naar <b>{{transaction.receiver.iban}}</b>
                 </div>
+
+              <form class="col-sm-12" #formBTW="ngForm" (ngSubmit)="onBTWSubmit()">
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div>
+                      <span>Kies hier een BTW tarief</span><br>
+                      <select [(ngModel)]="btwTarief" name="btwChoose">
+                        <option [value]="21">21% BTW</option>
+                        <option [value]="6">6% BTW</option>
+                        <option [value]="0">0% BTW</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                    <input type="submit" class="btn btn-outline-primary btn-sm float-left btn-block-sm margin-top-10" [disabled]="!formBTW.valid" value="Kies Tarief">
+                  </div>
+                </div>
+              </form>
+
                 <div class="card-body row">
                     <div class="col-sm-12">
+
                         <b>Categorie:</b>
                         <span *ngIf="transaction.category.name == null"> Nog niet gecategoriseerd.</span>
                         <span *ngIf="transaction.category.name">{{transaction.category.name}}</span>
