@@ -18,6 +18,8 @@ export class AddBankComponent implements OnInit {
   private limitReached;
   private isLoading = true;
 
+  private banks;
+
   constructor(private rekeningService: RekeningService,
               private location: Location,
               private titleService: Title,
@@ -27,6 +29,7 @@ export class AddBankComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    this.getBanks();
     if (this.isLoading) {
       this.spinner.show();
     }
@@ -44,6 +47,13 @@ export class AddBankComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  getBanks() {
+      this.rekeningService.getBanks().subscribe(data => {
+          this.banks = data;
+          console.log(this.banks);
+      });
   }
 
   getConnections() {
