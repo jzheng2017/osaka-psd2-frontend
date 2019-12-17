@@ -4,7 +4,8 @@
       <h1>Statistieken transacties</h1>
       <div class="alert alert-danger text-center margin-top-40" *ngIf="isLoading === undefined">Er is iets fouts gegaan.</div>
       <div class="text-center" *ngIf="isLoading">Gegevens worden opgehaald...</div>
-      <div *ngIf="isLoading === false">
+      <div class="text-center" *ngIf="!isLoading && charts[0].data && charts[0].data.length === 0">Er zijn geen transacties</div>
+      <div *ngIf="isLoading === false && charts[0].data && charts[0].data.length > 0">
         <google-chart *ngFor="let chart of charts" style="width:100%"  [title]="chart.settings.title"
                       [dynamicResize]="chart.settings.dynamicResize" [type]="chart.settings.type"
                       [data]="chart.data"></google-chart>
