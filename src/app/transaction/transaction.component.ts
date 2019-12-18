@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from './dto/transaction';
 import {ActivatedRoute} from '@angular/router';
 import {TransactionService} from '../service/banks/transaction.service';
+import {BTWPercentagesService} from "../btwpercentages.service";
 import {Location} from '@angular/common';
 
 @Component({
@@ -13,7 +14,8 @@ export class TransactionComponent implements OnInit {
   transaction: Transaction;
   isLoading = true;
   accountid: any;
-  constructor(private location: Location, private activatedRoute: ActivatedRoute, private transactionService: TransactionService) {
+  public BTWPercentages: string[];
+  constructor(private location: Location, private activatedRoute: ActivatedRoute, private transactionService: TransactionService, private btwPercentagesService: BTWPercentagesService) {
   }
 
   ngOnInit() {
@@ -33,5 +35,9 @@ export class TransactionComponent implements OnInit {
   }
   onSubmit() {
     this.transactionService.updateTransaction(this.transaction).subscribe(() => this.location.back());
+  }
+
+  getBTWPercentages() {
+    this.btwPercentagesService.getBTWPercentages().subscribe(percentages => this.BTWPercentages = percentages);
   }
 }
