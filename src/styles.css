@@ -19,3 +19,6 @@
 @media all and (max-width:768px) {
   .btn-block-sm { width: 100%; display:block; }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

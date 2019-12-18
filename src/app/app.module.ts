@@ -24,6 +24,7 @@ import {Observable, ObservableInput, of} from 'rxjs';
 import { StatisticsComponent } from './statistics/statistics.component';
 import {GoogleChartsModule} from "angular-google-charts";
 import { ChartComponent } from './chart/chart.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
@@ -72,7 +73,8 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     NgxSpinnerModule,
     AngularIbanModule,
     ReactiveFormsModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    NoopAnimationsModule
   ],
   providers: [
     {

@@ -15,16 +15,13 @@
                 <div class="row">
                   <div class="form-group col-sm-12">
                     <div>
-                      <span>Kies hier een BTW tarief</span><br>
+                      <span>BTW tarief</span><br>
                       <select [(ngModel)]="btwTarief" name="btwChoose">
-                        <option [value]="21">21% BTW</option>
-                        <option [value]="6">6% BTW</option>
-                        <option [value]="0">0% BTW</option>
+                        <option [value]="1.21">21% BTW</option>
+                        <option [value]="1.06">6% BTW</option>
+                        <option [value]="1">0% BTW</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="col-sm-12 form-group">
-                    <input type="submit" class="btn btn-outline-primary btn-sm float-left btn-block-sm margin-top-10" [disabled]="!formBTW.valid" value="Kies Tarief">
                   </div>
                 </div>
               </form>
@@ -42,7 +39,7 @@
                         <span *ngIf="transaction.date == null"> Nog niet overgeboekt.</span>
                         <span *ngIf="transaction.date"> {{transaction.date}}</span>
                         <br>
-                        <b>Bedrag:</b> &euro;{{transaction.amount}}
+                        <p><b>Bedrag </b>Incl. BTW: &euro;{{transaction.amount}} Excl. BTW: &euro;{{transaction.amount / btwTarief}}</p>
                     </div>
                     <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
                         <div class="row">

@@ -36,7 +36,7 @@ export class TransactionComponent implements OnInit {
     this.transactionService.updateTransaction(this.transaction).subscribe(() => this.location.back());
   }
 
-  onBTWSubmit() {
+  getBTW() {
     // Stel BTW tarief vast vanauit de Front-End
     // this.btwTarief =
   }
