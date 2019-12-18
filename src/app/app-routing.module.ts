@@ -12,7 +12,6 @@ import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.c
 import {TransferComponent} from './transfer/transfer.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
 import {StatisticsComponent} from "./statistics/statistics.component";
-import {InsightsComponent} from './insights/insights.component';
 
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
