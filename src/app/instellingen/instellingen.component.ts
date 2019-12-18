@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RekeningService} from '../service/banks/rekening.service';
 import {UserService} from '../service/users/user.service';
-import {User} from '../user';
-import {Account} from '../account';
+import {User} from '../login/dto/user';
+import {Account} from '../rekening/dto/account';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({

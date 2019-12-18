@@ -3,6 +3,7 @@ import {Chart} from './dto/chart';
 import {TransactionService} from '../service/banks/transaction.service';
 import {ActivatedRoute} from '@angular/router';
 import {ChartSettings} from './dto/chart-settings';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-statistics',
@@ -13,7 +14,7 @@ export class StatisticsComponent implements OnInit {
   charts: Chart[] = [new Chart([], new ChartSettings('Aantal transacties per dag (minimaal 1 transactie)', 100, true, 'LineChart'))];
   isLoading = true;
 
-  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {
+  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private location: Location) {
   }
 
   ngOnInit() {
@@ -32,7 +33,9 @@ export class StatisticsComponent implements OnInit {
   }
 
   groupTransactionsByDate(arr: any) {
-    if (arr === null || arr === undefined) { return null; }
+    if (arr === null || arr === undefined) {
+      return null;
+    }
     console.log(arr);
     let dateArray = arr.map(entity => entity.date);
     let sum = [];
@@ -48,12 +51,16 @@ export class StatisticsComponent implements OnInit {
         }
       });
       if (!found) {
-        if (!entity){
+        if (!entity) {
           entity = 'Onbekende datum';
         }
         sum.push([entity, 1]);
       }
     });
     return sum;
+  }
+
+  back() {
+    this.location.back();
   }
 }
