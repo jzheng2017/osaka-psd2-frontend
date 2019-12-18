@@ -10,8 +10,7 @@ export class BTWPercentagesService {
   constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 
   public getBTWPercentages() {
-    const token = localStorage.getItem('token');
-    const getBTWPercentagesUrl = `${this.apiUrl}/users/user/details?token=${token}`;
+    const getBTWPercentagesUrl = `${this.apiUrl}/btw/getpercentages`;
     return this.httpClient.get<string[]>(getBTWPercentagesUrl);
   }
 }
