@@ -21,7 +21,7 @@
 <div *ngIf="!isLoading">
     <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
     <ul class="list-group">
-        <li *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
+        <li [ngStyle]="{'border-left': ' 4px solid ' + transaction.category.color} " *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
             <div class="row">
                 <div class="col-sm-12">
                     <small *ngIf="!transaction.booked">Nog niet overgeboekt.</small>
@@ -32,7 +32,7 @@
                         <div class="col-sm-6">
                           <div class="font-weight-bold">{{ getAccountFromTransaction(transaction).name === undefined ? "Onbekend" : getAccountFromTransaction(transaction).name}}</div>
                           <div>{{ getAccountFromTransaction(transaction).iban }}</div>
-                          <div class="font-weight-bold" [ngStyle]="{color: transaction.category.color}">{{transaction.category.name}}</div>
+                          <div class="font-weight-bold" >{{transaction.category.name}}</div>
                         </div>
                         <div class="col-sm-3">
                           Bedrag: {{transaction.received ? "+" : "-"}} <span [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>

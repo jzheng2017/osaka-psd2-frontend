@@ -57,7 +57,7 @@ export class StatisticsComponent implements OnInit {
         sum.push([entity, 1]);
       }
     });
-    return sum;
+    return sum.sort();
   }
 
   back() {
