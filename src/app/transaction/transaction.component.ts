@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from './dto/transaction';
 import {ActivatedRoute} from '@angular/router';
 import {TransactionService} from '../service/banks/transaction.service';
-import {BTWPercentagesService} from "../btwpercentages.service";
+import {BTWPercentagesService} from '../btwpercentages.service';
 import {Location} from '@angular/common';
 
 @Component({
