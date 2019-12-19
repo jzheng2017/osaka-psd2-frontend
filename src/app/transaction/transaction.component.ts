@@ -3,7 +3,7 @@ import {Transaction} from './dto/transaction';
 import {ActivatedRoute} from '@angular/router';
 import {TransactionService} from '../service/banks/transaction.service';
 import {Location} from '@angular/common';
-import {BTWPercentagesService} from "../btwpercentages.service";
+import {BTWPercentagesService} from '../btwpercentages.service';
 
 @Component({
   selector: 'app-transaction',
@@ -15,12 +15,14 @@ export class TransactionComponent implements OnInit {
   isLoading = true;
   accountid: any;
   btwPercentages: string[];
+  btwTarief = '21';
   constructor(private location: Location, private activatedRoute: ActivatedRoute, private transactionService: TransactionService, private btwPercentagesService: BTWPercentagesService) {
   }
 
   ngOnInit() {
     this.accountid = this.activatedRoute.snapshot.paramMap.get('id');
     this.getTransaction(this.accountid, this.activatedRoute.snapshot.paramMap.get('tableId'), this.activatedRoute.snapshot.paramMap.get('transactieId'));
+    this.getBTWPercentages();
   }
 
   getTransaction(id: string, tableid: string, transactieid: string) {
@@ -39,7 +41,7 @@ export class TransactionComponent implements OnInit {
 
   getBTWPercentages() {
     // Stel BTW tarief vast vanauit de Front-End
-    this.btwPercentages = this.btwPercentagesService.getBTWPercentages();
+    this.btwPercentagesService.getBTWPercentages().subscribe(percentages =>{ this.btwPercentages = percentages; console.log(percentages)});
   }
 }
 
