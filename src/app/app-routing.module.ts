@@ -11,7 +11,8 @@ import {AuthGuardService} from './service/auth/auth-guard.service';
 import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.component';
 import {TransferComponent} from './transfer/transfer.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
-import {StatisticsComponent} from "./statistics/statistics.component";
+import {StatisticsComponent} from './statistics/statistics.component';
+import {InsightsComponent} from "./insights/insights.component";
 
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
