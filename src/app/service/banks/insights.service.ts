@@ -17,8 +17,14 @@ export class InsightsService {
   constructor(private rekeningService: RekeningService, private httpClient: HttpClient, private configService: ConfigService) { }
 
 
+  getAllInsights() {
+    const token = localStorage.getItem('token');
+    return this.httpClient.get(this.apiUrl + `/insights?token=${token}`);
+  }
+
   getInsightsOfAccount(account: Rekening, token: string) {
     return this.httpClient.get(this.apiUrl + `/insights/${account.id}?token=${token}&tableid=${account.tableId}`);
   }
+
 
 }
