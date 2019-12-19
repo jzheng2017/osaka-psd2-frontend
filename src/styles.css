@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-.margin-bottom-20{
-    margin-bottom: 20px;
+.margin-bottom-20 {
+  margin-bottom: 20px;
 }
 
 .margin-bottom-0 {
@@ -8,17 +8,24 @@
 }
 
 
-@media all and (min-width:768px) {
-    .margin-top-40 { margin-top:40px; }
+@media all and (min-width: 768px) {
+  .margin-top-40 {
+    margin-top: 40px;
+  }
 }
 
-.margin-top-40-sm-and-up{
-    margin-top:40px !important;
+.margin-top-40-sm-and-up {
+  margin-top: 40px !important;
 }
 
-@media all and (max-width:768px) {
-  .btn-block-sm { width: 100%; display:block; }
+
+@media all and (max-width: 768px) {
+  .btn-block-sm {
+    width: 100%;
+    display: block;
+  }
 }
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -23,7 +23,7 @@ import {catchError, map} from 'rxjs/operators';
 import {Observable, ObservableInput, of} from 'rxjs';
 import { StatisticsComponent } from './statistics/statistics.component';
 import {GoogleChartsModule} from 'angular-google-charts';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { InsightsComponent } from './insights/insights.component';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
@@ -61,7 +61,8 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     TransferComponent,
     InstellingenComponent,
     TransactionCategorizeComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    InsightsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,8 +73,7 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     NgxSpinnerModule,
     AngularIbanModule,
     ReactiveFormsModule,
-    GoogleChartsModule,
-    NoopAnimationsModule
+    GoogleChartsModule
   ],
   providers: [
     {

@@ -30,6 +30,10 @@ export class RekeningService {
     return this.http.get<any>(connectionsUrl);
   }
 
+  getBanks(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/banks');
+  }
+
   private handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
