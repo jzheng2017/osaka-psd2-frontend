@@ -24,6 +24,7 @@ import {Observable, ObservableInput, of} from 'rxjs';
 import { StatisticsComponent } from './statistics/statistics.component';
 import {GoogleChartsModule} from 'angular-google-charts';
 import { InsightsComponent } from './insights/insights.component';
+import { RekeningInsightsComponent } from './rekening-insights/rekening-insights.component';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
@@ -62,7 +63,8 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     InstellingenComponent,
     TransactionCategorizeComponent,
     StatisticsComponent,
-    InsightsComponent
+    InsightsComponent,
+    RekeningInsightsComponent
   ],
   imports: [
     BrowserModule,

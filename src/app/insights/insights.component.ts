@@ -39,7 +39,6 @@ export class InsightsComponent implements OnInit {
         console.log('kaas');
         this.transactions = [];
         this.insightsService.getAllInsights().subscribe(data => {
-            console.log(data.expectedIncome);
             this.transactions[0] = (data.expectedIncome);
             this.transactions[1] = (data.expectedExpenses);
             this.isLoading = false;

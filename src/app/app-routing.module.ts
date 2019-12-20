@@ -13,6 +13,7 @@ import {TransferComponent} from './transfer/transfer.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {InsightsComponent} from './insights/insights.component';
+import {RekeningInsightsComponent} from './rekening-insights/rekening-insights.component';
 
 const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuardService]},
     {path: 'statistieken', component: StatisticsComponent, canActivate: [AuthGuardService]},
     {path: 'inzichten', component: InsightsComponent, canActivate: [AuthGuardService]},
+    {path: 'inzichten/:id/:iban/:tableid', component: RekeningInsightsComponent, canActivate: [AuthGuardService]},
     {path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full'},
 ];
 
