@@ -13,21 +13,42 @@ import {async} from 'q';
   styleUrls: ['./insights.component.css']
 })
 export class InsightsComponent implements OnInit {
+    private filter = 'bedrag';
+    private isLoading = true;
+
+    private transactions: Transaction[][];
+    private income;
+    private expenses;
+    private rekening;
+
     private accounts: Rekening[];
     private collections;
     private tegenrekening;
-    private isLoading = true;
 
     constructor(private spinner: NgxSpinnerService, private rekeningService: RekeningService, private insightsService: InsightsService) {
     }
 
     ngOnInit() {
         this.spinner.show();
-        this.getInsights();
+        this.getAllInsights();
     }
 
 
-    getInsights() {
+    getAllInsights() {
+        this.isLoading = true;
+        console.log('kaas');
+        this.transactions = [];
+        this.insightsService.getAllInsights().subscribe(data => {
+            this.transactions[0] = (data.expectedIncome);
+            this.transactions[1] = (data.expectedExpenses);
+            this.isLoading = false;
+            this.income = data.totalExpectedIncome;
+            this.expenses = data.totalExpectedExpenses;
+        });
+    }
+
+    getInsightsPerAcc() {
+        this.isLoading = true;
         this.collections = [];
         const token = localStorage.getItem('token');
         this.rekeningService.getRekeningen().subscribe(data => {
@@ -62,8 +83,16 @@ export class InsightsComponent implements OnInit {
         } else if (!t.received) {
             this.tegenrekening = t.receiver;
         }
-
     }
+
+    getEigenRekening(t: Transaction) {
+        if (t.received) {
+            this.rekening = t.receiver;
+        } else if (!t.received) {
+            this.rekening = t.sender;
+        }
+    }
+
 
 
 }
