@@ -6,11 +6,28 @@
         <div class="col-sm-12">
             <h2>Transactie</h2>
             <div class="card">
+
                 <div class="card-header text-center">
                     <b>{{transaction.sender.iban}}</b> naar <b>{{transaction.receiver.iban}}</b>
                 </div>
+
+              <form class="col-sm-12" #formBTW="ngForm" *ngIf="btwPercentages">
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div>
+                      <span>BTW tarief</span><br>
+                      <select class="form-control" [(ngModel)]="btwTarief" id="btwTarief" name="btwTarief">
+                        <option *ngFor="let btwPercentage of btwPercentages" value="{{btwPercentage}}">{{btwPercentage}}% BTW</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
                 <div class="card-body row">
                     <div class="col-sm-12">
+
                         <b>Categorie:</b>
                         <span *ngIf="transaction.category.name == null"> Nog niet gecategoriseerd.</span>
                         <span *ngIf="transaction.category.name">{{transaction.category.name}}</span>
@@ -21,7 +38,8 @@
                         <span *ngIf="transaction.date == null"> Nog niet overgeboekt.</span>
                         <span *ngIf="transaction.date"> {{transaction.date}}</span>
                         <br>
-                        <b>Bedrag:</b> &euro;{{transaction.amount}}
+                        <p *ngIf="btwTarief != 0"><b>Bedrag </b>Incl. BTW: &euro;{{transaction.amount}} Excl. BTW: &euro;{{transaction.amount / (100 + (+btwTarief)) * 100 | number: "1.2-2"}}</p>
+                        <p *ngIf="btwTarief == 0"><b>Bedrag </b>Excl. BTW: &euro;{{transaction.amount}}</p>
                     </div>
                     <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
                         <div class="row">
