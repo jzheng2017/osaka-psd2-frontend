@@ -38,7 +38,7 @@
                           Bedrag: {{transaction.received ? "+" : "-"}} <span [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
                         </div>
                         <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage" *ngIf="transaction.comment"></i></div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-12 col-md-2 text-right">
                           <button class="btn btn-primary dropdown-toggle" type="button"
                                   id="dropdownMenuButton"
                                   data-toggle="dropdown" aria-haspopup="true"
