@@ -4,6 +4,7 @@ import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
 import {Location} from '@angular/common';
 import {TransactionService} from '../service/banks/transaction.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-transfer',
@@ -18,10 +19,13 @@ export class TransferComponent implements OnInit {
   isLoading = true;
   transfered = undefined;
 
-  constructor(private rekeningService: RekeningService, private transactionService: TransactionService, private location: Location) {
+  constructor(private rekeningService: RekeningService, private transactionService: TransactionService, private location: Location, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    if (this.route.snapshot.queryParamMap.get('success') === 'true') {
+      this.transfered = true;
+    }
     this.getRekeningen();
   }
 
