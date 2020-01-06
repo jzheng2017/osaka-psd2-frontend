@@ -39,10 +39,15 @@ export class InsightsComponent implements OnInit {
         console.log('kaas');
         this.transactions = [];
         this.insightsService.getAllInsights().subscribe(data => {
-            this.transactions[0] = (data.expectedIncome);
+          // @ts-ignore
+          this.transactions[0] = (data.expectedIncome);
+
+          // @ts-ignore
             this.transactions[1] = (data.expectedExpenses);
             this.isLoading = false;
+          // @ts-ignore
             this.income = data.totalExpectedIncome;
+          // @ts-ignore
             this.expenses = data.totalExpectedExpenses;
         });
     }
@@ -55,8 +60,11 @@ export class InsightsComponent implements OnInit {
             this.accounts = data.accounts;
             for (const a of this.accounts) {
                 this.insightsService.getInsightsOfAccount(a, token).subscribe(data2 => {
-                    const index = this.getIndex(this.accounts, data2.account.iban);
-                    const arr = data2.mixedExpected;
+                    // @ts-ignore
+                  const index = this.getIndex(this.accounts, data2.account.iban);
+                  // @ts-ignore
+
+                  const arr = data2.mixedExpected;
                     const coll = new Transactioncollection(arr);
                     this.collections[index] = coll;
                 });
