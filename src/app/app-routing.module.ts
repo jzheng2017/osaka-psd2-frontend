@@ -11,7 +11,7 @@ import {AuthGuardService} from './service/auth/auth-guard.service';
 import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.component';
 import {TransferComponent} from './transfer/transfer.component';
 import {InstellingenComponent} from './instellingen/instellingen.component';
-import {StatisticsComponent} from "./statistics/statistics.component";
+import {StatisticsComponent} from './statistics/statistics.component';
 import {InsightsComponent} from './insights/insights.component';
 import {RekeningInsightsComponent} from './rekening-insights/rekening-insights.component';
 
@@ -27,7 +27,7 @@ const routes: Routes = [
     {path: 'rekening/:id/instellingen', component: RekeningSettingsComponent, canActivate: [AuthGuardService]},
     {path: 'overmaken', component: TransferComponent, canActivate: [AuthGuardService]},
     {path: 'instellingen', component: InstellingenComponent, canActivate: [AuthGuardService]},
-    {path: 'statistieken', component: StatisticsComponent, canActivate: [AuthGuardService]},
+    {path: 'statistieken/:id/tableId/:tableid', component: StatisticsComponent, canActivate: [AuthGuardService]},
     {path: 'inzichten', component: InsightsComponent, canActivate: [AuthGuardService]},
     {path: 'inzichten/:id/:iban/:tableid', component: RekeningInsightsComponent, canActivate: [AuthGuardService]},
     {path: '**', redirectTo: 'overzicht/rekeningen', pathMatch: 'full'},
