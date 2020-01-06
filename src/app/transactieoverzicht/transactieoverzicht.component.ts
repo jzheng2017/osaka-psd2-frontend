@@ -18,7 +18,7 @@ export class TransactieoverzichtComponent implements OnInit {
   @Output() parentAccount = new EventEmitter();
   isLoading = true;
   error = '';
-  status: number;
+  // status: number;
   private tableId;
   private title = 'Transactieoverzicht';
 
@@ -41,7 +41,8 @@ export class TransactieoverzichtComponent implements OnInit {
       this.account = transactions.account;
       this.parentAccount.emit(this.account);
     }, err => {
-        this.error = err.error.errorMessage;
+      this.isLoading = false;
+      this.error = err.error.errorMessage;
     });
   }
 

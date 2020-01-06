@@ -3,13 +3,13 @@
     <button (click)="back()" class="btn btn-primary">Ga terug</button>
 </div>
 
-<div *ngIf="status && !isLoading"
-     class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
-    ({{status}}) Er is een fout opgetreden. Probeer het opnieuw.
-</div>
+<!--<div *ngIf="status && !isLoading"-->
+<!--     class="offset-sm-3 col-sm-6 alert-danger card align-content-center">-->
+<!--    ({{status}}) Er is een fout opgetreden. Probeer het opnieuw.-->
+<!--</div>-->
 <br>
 
-<ngx-spinner *ngIf="!status && isLoading"
+<ngx-spinner *ngIf="isLoading"
              bdColor="#ffffff"
              size="default"
              color="#000000"
@@ -19,7 +19,7 @@
 </ngx-spinner>
 
 <div *ngIf="!isLoading">
-    <div *ngIf="transactions.length <= 0">Deze rekening heeft geen transacties.</div>
+    <div *ngIf="!isLoading && !transactions">Deze rekening heeft geen transacties.</div>
     <ul class="list-group">
         <li [ngStyle]="{'border-left': ' 4px solid ' + transaction.category.color} " *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
             <div class="row">
