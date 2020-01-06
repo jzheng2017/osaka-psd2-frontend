@@ -30,8 +30,9 @@ export class RekeningInsightsComponent implements OnInit {
     const iban = this.activatedRoute.snapshot.paramMap.get('iban');
     this.rekening = new Rekening(id, tableid, iban, '', 0, '');
     this.insightsService.getInsightsOfAccount(this.rekening, token).subscribe(data => {
-      this.transactions = data.mixedExpected;
-      this.isLoading = false;
+      // @ts-ignore
+        this.transactions = data.mixedExpected;
+        this.isLoading = false;
     });
   }
 
