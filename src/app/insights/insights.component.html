@@ -2,27 +2,31 @@
     <div id="row">
         <h1>Inzichten</h1>
         <p>Hieronder staat een inschatting van de inkomsten en uitgaven van volgende maand.</p>
+
         <p><i>Kies hoe u de inschattingen wilt sorteren: </i>
-        <input [(ngModel)]="filter" type="radio" name="filter" value="bedrag" (click)="getAllInsights()"> Inkomsten en uitgaven
-        <input [(ngModel)]="filter" type="radio" name="filter" value="rekening" (click)="getInsightsPerAcc()"> Rekening
+        <input [disabled]="isLoading" [(ngModel)]="filter" type="radio" name="filter" value="bedrag" (select)="getAllInsights()"> Inkomsten en uitgaven
+        <input [disabled]="isLoading" [(ngModel)]="filter" type="radio" name="filter" value="rekening" (input)="getInsightsPerAcc()"> Rekening
         </p>
-        <p *ngIf="!isLoading">Totaal geschatte inkomsten: € {{income | number : "1.2-2"}}
+        <p *ngIf="!isLoading || income != undefined && expenses != undefined">Totaal geschatte inkomsten: € {{income | number : "1.2-2"}}
             <br>Totaal geschatte uitgaven: € {{expenses | number : "1.2-2"}}
         </p>
-        <div class="col-sm-12">
 
-        <ngx-spinner *ngIf="isLoading"
-                     bdColor="#ffffff"
-                     size="default"
-                     color="#000000"
-                     type="ball-pulse"
-                     style="position: center"
-                     [fullScreen]="false"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
-        </ngx-spinner>
+        <div class="col-sm-12">
+            <ngx-spinner *ngIf="isLoading"
+                         bdColor="#ffffff"
+                         size="default"
+                         color="#000000"
+                         type="ball-pulse"
+                         style="position: center"
+                         [fullScreen]="false"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
+            </ngx-spinner>
         </div>
+
+
         <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
         <ul class="list-group ml-3">
-            <div *ngIf="filter == 'bedrag'">
+            <div *ngIf="filter == bedragFilter">
+
                 <li *ngFor="let e of transactions; index as i" class="list-unstyled row">
                     <h5 *ngIf="i == 0">Inkomsten</h5>
                     <h5 *ngIf="i == 1">Uitgaven</h5>
@@ -38,29 +42,31 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let t of transactions[i]">
-                            {{getEigenRekening(t)}}
-                            {{getTegenRekening(t)}}
-                            <td><small>{{rekening.iban}}</small><br>{{rekening.name}}</td>
-                            <td>{{tegenrekening.name}}</td>
-                            <td>{{tegenrekening.iban}}</td>
-                            <td [class.text-danger]="!t.received && t.amount > 0">
-                                <div *ngIf="t.amount > 0">{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
-                                <div *ngIf="t.amount <= 0">N.v.t.</div>
-                            </td>
-                            <td>
-                                <div *ngIf="t.date != undefined">{{t.date}}</div>
-                                <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
-                            </td>
-                            <td>{{t.type}}</td>
-                        </tr>
+                        <ng-container *ngFor="let t of transactions[i]">
+                            <tr [ngClass]="{'table-secondary': t.receiver.name == overigNaam || t.sender.name == overigNaam}">
+                                {{getEigenRekening(t)}}
+                                {{getTegenRekening(t)}}
+                                    <td><small>{{rekening.iban}}</small><br>{{rekening.name}}</td>
+                                <td>{{tegenrekening.name}}</td>
+                                <td>{{tegenrekening.iban}}</td>
+                                <td [class.text-danger]="!t.received && t.amount > 0">
+                                    <div *ngIf="t.amount > 0">{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
+                                    <div *ngIf="t.amount <= 0">N.v.t.</div>
+                                </td>
+                                <td>
+                                    <div *ngIf="t.date != undefined">{{t.date}}</div>
+                                    <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
+                                </td>
+                                <td>{{t.type}}</td>
+                            </tr>
+                        </ng-container>
                         </tbody>
                     </table>
                 </li>
 
             </div>
 
-            <div *ngIf="filter == 'rekening'">
+            <div *ngIf="filter == rekeningFilter">
             <li *ngFor="let a of accounts; index as i;" class="list-unstyled" >
                 <h5 class="row" *ngIf="!isLoading && collections[i].transactions[0].amount > 0">
                     {{a.name}} / {{a.iban}}<br></h5>
@@ -81,19 +87,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let t of collections[i].transactions">
-                            {{getTegenRekening(t)}}
-                            <td>{{tegenrekening.name}}</td>
-                            <td>{{tegenrekening.iban}}</td>
-                            <td [class.text-danger]="!t.received && t.amount > 0">
-                                <div>{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
-                            </td>
-                            <td>
-                                <div *ngIf="t.date != undefined">{{t.date}}</div>
-                                <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
+                        <ng-container *ngFor="let t of collections[i].transactions">
+                            <tr [ngClass]="{'table-secondary': t.receiver.name == overigNaam || t.sender.name == overigNaam}">
+                                {{getTegenRekening(t)}}
+                                <td>{{tegenrekening.name}}</td>
+                                <td>{{tegenrekening.iban}}</td>
+                                <td [class.text-danger]="!t.received && t.amount > 0">
+                                    <div>{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
                                 </td>
-                            <td>{{t.type}}</td>
-                        </tr>
+                                <td>
+                                    <div *ngIf="t.date != undefined">{{t.date}}</div>
+                                    <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
+                                    </td>
+                                <td>{{t.type}}</td>
+                            </tr>
+                        </ng-container>
                         </tbody>
                     </table>
                 </div>
