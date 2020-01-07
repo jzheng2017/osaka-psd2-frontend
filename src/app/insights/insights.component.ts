@@ -5,6 +5,7 @@ import {Rekening} from '../rekening/dto/rekening';
 import {Transaction} from '../transaction/dto/transaction';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Transactioncollection} from './dto/transactioncollection';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {async} from 'q';
 
 @Component({
@@ -13,8 +14,11 @@ import {async} from 'q';
   styleUrls: ['./insights.component.css']
 })
 export class InsightsComponent implements OnInit {
-    private filter = 'bedrag';
+    private bedragFilter = 'bedrag';
+    private rekeningFilter = 'rekening';
+    private filter = this.bedragFilter;
     private isLoading = true;
+    private overigNaam = 'Uw Rekeningen';
 
     private transactions: Transaction[][];
     private income;
@@ -36,18 +40,18 @@ export class InsightsComponent implements OnInit {
 
     getAllInsights() {
         this.isLoading = true;
-        console.log('kaas');
         this.transactions = [];
         this.insightsService.getAllInsights().subscribe(data => {
             // @ts-ignore
             this.transactions[0] = (data.expectedIncome);
             // @ts-ignore
             this.transactions[1] = (data.expectedExpenses);
-            this.isLoading = false;
             // @ts-ignore
             this.income = data.totalExpectedIncome;
             // @ts-ignore
             this.expenses = data.totalExpectedExpenses;
+
+            this.isLoading = false;
         });
     }
 
@@ -69,7 +73,6 @@ export class InsightsComponent implements OnInit {
             }
             this.isLoading = false;
         });
-
     }
 
     getIndex(accounts, iban) {
@@ -82,7 +85,8 @@ export class InsightsComponent implements OnInit {
         }
     }
 
-    // wordt aangeroepen in insights.component.html
+    // worden aangeroepen in insights.component.html:
+
     getTegenRekening(t: Transaction) {
         if (t.received) {
             this.tegenrekening = t.sender;
