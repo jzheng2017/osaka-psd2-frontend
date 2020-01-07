@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RekeningSettingsComponent } from './rekening-settings.component';
+import {RekeningSettingsComponent} from './rekening-settings.component';
+import {FormsModule} from "@angular/forms";
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('RekeningSettingsComponent', () => {
   let component: RekeningSettingsComponent;
@@ -8,9 +11,14 @@ describe('RekeningSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RekeningSettingsComponent ]
+      declarations: [RekeningSettingsComponent],
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        HttpClientModule
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
