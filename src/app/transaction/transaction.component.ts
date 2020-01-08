@@ -41,7 +41,7 @@ export class TransactionComponent implements OnInit {
 
   getBTWPercentages() {
     // Stel BTW tarief vast vanauit de Front-End
-    this.btwPercentagesService.getBTWPercentages().subscribe(percentages =>{ this.btwPercentages = percentages; console.log(percentages)});
+    this.btwPercentagesService.getBTWPercentages().subscribe(percentages => { this.btwPercentages = percentages; console.log(percentages); });
   }
 }
 
