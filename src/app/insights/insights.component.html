@@ -3,7 +3,7 @@
     <h1>Inzichten</h1>
     <p>Hieronder staat een inschatting van de inkomsten en uitgaven van volgende maand.</p>
     <form><p><i>Kies hoe u de inschattingen wilt sorteren: </i>
-          
+
       <input [(ngModel)]="filter" type="radio" name="filter" value="bedrag" (click)="getAllInsights()"> Inkomsten en
       uitgaven
       <input [(ngModel)]="filter" type="radio" name="filter" value="rekening" (click)="getInsightsPerAcc()"> Rekening
@@ -23,9 +23,9 @@
       </ngx-spinner>
     </div>
     <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
-    <ul class="list-group ml-3">
+    <div class="col-sm-12 overflow-auto">
       <div *ngIf="filter == 'bedrag'">
-        <li *ngFor="let e of transactions; index as i" class="list-unstyled row">
+        <div *ngFor="let e of transactions; index as i" class="overflow-auto">
           <h5 *ngIf="i == 0">Inkomsten</h5>
           <h5 *ngIf="i == 1">Uitgaven</h5>
           <table class="table table-bordered">
@@ -58,12 +58,12 @@
             </tr>
             </tbody>
           </table>
-        </li>
+        </div>
 
       </div>
 
       <div *ngIf="filter == 'rekening'">
-        <li *ngFor="let a of accounts; index as i;" class="list-unstyled">
+        <div *ngFor="let a of accounts; index as i;">
           <h5 class="row" *ngIf="!isLoading && collections[i].transactions[0].amount > 0">
             {{a.name}} / {{a.iban}}<br></h5>
           <!--<p class="row" *ngIf="collections[i] == undefined || collections[i] == null || collections[i].transactions.length <= 0 && !isLoading">-->
@@ -99,9 +99,9 @@
               </tbody>
             </table>
           </div>
-        </li>
+        </div>
       </div>
-    </ul>
+    </div>
   </div>
 </div>
 
