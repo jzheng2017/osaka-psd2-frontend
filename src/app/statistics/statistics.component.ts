@@ -3,7 +3,7 @@ import {Chart} from './dto/chart';
 import {TransactionService} from '../service/banks/transaction.service';
 import {ActivatedRoute} from '@angular/router';
 import {ChartSettings} from './dto/chart-settings';
-import {Location} from "@angular/common";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-statistics',
@@ -37,8 +37,8 @@ export class StatisticsComponent implements OnInit {
       return null;
     }
     console.log(arr);
-    let dateArray = arr.map(entity => entity.date);
-    let sum = [];
+    const dateArray = arr.map(entity => entity.date);
+    const sum = [];
     dateArray.some((entity) => {
       let found = false;
       if (sum.length === 0) {
