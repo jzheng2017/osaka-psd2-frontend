@@ -25,6 +25,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import {GoogleChartsModule} from 'angular-google-charts';
 import { InsightsComponent } from './insights/insights.component';
 import { RekeningInsightsComponent } from './rekening-insights/rekening-insights.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
@@ -75,7 +76,8 @@ function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>)
     NgxSpinnerModule,
     AngularIbanModule,
     ReactiveFormsModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
