@@ -14,7 +14,9 @@ export class StatisticsComponent implements OnInit {
   charts: Chart[] = [
     new Chart([], new ChartSettings('Aantal transacties per dag (minimaal 1 transactie)',
       100, true, 'LineChart')),
-    new Chart([], new ChartSettings('Aantal transacties per tegenrekening (minimaal 1 transactie)',
+    new Chart([], new ChartSettings('Aantal verstuurde transacties per tegenrekening (minimaal 1 transactie)',
+      100, true, 'PieChart')),
+    new Chart([], new ChartSettings('Aantal ontvangen transacties per tegenrekening (minimaal 1 transactie)',
       100, true, 'PieChart'))
   ];
   isLoading = true;
@@ -33,6 +35,7 @@ export class StatisticsComponent implements OnInit {
       this.isLoading = false;
       this.charts[0].data = this.groupTransactionsByDate(transactions.transactions);
       this.charts[1].data = this.groupTransactionsBySender(transactions.transactions);
+      this.charts[2].data = this.groupTransactionsByReceiver(transactions.transactions);
     }, () => {
       this.isLoading = undefined;
     });
@@ -43,45 +46,57 @@ export class StatisticsComponent implements OnInit {
   }
 
   groupTransactionsBySender(arr: any) {
-    return this.groupTransactionBy('iban', arr);
+    return this.groupTransactionBy('sender', arr);
+  }
+
+  groupTransactionsByReceiver(arr: any) {
+    return this.groupTransactionBy('receiver', arr);
   }
 
   // grootste spaghetti code dat ik ooit heb geschreven, maar het werkt
-  groupTransactionBy(type: string, arr: any) {
-    if (arr === null || arr === undefined) {
-      return null;
+  groupTransactionBy(filterBy: string, array: any) {
+    if (array === null || array === undefined) {
+      return array;
     }
-    console.log(arr);
-    let dateArray;
-    let text;
-    if (type === 'date') {
-      text = 'Onbekende datum';
-      dateArray = arr.map(entity => entity.date);
-    } else if (type === 'iban') {
-      arr = arr.filter(entity => entity.received === true);
-      text = 'Onbekende rekening';
-      dateArray = arr.map(entity => entity.sender.iban);
+
+    let mappedArray;
+    if (filterBy === 'date') {
+      mappedArray = array.map(entity => entity.date);
+    } else if (filterBy === 'sender') {
+      array = array.filter(entity => entity.received === false);
+      mappedArray = array.map(entity => entity.receiver.iban);
+    } else if (filterBy === 'receiver') {
+      array = array.filter(entity => entity.received === true);
+      mappedArray = array.map(entity => entity.sender.iban);
     }
-    let sum = [];
-    dateArray.some((entity) => {
-      let found = false;
-      if (sum.length === 0) {
-        sum.push([entity, 0]);
+    return this.groupArray(mappedArray);
+  }
+
+  groupArray(array: any) {
+    if (array === null || array === undefined) {
+      return array;
+    }
+
+    const groupedArray = [];
+    array.some((entity) => {
+      let keyFoundInArray = false;
+      if (groupedArray.length === 0) {
+        groupedArray.push([entity, 0]);
       }
-      sum.forEach(_sum => {
+      groupedArray.forEach(_sum => {
         if (_sum[0] === entity) {
           _sum[1]++;
-          found = true;
+          keyFoundInArray = true;
         }
       });
-      if (!found) {
+      if (!keyFoundInArray) {
         if (!entity) {
-          entity = text;
+          entity = 'Onbekend';
         }
-        sum.push([entity, 1]);
+        groupedArray.push([entity, 1]);
       }
     });
-    return sum.sort();
+    return groupedArray.sort();
   }
 
   back() {
