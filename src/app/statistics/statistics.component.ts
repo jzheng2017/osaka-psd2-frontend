@@ -20,6 +20,7 @@ export class StatisticsComponent implements OnInit {
       100, true, 'PieChart'))
   ];
   isLoading = true;
+  hasTransactions = false;
 
   constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute, private location: Location) {
   }
@@ -33,11 +34,13 @@ export class StatisticsComponent implements OnInit {
     const tableId = this.activatedRoute.snapshot.paramMap.get('tableid');
     this.transactionService.getTransactions(accountId, tableId).subscribe(transactions => {
       this.isLoading = false;
+      this.hasTransactions = transactions.transactions.length > 0;
       this.charts[0].data = this.groupTransactionsByDate(transactions.transactions);
       this.charts[1].data = this.groupTransactionsBySender(transactions.transactions);
       this.charts[2].data = this.groupTransactionsByReceiver(transactions.transactions);
     }, () => {
       this.isLoading = undefined;
+      this.hasTransactions = false;
     });
   }
 
@@ -55,11 +58,12 @@ export class StatisticsComponent implements OnInit {
 
   // grootste spaghetti code dat ik ooit heb geschreven, maar het werkt
   groupTransactionBy(filterBy: string, array: any) {
+    let mappedArray;
+
     if (array === null || array === undefined) {
       return array;
     }
 
-    let mappedArray;
     if (filterBy === 'date') {
       mappedArray = array.map(entity => entity.date);
     } else if (filterBy === 'sender') {
