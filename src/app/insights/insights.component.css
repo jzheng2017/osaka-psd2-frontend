@@ -4,3 +4,7 @@
 
   }
 }
+
+.table {
+  overflow: scroll !important;
+}
