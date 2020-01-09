@@ -13,7 +13,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TransferComponent implements OnInit {
 
-  public transfer = new Transfer({iban: ''}, {iban: '', name: ''}, 0, '', '');
+  public transfer = new Transfer(null, {iban: '', name: ''}, 0, 'EUR', '');
   rekeningen: Rekening[];
   selectedRekening = {iban: '', tableId: ''};
   isLoading = true;
@@ -41,8 +41,7 @@ export class TransferComponent implements OnInit {
   }
 
   onSubmit() {
-    this.transfer.sender.iban = this.selectedRekening.iban;
-    this.transactionService.createTransaction(this.transfer, this.selectedRekening.tableId)
+    this.transactionService.createTransaction(this.transfer, this.transfer.sender.tableId)
       .subscribe(response => {
           return window.location.href = response.url;
         },
