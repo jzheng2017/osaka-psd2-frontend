@@ -1,45 +1,47 @@
-<div class="mt-3 container">
-    <div id="row">
-        <h1>Inzichten ({{rekening.iban}})</h1>
-        <p>Hieronder staat een inschatting van de inkomsten en uitgaven van volgende maand voor deze rekening.</p>
-        <div class="col-sm-12">
-            <ngx-spinner *ngIf="isLoading"
-                         bdColor="#ffffff"
-                         size="default"
-                         color="#000000"
-                         type="ball-pulse"
-                         style="position: center"
-                         [fullScreen]="false"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
-            </ngx-spinner>
-        </div>
-        <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
-        <table *ngIf="!isLoading" class="table table-bordered">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">Naam</th>
-                <th scope="col">IBAN</th>
-                <th scope="col">Bedrag</th>
-                <th scope="col">Datum</th>
-                <th scope="col">Type</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let t of transactions">
-                {{getTegenRekening(t)}}
-                <td>{{tegenrekening.name}}</td>
-                <td>{{tegenrekening.iban}}</td>
-                <td [class.text-danger]="!t.received && t.amount > 0">
-                    <div>{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
-                </td>
-                <td>
-                    <div *ngIf="t.date != undefined">{{t.date}}</div>
-                    <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
-                </td>
-                <td>{{t.type}}</td>
-            </tr>
-            </tbody>
-        </table>
+<div class="container">
+  <div id="row">
+    <div class="col-sm-12">
+      <h2 class="mt-3">Inzichten ({{rekening.iban}})</h2>
+      <p>Hieronder staat een inschatting van de inkomsten en uitgaven van volgende maand voor deze rekening.</p>
+      <ngx-spinner *ngIf="isLoading"
+                   bdColor="#ffffff"
+                   size="default"
+                   color="#000000"
+                   type="ball-pulse"
+                   style="position: center"
+                   [fullScreen]="false"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
+      </ngx-spinner>
     </div>
+    <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
+    <div class="col-sm-12 overflow-auto">
+      <table *ngIf="!isLoading" class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Naam</th>
+          <th scope="col">IBAN</th>
+          <th scope="col">Bedrag</th>
+          <th scope="col">Datum</th>
+          <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let t of transactions">
+          {{getTegenRekening(t)}}
+          <td>{{tegenrekening.name}}</td>
+          <td>{{tegenrekening.iban}}</td>
+          <td [class.text-danger]="!t.received && t.amount > 0">
+            <div>{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
+          </td>
+          <td>
+            <div *ngIf="t.date != undefined">{{t.date}}</div>
+            <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
+          </td>
+          <td>{{t.type}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 

@@ -23,7 +23,7 @@
       </ngx-spinner>
     </div>
     <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
-    <div class="col-sm-12 overflow-auto">
+    <div class="col-sm-12">
       <div *ngIf="filter == 'bedrag'">
         <div *ngFor="let e of transactions; index as i" class="overflow-auto">
           <h5 *ngIf="i == 0">Inkomsten</h5>
@@ -64,13 +64,13 @@
 
       <div *ngIf="filter == 'rekening'">
         <div *ngFor="let a of accounts; index as i;">
-          <h5 class="row" *ngIf="!isLoading && collections[i].transactions[0].amount > 0">
+          <h5 *ngIf="!isLoading && collections[i].transactions[0].amount > 0">
             {{a.name}} / {{a.iban}}<br></h5>
           <!--<p class="row" *ngIf="collections[i] == undefined || collections[i] == null || collections[i].transactions.length <= 0 && !isLoading">-->
           <!--Er kunnen geen inschattingen gemaakt worden voor deze rekening.<br></p>-->
 
 
-          <div class="row" *ngIf="collections[i] != undefined && collections[i] != null && collections[i].transactions.length > 0
+          <div *ngIf="collections[i] != undefined && collections[i] != null && collections[i].transactions.length > 0
                 && collections[i].transactions[0].amount > 0">
             <table class="table table-bordered">
               <thead class="thead-light">
