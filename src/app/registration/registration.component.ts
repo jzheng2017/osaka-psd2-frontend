@@ -1,31 +1,42 @@
-import {Component} from '@angular/core';
-import {Registration} from './registration';
+import {Component, OnInit} from '@angular/core';
+import {Registration} from './dto/registration';
 import {Router} from '@angular/router';
+import {RegistrationService} from '../service/users/registration.service';
+import {Title} from '@angular/platform-browser';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
-    selector: 'app-registration',
-    templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
-    title = 'Registratie Formulier';
+export class RegistrationComponent implements OnInit {
+  title = 'Registratie';
+  error = false;
+  submitted = false;
+  user = new Registration('', '', '', '');
 
-    submitted = false;
+  constructor(private httpClient: HttpClient, private router: Router, private registrationService: RegistrationService, private titleService: Title) {
+  }
 
-    user = new Registration('', '', '');
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
+  }
 
-    constructor(private router: Router) {
-    }
+  onSubmit() {
+    this.register();
+  }
 
-    onSubmit() {
-        this.submitted = true;
-        setTimeout(() => this.router.navigate(['login']), 5000);
-    }
-
-    register() {
-    }
-
-    newUser() {
-        this.user = new Registration('', '','');
-    }
+  register() {
+    this.registrationService.register(this.user).subscribe(data => {
+      if (data.token != null) {
+        localStorage.setItem('token', data.token);
+        this.router.navigate(['overzicht/rekeningen']);
+      }
+    }, err => {
+      this.error = true;
+    });
+  }
 }
+
+

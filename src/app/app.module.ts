@@ -1,44 +1,96 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
-import {InloggenComponent} from './login/inloggen.component';
+import {LoginComponent} from './login/login.component';
 import {RekeningoverzichtComponent} from './rekeningoverzicht/rekeningoverzicht.component';
 import {TransactieoverzichtComponent} from './transactieoverzicht/transactieoverzicht.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {RekeningComponent} from './rekening/rekening.component';
-import {HttpClientModule} from '@angular/common/http';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './service/in-memory-data.service';
-import { TransactionComponent } from './transaction/transaction.component';
-import { AddBankComponent } from './add-bank/add-bank.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TransactionComponent} from './transaction/transaction.component';
+import {AddBankComponent} from './add-bank/add-bank.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {RekeningSettingsComponent} from './rekening-settings/rekening-settings.component';
+import {TransferComponent} from './transfer/transfer.component';
+import {AngularIbanModule} from 'angular-iban';
+import {InstellingenComponent} from './instellingen/instellingen.component';
+import {TransactionCategorizeComponent} from './transaction-categorize/transaction-categorize.component';
+import {ConfigService} from './service/config/config.service';
+import {catchError, map} from 'rxjs/operators';
+import {Observable, ObservableInput, of} from 'rxjs';
+import { StatisticsComponent } from './statistics/statistics.component';
+import {GoogleChartsModule} from 'angular-google-charts';
+import { InsightsComponent } from './insights/insights.component';
+import { RekeningInsightsComponent } from './rekening-insights/rekening-insights.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
+  return (): Promise<boolean> => {
+    return new Promise<boolean>((resolve: (a: boolean) => void): void => {
+      http.get('./assets/config.json')
+        .pipe(
+          map((x: ConfigService) => {
+            config.apiBaseUrl = x.apiBaseUrl;
+            resolve(true);
+          }),
+          catchError((x: { status: number }, caught: Observable<void>): ObservableInput<{}> => {
+            if (x.status !== 404) {
+              resolve(false);
+            }
+            config.apiBaseUrl = 'http://localhost:8080';
+            resolve(true);
+            return of({});
+          })
+        ).subscribe();
+    });
+  };
+}
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        InloggenComponent,
-        RegistrationComponent,
-        RekeningoverzichtComponent,
-        TransactieoverzichtComponent,
-        RekeningComponent,
-        TransactionComponent,
-        AddBankComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(
-            InMemoryDataService, {dataEncapsulation: false, delay: 500}
-        ),
-        RouterModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegistrationComponent,
+    RekeningoverzichtComponent,
+    TransactieoverzichtComponent,
+    RekeningComponent,
+    TransactionComponent,
+    AddBankComponent,
+    RekeningSettingsComponent,
+    TransferComponent,
+    InstellingenComponent,
+    TransactionCategorizeComponent,
+    StatisticsComponent,
+    InsightsComponent,
+    RekeningInsightsComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule,
+    NgxSpinnerModule,
+    AngularIbanModule,
+    ReactiveFormsModule,
+    GoogleChartsModule,
+    BrowserAnimationsModule
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: load,
+      deps: [
+        HttpClient,
+        ConfigService
+      ],
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent],
 })
-
 export class AppModule {
 }

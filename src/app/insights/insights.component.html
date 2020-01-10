@@ -1,0 +1,108 @@
+<div class="mt-3 container">
+  <div id="row">
+    <h1>Inzichten</h1>
+    <p>Hieronder staat een inschatting van de inkomsten en uitgaven van volgende maand.</p>
+    <form><p><i>Kies hoe u de inschattingen wilt sorteren: </i>
+
+      <input [(ngModel)]="filter" type="radio" name="filter" value="bedrag" (click)="getAllInsights()"> Inkomsten en
+      uitgaven
+      <input [(ngModel)]="filter" type="radio" name="filter" value="rekening" (click)="getInsightsPerAcc()"> Rekening
+    </p></form>
+    <p *ngIf="!isLoading">Totaal geschatte inkomsten: € {{income | number : "1.2-2"}}
+      <br>Totaal geschatte uitgaven: € {{expenses | number : "1.2-2"}}
+    </p>
+    <div class="col-sm-12">
+
+      <ngx-spinner *ngIf="isLoading"
+                   bdColor="#ffffff"
+                   size="default"
+                   color="#000000"
+                   type="ball-pulse"
+                   style="position: center"
+                   [fullScreen]="false"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
+      </ngx-spinner>
+    </div>
+    <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
+    <div class="col-sm-12">
+      <div *ngIf="filter == 'bedrag'">
+        <div *ngFor="let e of transactions; index as i" class="overflow-auto">
+          <h5 *ngIf="i == 0">Inkomsten</h5>
+          <h5 *ngIf="i == 1">Uitgaven</h5>
+          <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Eigen rekening</th>
+              <th scope="col">Naam</th>
+              <th scope="col">IBAN</th>
+              <th scope="col">Bedrag</th>
+              <th scope="col">Datum</th>
+              <th scope="col">Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of transactions[i]">
+              {{getEigenRekening(t)}}
+              {{getTegenRekening(t)}}
+              <td><small>{{rekening.iban}}</small><br>{{rekening.name}}</td>
+              <td>{{tegenrekening.name}}</td>
+              <td>{{tegenrekening.iban}}</td>
+              <td [class.text-danger]="!t.received && t.amount > 0">
+                <div *ngIf="t.amount > 0">{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
+                <div *ngIf="t.amount <= 0">N.v.t.</div>
+              </td>
+              <td>
+                <div *ngIf="t.date != undefined">{{t.date}}</div>
+                <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
+              </td>
+              <td>{{t.type}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div *ngIf="filter == 'rekening'">
+        <div *ngFor="let a of accounts; index as i;">
+          <h5 *ngIf="!isLoading && collections[i].transactions[0].amount > 0">
+            {{a.name}} / {{a.iban}}<br></h5>
+          <!--<p class="row" *ngIf="collections[i] == undefined || collections[i] == null || collections[i].transactions.length <= 0 && !isLoading">-->
+          <!--Er kunnen geen inschattingen gemaakt worden voor deze rekening.<br></p>-->
+
+
+          <div *ngIf="collections[i] != undefined && collections[i] != null && collections[i].transactions.length > 0
+                && collections[i].transactions[0].amount > 0">
+            <table class="table table-bordered">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col">Naam</th>
+                <th scope="col">IBAN</th>
+                <th scope="col">Bedrag</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Type</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let t of collections[i].transactions">
+                {{getTegenRekening(t)}}
+                <td>{{tegenrekening.name}}</td>
+                <td>{{tegenrekening.iban}}</td>
+                <td [class.text-danger]="!t.received && t.amount > 0">
+                  <div>{{t.received ? "+" : "-"}} € {{t.amount | number : "1.2-2"}}</div>
+                </td>
+                <td>
+                  <div *ngIf="t.date != undefined">{{t.date}}</div>
+                  <div *ngIf="t.date == undefined || !t.booked && booked != undefined">-</div>
+                </td>
+                <td>{{t.type}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

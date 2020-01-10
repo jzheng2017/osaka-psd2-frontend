@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary mt-4" (click)="back()">Ga terug</button>
+      <h1>Statistieken transacties</h1>
+      <div class="alert alert-danger text-center margin-top-40" *ngIf="isLoading === undefined">Er is iets fouts
+        gegaan.
+      </div>
+      <div class="text-center" *ngIf="isLoading">Gegevens worden opgehaald...</div>
+      <div class="text-center" *ngIf="!isLoading && !hasTransactions">Er zijn geen
+        transacties
+      </div>
+      <div class="mt-4" *ngIf="isLoading === false">
+        <div *ngFor="let chart of charts">
+          <google-chart *ngIf="chart.data && chart.data.length > 0" style="width:100%" [title]="chart.settings.title"
+                        [dynamicResize]="chart.settings.dynamicResize" [type]="chart.settings.type"
+                        [data]="chart.data"></google-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
