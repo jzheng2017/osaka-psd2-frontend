@@ -1,10 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {LoginRequest} from '../../login/dto/loginrequest';
-import {Login} from '../../login/dto/login';
 import {GetUserRequest} from "../../login/dto/getuserrequest";
-import {getToken} from "codelyzer/angular/styles/cssLexer";
 
 @Injectable({
     providedIn: 'root'
