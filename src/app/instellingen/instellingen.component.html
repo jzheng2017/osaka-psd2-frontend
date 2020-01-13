@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-        <br>
-        <div *ngIf="error && !isLoading"
-             class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
-            {{error}} Probeer het opnieuw.
-        </div>
+      <br>
+      <div *ngIf="error && !isLoading"
+           class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
+        {{error}} Probeer het opnieuw.
+      </div>
       <div class="card margin-top-40-sm-and-up margin-bottom-20">
         <div class="card-body">
           <h3>Instellingen</h3>
@@ -23,22 +23,23 @@
           <h5>Gekoppelde rekeningen</h5>
           <div *ngIf="isLoading && !error" style="position: relative">
             <ngx-spinner
+              [fullScreen]="false"
               bdColor="#ffffff"
-              size="default"
               color="#000000"
-              type="ball-pulse"
+              size="default"
               style="position: center"
-              [fullScreen]="false"><p>Rekeningen worden opgehaald.<br><br></p>
+              type="ball-pulse"><p>Rekeningen worden opgehaald.<br><br></p>
             </ngx-spinner>
           </div>
           <br>
-          <div class="text-center" *ngIf="!isLoading && !error && accounts.length <= 0">Er zijn geen rekeningen gekoppeld aan dit
+          <div *ngIf="!isLoading && !error && accounts.length <= 0" class="text-center">Er zijn geen rekeningen
+            gekoppeld aan dit
             account.
           </div>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let account of accounts">
+            <li *ngFor="let account of accounts" class="list-group-item">
               <span>Koppeling: {{account.bank}} </span>
-              <button type="button" class="btn btn-outline-primary float-right" (click)="disconnectAccount(account.id)">
+              <button (click)="disconnectAccount(account.id)" class="btn btn-outline-primary float-right" type="button">
                 Ontkoppel
               </button>
             </li>

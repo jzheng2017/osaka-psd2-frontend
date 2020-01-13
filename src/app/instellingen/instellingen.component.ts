@@ -12,7 +12,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class InstellingenComponent implements OnInit {
   isLoading = true;
-  user: User;
+  user = new User('', '');
   accounts: Account[];
   error = '';
 

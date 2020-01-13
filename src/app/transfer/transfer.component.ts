@@ -4,6 +4,7 @@ import {Rekening} from '../rekening/dto/rekening';
 import {RekeningService} from '../service/banks/rekening.service';
 import {Location} from '@angular/common';
 import {TransactionService} from '../service/banks/transaction.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-transfer',
@@ -12,16 +13,19 @@ import {TransactionService} from '../service/banks/transaction.service';
 })
 export class TransferComponent implements OnInit {
 
-  public transfer = new Transfer({iban: ''}, {iban: '', name: ''}, 0, '', '');
+  public transfer = new Transfer(null, {iban: '', name: ''}, 0, 'EUR', '');
   rekeningen: Rekening[];
   selectedRekening = {iban: '', tableId: ''};
   isLoading = true;
   transfered = undefined;
 
-  constructor(private rekeningService: RekeningService, private transactionService: TransactionService, private location: Location) {
+  constructor(private rekeningService: RekeningService, private transactionService: TransactionService, private location: Location, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    if (this.route.snapshot.queryParamMap.get('success') === 'true') {
+      this.transfered = true;
+    }
     this.getRekeningen();
   }
 
@@ -37,8 +41,7 @@ export class TransferComponent implements OnInit {
   }
 
   onSubmit() {
-    this.transfer.sender.iban = this.selectedRekening.iban;
-    this.transactionService.createTransaction(this.transfer, this.selectedRekening.tableId)
+    this.transactionService.createTransaction(this.transfer, this.transfer.sender.tableId)
       .subscribe(response => {
           return window.location.href = response.url;
         },

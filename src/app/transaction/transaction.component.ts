@@ -16,6 +16,7 @@ export class TransactionComponent implements OnInit {
   accountid: any;
   btwPercentages: string[];
   btwTarief = '21';
+
   constructor(private location: Location, private activatedRoute: ActivatedRoute, private transactionService: TransactionService, private btwPercentagesService: BTWPercentagesService) {
   }
 
@@ -35,13 +36,17 @@ export class TransactionComponent implements OnInit {
   back() {
     this.location.back();
   }
+
   onSubmit() {
     this.transactionService.updateTransaction(this.transaction).subscribe(() => this.location.back());
   }
 
   getBTWPercentages() {
     // Stel BTW tarief vast vanauit de Front-End
-    this.btwPercentagesService.getBTWPercentages().subscribe(percentages =>{ this.btwPercentages = percentages; console.log(percentages)});
+    this.btwPercentagesService.getBTWPercentages().subscribe(percentages => {
+      this.btwPercentages = percentages;
+      console.log(percentages);
+    });
   }
 }
 

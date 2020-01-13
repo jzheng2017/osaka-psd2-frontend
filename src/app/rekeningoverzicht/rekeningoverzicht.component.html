@@ -25,13 +25,13 @@
 
     <form class="col-sm-12 margin-bottom-20" (ngSubmit)="onSubmit()" #formCategory="ngForm" *ngIf="categories">
       <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-12 col-md-10">
           <select class="form-control" [(ngModel)]="selectedCategory.id" id="categoryId" name="categoryId">
             <option value="0">-- Alle categorieën --</option>
             <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-12 col-md-2 mt-sm-3 mt-md-0">
           <input type="submit" [disabled]="!formCategory.valid" class="btn btn-primary btn-block" value="Filteren">
         </div>
       </div>
@@ -40,7 +40,7 @@
 
 
     <div class="col-sm-12">
-      <div *ngIf="Status && !isLoading"
+      <div *ngIf="status && !isLoading"
            class="offset-sm-3 col-sm-6 alert-danger card align-content-center">
           ({{status}}) Er is een fout opgetreden. Probeer het opnieuw.
       </div>
@@ -76,7 +76,6 @@
                               data-toggle="dropdown" aria-haspopup="true"
                               aria-expanded="false">Acties
                       </button>
-                      <div class="dropodown">
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <a class="dropdown-item"
                              [routerLink]="['/rekening', rekening.id, 'details', rekening.tableId]">Bekijk rekening</a>
@@ -84,7 +83,6 @@
                           <a class="dropdown-item" [routerLink]="['/statistieken', rekening.id, 'tableId', rekening.tableId]">Statistieken</a>
                           <a class="dropdown-item" [routerLink]="['/inzichten', rekening.id, rekening.iban, rekening.tableId]">Inzichten</a>
                         </div>
-                      </div>
                     </div>
                   </div>
                 </div>

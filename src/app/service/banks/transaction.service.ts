@@ -32,9 +32,9 @@ export class TransactionService {
   }
 
   getTransaction(id: string, tableid: string, transactieid: string) {
-      const token = localStorage.getItem('token');
-      const url = `${this.apiUrl}/accounts/${id}/${transactieid}/details?token=${token}&tableid=${tableid}`;
-      return this.http.get<Transaction>(url);
+    const token = localStorage.getItem('token');
+    const url = `${this.apiUrl}/accounts/${id}/${transactieid}/details?token=${token}&tableid=${tableid}`;
+    return this.http.get<Transaction>(url);
   }
 
   updateTransaction(transaction: Transaction) {

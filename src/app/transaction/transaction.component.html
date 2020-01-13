@@ -1,69 +1,72 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <button class="btn btn-primary margin-bottom-20 margin-top-40-sm-and-up" (click)="back()">Ga terug</button>
-        </div>
-        <div class="col-sm-12">
-            <h2>Transactie</h2>
-            <div class="card">
-
-                <div class="card-header text-center">
-                    <b>{{transaction.sender.iban}}</b> naar <b>{{transaction.receiver.iban}}</b>
-                </div>
-
-              <form class="col-sm-12" #formBTW="ngForm" *ngIf="btwPercentages">
-                <div class="row">
-                  <div class="form-group col-sm-12">
-                    <div>
-                      <span>BTW tarief</span><br>
-                      <select class="form-control" [(ngModel)]="btwTarief" id="btwTarief" name="btwTarief">
-                        <option *ngFor="let btwPercentage of btwPercentages" value="{{btwPercentage}}">{{btwPercentage}}% BTW</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-
-                <div class="card-body row">
-                    <div class="col-sm-12">
-
-                        <b>Categorie:</b>
-                        <span *ngIf="transaction.category.name == null"> Nog niet gecategoriseerd.</span>
-                        <span *ngIf="transaction.category.name">{{transaction.category.name}}</span>
-                        <br>
-                        <b>Transactie ID:</b> {{transaction.id}}
-                        <br>
-                        <b>Datum:</b>
-                        <span *ngIf="transaction.date == null"> Nog niet overgeboekt.</span>
-                        <span *ngIf="transaction.date"> {{transaction.date}}</span>
-                        <br>
-                        <p *ngIf="btwTarief != 0"><b>Bedrag </b>Incl. BTW: &euro;{{transaction.amount}} Excl. BTW: &euro;{{transaction.amount / (100 + (+btwTarief)) * 100 | number: "1.2-2"}}</p>
-                        <p *ngIf="btwTarief == 0"><b>Bedrag </b>Excl. BTW: &euro;{{transaction.amount}}</p>
-                    </div>
-                    <form #commentForm="ngForm" class="col-sm-12" (ngSubmit)="onSubmit()">
-                        <div class="row">
-                            <div class="col-sm-12 form-group">
-                                <label for="comment"><b>Opmerking</b></label>
-                                <textarea class="form-control" name="comment" [(ngModel)]="transaction.comment"
-                                          id="comment"></textarea>
-                            </div>
-                            <div class="col-sm-12 form-group">
-                                <input type="submit" class="btn btn-primary float-right" value="Opslaan">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="col-sm-12 form-group">
-                        <h4>Categoriseer de transactie:</h4>
-                        <button class="btn btn-primary"
-                                [routerLink]="['/transactie', transaction.id, tableId, 'categorize']"
-                                [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}">
-                            Categoriseer
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button (click)="back()" class="btn btn-primary margin-bottom-20 margin-top-40-sm-and-up">Ga terug</button>
     </div>
+    <div class="col-sm-12">
+      <h2>Transactie</h2>
+      <div class="card">
+
+        <div class="card-header text-center">
+          <b>{{transaction.sender.iban}}</b> naar <b>{{transaction.receiver.iban}}</b>
+        </div>
+
+        <form #formBTW="ngForm" *ngIf="btwPercentages" class="col-sm-12">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <div>
+                <span>BTW tarief</span><br>
+                <select [(ngModel)]="btwTarief" class="form-control" id="btwTarief" name="btwTarief">
+                  <option *ngFor="let btwPercentage of btwPercentages" value="{{btwPercentage}}">{{btwPercentage}}%
+                    BTW
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+        <div class="card-body row">
+          <div class="col-sm-12">
+
+            <b>Categorie:</b>
+            <span *ngIf="transaction.category.name == null"> Nog niet gecategoriseerd.</span>
+            <span *ngIf="transaction.category.name">{{transaction.category.name}}</span>
+            <br>
+            <b>Transactie ID:</b> {{transaction.id}}
+            <br>
+            <b>Datum:</b>
+            <span *ngIf="transaction.date == null"> Nog niet overgeboekt.</span>
+            <span *ngIf="transaction.date"> {{transaction.date}}</span>
+            <br>
+            <p *ngIf="btwTarief != 0"><b>Bedrag </b>Incl. BTW: &euro;{{transaction.amount}} Excl. BTW:
+              &euro;{{transaction.amount / (100 + (+btwTarief)) * 100 | number: "1.2-2"}}</p>
+            <p *ngIf="btwTarief == 0"><b>Bedrag </b>Excl. BTW: &euro;{{transaction.amount}}</p>
+          </div>
+          <form #commentForm="ngForm" (ngSubmit)="onSubmit()" class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-12 form-group">
+                <label for="comment"><b>Opmerking</b></label>
+                <textarea [(ngModel)]="transaction.comment" class="form-control" id="comment"
+                          name="comment"></textarea>
+              </div>
+              <div class="col-sm-12 form-group">
+                <input class="btn btn-primary btn-block-sm float-right" type="submit" value="Opslaan">
+              </div>
+            </div>
+          </form>
+          <div class="col-sm-12 form-group">
+            <h4>Categoriseer de transactie:</h4>
+            <button [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}"
+                    [routerLink]="['/transactie', transaction.id, tableId, 'categorize']"
+                    class="btn btn-primary">
+              Categoriseer
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
