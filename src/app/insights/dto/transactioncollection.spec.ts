@@ -1,4 +1,4 @@
-import { Transactioncollection } from './transactioncollection';
+import {Transactioncollection} from './transactioncollection';
 import {Transaction} from '../../transaction/dto/transaction';
 
 describe('Transactioncollection', () => {

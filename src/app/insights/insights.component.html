@@ -2,24 +2,29 @@
   <div id="row">
     <h1>Inzichten</h1>
     <p>Hieronder staat een inschatting van de inkomsten en uitgaven van volgende maand.</p>
-    <form><p><i>Kies hoe u de inschattingen wilt sorteren: </i>
-
-      <input [(ngModel)]="filter" type="radio" name="filter" value="bedrag" (click)="getAllInsights()"> Inkomsten en
-      uitgaven
-      <input [(ngModel)]="filter" type="radio" name="filter" value="rekening" (click)="getInsightsPerAcc()"> Rekening
-    </p></form>
+    <form><i>Kies hoe u de inschattingen wilt sorteren: </i>
+      <ul class="list-unstyled">
+        <li><input (click)="getAllInsights()" [(ngModel)]="filter" name="filter" type="radio" value="bedrag"> Inkomsten
+          en
+          uitgaven
+        </li>
+        <li><input (click)="getInsightsPerAcc()" [(ngModel)]="filter" name="filter" type="radio" value="rekening">
+          Rekening
+        </li>
+      </ul>
+    </form>
     <p *ngIf="!isLoading">Totaal geschatte inkomsten: € {{income | number : "1.2-2"}}
       <br>Totaal geschatte uitgaven: € {{expenses | number : "1.2-2"}}
     </p>
     <div class="col-sm-12">
 
       <ngx-spinner *ngIf="isLoading"
+                   [fullScreen]="false"
                    bdColor="#ffffff"
-                   size="default"
                    color="#000000"
-                   type="ball-pulse"
+                   size="default"
                    style="position: center"
-                   [fullScreen]="false"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
+                   type="ball-pulse"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
       </ngx-spinner>
     </div>
     <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->

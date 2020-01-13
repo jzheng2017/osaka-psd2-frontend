@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { BTWPercentagesService } from './btwpercentages.service';
+import {BTWPercentagesService} from './btwpercentages.service';
 import {HttpClientModule} from '@angular/common/http';
 
 describe('BTWPercentagesService', () => {

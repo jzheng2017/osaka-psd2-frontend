@@ -6,31 +6,31 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('TransactionComponent', () => {
-    let component: TransactionComponent;
-    let fixture: ComponentFixture<TransactionComponent>;
-    let httpMock: HttpClientTestingModule;
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                TransactionComponent,
-            ],
-            imports: [
-                FormsModule,
-                RouterTestingModule,
-                HttpClientTestingModule
-            ],
-        })
-            .compileComponents();
-    }));
+  let component: TransactionComponent;
+  let fixture: ComponentFixture<TransactionComponent>;
+  let httpMock: HttpClientTestingModule;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        TransactionComponent,
+      ],
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+    })
+      .compileComponents();
+  }));
 
-    beforeEach(() => {
-        httpMock = TestBed.get(HttpClientTestingModule);
-        fixture = TestBed.createComponent(TransactionComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+  beforeEach(() => {
+    httpMock = TestBed.get(HttpClientTestingModule);
+    fixture = TestBed.createComponent(TransactionComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    // it('should create', () => {
-        // expect(component).toBeTruthy();
-    // });
+  // it('should create', () => {
+  // expect(component).toBeTruthy();
+  // });
 });

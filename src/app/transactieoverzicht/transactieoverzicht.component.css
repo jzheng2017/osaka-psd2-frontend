@@ -20,19 +20,19 @@ p {
   margin: 0;
 }
 
-#overzichtContainer{
+#overzichtContainer {
   padding: 5rem;
   display: block;
   margin: 0 auto;
   max-width: 80rem;
 }
 
-.bedrag{
+.bedrag {
   margin-right: 100px;
 
 }
 
-.yellow-mark{
+.yellow-mark {
   border-left: 5px solid yellow;
 }
 

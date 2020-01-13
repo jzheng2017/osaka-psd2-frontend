@@ -50,10 +50,10 @@ export class AddBankComponent implements OnInit {
   }
 
   getBanks() {
-      this.rekeningService.getBanks().subscribe(data => {
-          this.banks = data;
-          console.log(this.banks);
-      });
+    this.rekeningService.getBanks().subscribe(data => {
+      this.banks = data;
+      console.log(this.banks);
+    });
   }
 
   getConnections() {

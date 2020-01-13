@@ -21,10 +21,10 @@ import {TransactionCategorizeComponent} from './transaction-categorize/transacti
 import {ConfigService} from './service/config/config.service';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, ObservableInput, of} from 'rxjs';
-import { StatisticsComponent } from './statistics/statistics.component';
+import {StatisticsComponent} from './statistics/statistics.component';
 import {GoogleChartsModule} from 'angular-google-charts';
-import { InsightsComponent } from './insights/insights.component';
-import { RekeningInsightsComponent } from './rekening-insights/rekening-insights.component';
+import {InsightsComponent} from './insights/insights.component';
+import {RekeningInsightsComponent} from './rekening-insights/rekening-insights.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
