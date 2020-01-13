@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InsightsService} from '../service/banks/insights.service';
 import {ActivatedRoute} from '@angular/router';
 import {Rekening} from '../rekening/dto/rekening';
@@ -16,7 +16,8 @@ export class RekeningInsightsComponent implements OnInit {
   private tegenrekening;
   private isLoading = true;
 
-  constructor(private insightsService: InsightsService, private activatedRoute: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  constructor(private insightsService: InsightsService, private activatedRoute: ActivatedRoute, private spinner: NgxSpinnerService) {
+  }
 
   ngOnInit() {
     this.spinner.show();
@@ -31,18 +32,18 @@ export class RekeningInsightsComponent implements OnInit {
     this.rekening = new Rekening(id, tableid, iban, '', 0, '');
     this.insightsService.getInsightsOfAccount(this.rekening, token).subscribe(data => {
       // @ts-ignore
-        this.transactions = data.mixedExpected;
-        this.isLoading = false;
+      this.transactions = data.mixedExpected;
+      this.isLoading = false;
     });
   }
 
-    getTegenRekening(t: Transaction) {
-        if (t.received) {
-            this.tegenrekening = t.sender;
-        } else if (!t.received) {
-            this.tegenrekening = t.receiver;
-        }
+  getTegenRekening(t: Transaction) {
+    if (t.received) {
+      this.tegenrekening = t.sender;
+    } else if (!t.received) {
+      this.tegenrekening = t.receiver;
     }
+  }
 
 
 }

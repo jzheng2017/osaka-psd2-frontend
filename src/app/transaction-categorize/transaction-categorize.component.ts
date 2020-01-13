@@ -59,7 +59,7 @@ export class TransactionCategorizeComponent implements OnInit {
   categorize(request: CategorizeRequest) {
     this.transactionService.categorizeTransaction(request)
       .subscribe(response => {
-        alert('De aangegeven transactie is succesvol gemarkeerd!')
+        alert('De aangegeven transactie is succesvol gemarkeerd!');
         this.back();
       }, err => {
         console.log(err);

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <form class="offset-sm-3 col-sm-6" #formSettings="ngForm" (ngSubmit)="onSubmit()">
-      <a class="btn btn-primary margin-top-40-sm-and-up text-white" (click)="back()">Ga terug</a>
+    <form #formSettings="ngForm" (ngSubmit)="onSubmit()" class="offset-sm-3 col-sm-6">
+      <a (click)="back()" class="btn btn-primary margin-top-40-sm-and-up text-white">Ga terug</a>
       <h1>Instellingen</h1>
       <div class="row">
 
@@ -9,30 +9,31 @@
           <h4>Rekening categorie</h4>
           <p>Deze rekening: Geen categorie</p>
 
-            <h5><i>Kies hoe u wilt categoriseren</i></h5>
-            <input [(ngModel)]="option" type="radio" name="option" value="categorize"> Bestaande categorie
-            <input [(ngModel)]="option" type="radio" name="option" value="new"> Nieuwe categorie <br><br>
+          <h5><i>Kies hoe u wilt categoriseren</i></h5>
+          <input [(ngModel)]="option" name="option" type="radio" value="categorize"> Bestaande categorie
+          <input [(ngModel)]="option" name="option" type="radio" value="new"> Nieuwe categorie <br><br>
 
-            <div *ngIf="option == 'categorize'">
+          <div *ngIf="option == 'categorize'">
             <h5>Gebruik een bestaande categorie voor deze rekening</h5>
 
             <select [(ngModel)]="categoryId" name="categoryChoose">
-                <option [value]=""></option>
-                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+              <option [value]=""></option>
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
-            </div>
+          </div>
 
-            <div *ngIf="option == 'new'">
-          <h5>Maak een eigen categorie voor deze rekening</h5>
+          <div *ngIf="option == 'new'">
+            <h5>Maak een eigen categorie voor deze rekening</h5>
 
-          <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
-          <input type="text" class="form-control" id="customCategory" name="customCategory" placeholder="Vul hier in"
-                 [(ngModel)]="settings.name" #customCategory="ngModel">
-            </div>
+            <small>Bijvoorbeeld: Schoolgeld kinderen, Pensioen</small>
+            <input #customCategory="ngModel" [(ngModel)]="settings.name" class="form-control" id="customCategory" name="customCategory"
+                   placeholder="Vul hier in" type="text">
+          </div>
         </div>
 
         <div class="col-sm-12 form-group">
-          <input type="submit" class="btn btn-primary float-right btn-block-sm margin-top-10" [disabled]="!formSettings.valid" value="Opslaan">
+          <input [disabled]="!formSettings.valid" class="btn btn-primary float-right btn-block-sm margin-top-10"
+                 type="submit" value="Opslaan">
         </div>
       </div>
     </form>

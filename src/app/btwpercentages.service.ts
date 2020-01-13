@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from './service/config/config.service';
 
@@ -7,7 +7,9 @@ import {ConfigService} from './service/config/config.service';
 })
 export class BTWPercentagesService {
   private apiUrl = this.configService.apiBaseUrl;
-  constructor(private httpClient: HttpClient, private configService: ConfigService) { }
+
+  constructor(private httpClient: HttpClient, private configService: ConfigService) {
+  }
 
   public getBTWPercentages() {
     const getBTWPercentagesUrl = `${this.apiUrl}/btw/getpercentages`;

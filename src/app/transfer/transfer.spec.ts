@@ -1,4 +1,4 @@
-import { Transfer } from './transfer';
+import {Transfer} from './transfer';
 
 describe('Transfer', () => {
   it('should create an instance', () => {

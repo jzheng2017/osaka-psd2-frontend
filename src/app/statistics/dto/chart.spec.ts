@@ -1,4 +1,4 @@
-import { Chart } from './chart';
+import {Chart} from './chart';
 import {ChartSettings} from './chart-settings';
 
 describe('Chart', () => {
