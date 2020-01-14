@@ -15,7 +15,7 @@ export class AddBankComponent implements OnInit {
   private connectUrl = `${this.configService.apiBaseUrl}/connect`;
 
   private allowedConnections;
-  private limitReached;
+  private canConnect;
   private isLoading = true;
 
   private banks;
@@ -50,16 +50,15 @@ export class AddBankComponent implements OnInit {
   }
 
   getBanks() {
-      this.rekeningService.getBanks().subscribe(data => {
-          this.banks = data;
-          console.log(this.banks);
-      });
+    this.rekeningService.getBanks().subscribe(data => {
+      this.banks = data;
+    });
   }
 
   getConnections() {
     this.rekeningService.getConnections().subscribe(connections => {
       this.allowedConnections = connections.allowedConnections;
-      this.limitReached = connections.limitReached;
+      this.canConnect = connections.canConnect;
       this.isLoading = false;
     }, err => {
       console.log(err);

@@ -1,12 +1,8 @@
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {Transactioncollection} from '../../insights/dto/transactioncollection';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from '../config/config.service';
-import {async} from 'q';
 import {RekeningService} from './rekening.service';
 import {Rekening} from '../../rekening/dto/rekening';
-import {Transaction} from '../../transaction/dto/transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +10,8 @@ import {Transaction} from '../../transaction/dto/transaction';
 export class InsightsService {
   private apiUrl = this.configService.apiBaseUrl;
 
-  constructor(private rekeningService: RekeningService, private httpClient: HttpClient, private configService: ConfigService) { }
+  constructor(private rekeningService: RekeningService, private httpClient: HttpClient, private configService: ConfigService) {
+  }
 
 
   getAllInsights() {

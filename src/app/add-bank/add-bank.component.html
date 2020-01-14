@@ -4,38 +4,36 @@
       <button (click)="back()" class="btn btn-primary margin-top-40-sm-and-up">Ga terug</button>
     </div>
 
-    <div class="row">
-      <div class="offset-sm-3 col-sm-6">
-        <h2>Bankaccount koppelen</h2>
+    <div class="offset-sm-3 col-sm-6">
+      <h2>Bankaccount koppelen</h2>
 
-        <ngx-spinner *ngIf="isLoading"
-                     bdColor="#ffffff"
-                     size="default"
-                     color="#000000"
-                     type="ball-pulse"
-                     style="position: center"
-                     [fullScreen]="false"><p style="position: relative; top: 30px">Bankkoppelingen worden opgehaald.</p>
-        </ngx-spinner>
+      <ngx-spinner *ngIf="isLoading"
+                   [fullScreen]="false"
+                   bdColor="#ffffff"
+                   color="#000000"
+                   size="default"
+                   style="position: center"
+                   type="ball-pulse"><p style="position: relative; top: 30px">Bankkoppelingen worden opgehaald.</p>
+      </ngx-spinner>
 
-        <p *ngIf="limitReached; else attach_form" class="font-italic">Je kunt maximaal {{ allowedConnections }}
-          bankaccounts koppelen, je hebt deze limiet bereikt.</p>
+      <p *ngIf="!canConnect; else attach_form" class="font-italic">Je kunt maximaal {{ allowedConnections }}
+        bankaccounts koppelen, je hebt deze limiet bereikt.</p>
 
-        <ng-template #attach_form>
-          <form #addBankForm="ngForm" (ngSubmit)="onSubmit(addBankForm.value.bank)">
-            <div class="form-group">
-              <label for="bank">Selecteer uw bank:</label>
-              <select class="form-control" id="bank" name="bank" ngModel required>
-                <option value="" disabled>-- Kies een bank --</option>
-                <option *ngFor="let b of banks"  value="{{b}}">{{b}}</option>
-              </select>
-            </div>
+      <ng-template #attach_form>
+        <form #addBankForm="ngForm" (ngSubmit)="onSubmit(addBankForm.value.bank)">
+          <div class="form-group">
+            <label for="bank">Selecteer uw bank:</label>
+            <select class="form-control" id="bank" name="bank" ngModel required>
+              <option disabled value="">-- Kies een bank --</option>
+              <option *ngFor="let b of banks" value="{{b}}">{{b}}</option>
+            </select>
+          </div>
 
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary" [disabled]="!addBankForm.valid" value="">Koppel</button>
-            </div>
-          </form>
-        </ng-template>
-      </div>
+          <div class="form-group">
+            <button [disabled]="!addBankForm.valid" class="btn btn-primary" type="submit" value="">Koppel</button>
+          </div>
+        </form>
+      </ng-template>
     </div>
   </div>
 </div>

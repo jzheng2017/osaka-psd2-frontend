@@ -13,19 +13,13 @@ export class RekeningComponent implements OnInit {
   account = {iban: '', balance: 0, type: ''};
   isLoading = true;
 
-  constructor(private activtedRoute: ActivatedRoute, private location: Location, private rekeningService: RekeningService) {
+  constructor(private activtedRoute: ActivatedRoute, private location: Location) {
   }
 
   ngOnInit() {
-    // this.getRekening(+this.activtedRoute.snapshot.paramMap.get('id'));
+
   }
 
-  // getRekening(id: number) {
-  //     this.rekeningService.getRekening(id).subscribe(rekening => {
-  //         this.rekening = rekening;
-  //         this.isLoading = false;
-  //     });
-  // }
 
   back() {
     this.location.back();

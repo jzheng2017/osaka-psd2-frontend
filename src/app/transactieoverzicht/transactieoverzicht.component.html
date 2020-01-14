@@ -1,58 +1,60 @@
 <h2>Transacties</h2>
-<div class="margin-bottom-20">
-    <button (click)="back()" class="btn btn-primary">Ga terug</button>
+<div class="mb-2">
+  <button (click)="back()" class="btn btn-primary">Ga terug</button>
 </div>
 
-<!--<div *ngIf="status && !isLoading"-->
-<!--     class="offset-sm-3 col-sm-6 alert-danger card align-content-center">-->
-<!--    ({{status}}) Er is een fout opgetreden. Probeer het opnieuw.-->
-<!--</div>-->
 <br>
 
 <ngx-spinner *ngIf="isLoading"
+             [fullScreen]="false"
              bdColor="#ffffff"
-             size="default"
              color="#000000"
-             type="ball-pulse"
+             size="default"
              style="position: center"
-             [fullScreen]="false"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p>
+             type="ball-pulse"><p style="position: relative; top: 30px">Transacties worden opgehaald.</p>
 </ngx-spinner>
 
 <div *ngIf="!isLoading">
-    <div *ngIf="!isLoading && !transactions">Deze rekening heeft geen transacties.</div>
-    <ul class="list-group">
-        <li [ngStyle]="{'border-left': ' 4px solid ' + transaction.category.color} " *ngFor="let transaction of transactions" class="list-group-item {{transaction.mark}}">
-            <div class="row">
-                <div class="col-sm-12">
-                    <small *ngIf="!transaction.booked">Nog niet overgeboekt.</small>
-                    <small *ngIf="transaction.booked" class="font-italic">{{transaction.date}}</small>
-                </div>
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6">
-                          <div class="font-weight-bold">{{ getAccountFromTransaction(transaction).name === undefined ? "Onbekend" : getAccountFromTransaction(transaction).name}}</div>
-                          <div>{{ getAccountFromTransaction(transaction).iban }}</div>
-                          <div class="font-weight-bold" >{{transaction.category.name}}</div>
-                        </div>
-                        <div class="col-sm-3">
-                          Bedrag: {{transaction.received ? "+" : "-"}} <span [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
-                        </div>
-                        <div class="col-sm-1"><i class="far fa-file-alt" title="Deze transactie heeft een bijlage" *ngIf="transaction.comment"></i></div>
-                        <div class="col-sm-12 col-md-2 text-right">
-                          <button class="btn btn-primary dropdown-toggle" type="button"
-                                  id="dropdownMenuButton"
-                                  data-toggle="dropdown" aria-haspopup="true"
-                                  aria-expanded="false">Acties</button>
-                          <div class="dropodown">
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" [routerLink]="['/transactie', accountid,  transaction.id, tableId, 'details']">Bekijk transactie</a>
-                              <a class="dropdown-item" [routerLink]="['/transactie', transaction.id, tableId, 'categorize']" [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}">Categoriseer</a>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                </div>
+  <div *ngIf="!isLoading && !transactions">Deze rekening heeft geen transacties.</div>
+  <ul class="list-group">
+    <li *ngFor="let transaction of transactions"
+        [ngStyle]="{'border-left': ' 4px solid ' + transaction.category.color} " class="list-group-item {{transaction.marFk}}">
+      <div class="row">
+        <div class="col-sm-12">
+          <small *ngIf="!transaction.booked">Nog niet overgeboekt.</small>
+          <small *ngIf="transaction.booked" class="font-italic">{{transaction.date}}</small>
+        </div>
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <div
+                class="font-weight-bold">{{ getAccountFromTransaction(transaction).name === undefined ? "Onbekend" : getAccountFromTransaction(transaction).name}}</div>
+              <div>{{ getAccountFromTransaction(transaction).iban }}</div>
+              <div class="font-weight-bold">{{transaction.category.name}}</div>
             </div>
-        </li>
-    </ul>
+            <div class="col-sm-3">
+              Bedrag: {{transaction.received ? "+" : "-"}} <span
+              [class.text-danger]="transaction.received == false">€ {{transaction.amount | number : "1.2-2"}}</span>
+            </div>
+            <div class="col-sm-1"><i *ngIf="transaction.comment" class="far fa-file-alt"
+                                     title="Deze transactie heeft een bijlage"></i></div>
+            <div class="col-sm-12 col-md-2 text-right">
+              <button aria-expanded="false" aria-haspopup="true"
+                      class="btn btn-primary dropdown-toggle"
+                      data-toggle="dropdown" id="dropdownMenuButton"
+                      type="button">Acties
+              </button>
+                <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                  <a [routerLink]="['/transactie', accountid,  transaction.id, tableId, 'details']"
+                     class="dropdown-item">Bekijk
+                    transactie</a>
+                  <a [queryParams]="{iban:transaction.receiver.iban, name:transaction.receiver.name}" [routerLink]="['/transactie', transaction.id, tableId, 'categorize']"
+                     class="dropdown-item">Categoriseer</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

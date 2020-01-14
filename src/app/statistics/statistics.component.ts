@@ -56,7 +56,6 @@ export class StatisticsComponent implements OnInit {
     return this.groupTransactionBy('receiver', arr);
   }
 
-  // grootste spaghetti code dat ik ooit heb geschreven, maar het werkt
   groupTransactionBy(filterBy: string, array: any) {
     let mappedArray;
 

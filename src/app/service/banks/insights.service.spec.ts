@@ -1,9 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { InsightsService } from './insights.service';
+import {InsightsService} from './insights.service';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
-import {NgxSpinnerModule} from 'ngx-spinner';
 
 describe('InsightsService', () => {
   beforeEach(() => TestBed.configureTestingModule({

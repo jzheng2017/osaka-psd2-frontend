@@ -3,7 +3,7 @@
     <div *ngIf="submitted" class="col-sm-12 alert alert-success">
       Je bent nu geregistreerd. Je wordt in een ogenblik gestuurd naar een nieuwe pagina.
     </div>
-    <form class="offset-sm-3 col-sm-6 margin-top-40" #registrationForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #registrationForm="ngForm" (ngSubmit)="onSubmit()" class="offset-sm-3 col-sm-6 margin-top-40">
       <div class="row">
         <div class="col-sm-12 form-group">
           <h2>Registreren</h2>
@@ -11,13 +11,13 @@
           <div *ngIf="error" class="alert alert-danger">
             <ul class="margin-bottom-0 list-unstyled">
               <li> Er is een fout opgetreden.</li>
-               <li>Probeer het opnieuw.</li>
+              <li>Probeer het opnieuw.</li>
             </ul>
           </div>
           <label for="name">Naam</label>
-          <input type="text" class="form-control" id="name" name="name"
-                 [(ngModel)]="user.name"
-                 placeholder="Naam" required="true" #name="ngModel">
+          <input #name="ngModel" [(ngModel)]="user.name" class="form-control" id="name"
+                 name="name"
+                 placeholder="Naam" required="true" type="text">
           <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
             <li *ngIf="name.errors.required">Naam is verplicht</li>
           </div>
@@ -25,9 +25,9 @@
         </div>
         <div class="col-sm-12 form-group">
           <label for="email">E-mailadres</label>
-          <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email"
-                 aria-describedby="emailHelp"
-                 placeholder="E-mail" required email #email="ngModel">
+          <input #email="ngModel" [(ngModel)]="user.email" aria-describedby="emailHelp" class="form-control" email
+                 id="email"
+                 name="email" placeholder="E-mail" required type="email">
           <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
             <li *ngIf="email.errors.required">E-mail is verplicht</li>
             <li *ngIf="email.errors.email">E-mail is ongeldig</li>
@@ -36,9 +36,9 @@
         </div>
         <div class="col-sm-12 form-group">
           <label for="password">Wachtwoord</label>
-          <input type="password" class="form-control" id="password" name="password"
-                 [(ngModel)]="user.password"
-                 placeholder="Wachtwoord" required="true" #password="ngModel" minlength="8">
+          <input #password="ngModel" [(ngModel)]="user.password" class="form-control" id="password"
+                 minlength="8"
+                 name="password" placeholder="Wachtwoord" required="true" type="password">
           <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
             <li *ngIf="password.errors.required">Wachtwoord is verplicht</li>
             <li *ngIf="password.errors.minlength">Wachtwoord moet uit
@@ -49,19 +49,19 @@
 
         <div class="col-sm-12 form-group">
           <label for="confirm_password">Bevestig wachtwoord</label>
-          <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                 [(ngModel)]="user.confirmPassword"
-                 placeholder="Bevestig wachtwoord" required #confirmPassword="ngModel"
-                 pattern="{{password.value}}">
+          <input #confirmPassword="ngModel" [(ngModel)]="user.confirmPassword" class="form-control" id="confirm_password"
+                 name="confirm_password"
+                 pattern="{{password.value}}" placeholder="Bevestig wachtwoord" required
+                 type="password">
           <div *ngIf="confirmPassword.invalid && confirmPassword.dirty" class="alert alert-danger">
             <li *ngIf="confirmPassword.errors.required">Bevestig wachtwoord is verplicht</li>
             <li *ngIf="confirmPassword.errors.pattern">Wachtwoorden moeten overeenkomen</li>
           </div>
         </div>
         <div class="col-sm-12 form-group">
-          <input type="submit" class="btn btn-primary float-right btn-block-sm"
-                 value="Maak account aan"
-                 [disabled]="!registrationForm.valid">
+          <input [disabled]="!registrationForm.valid" class="btn btn-primary float-right btn-block-sm"
+                 type="submit"
+                 value="Maak account aan">
         </div>
       </div>
     </form>

@@ -1,3 +1,6 @@
-@media all and (max-width:768px) {
-    .btn-block-sm { width: 100%; display:block; }
+@media all and (max-width: 768px) {
+  .btn-block-sm {
+    width: 100%;
+    display: block;
+  }
 }

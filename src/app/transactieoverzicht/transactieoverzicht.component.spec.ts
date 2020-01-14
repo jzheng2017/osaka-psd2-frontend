@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TransactieoverzichtComponent } from './transactieoverzicht.component';
+import {TransactieoverzichtComponent} from './transactieoverzicht.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -12,7 +12,7 @@ describe('TransactieoverzichtComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransactieoverzichtComponent ],
+      declarations: [TransactieoverzichtComponent],
       imports: [
         NgxSpinnerModule,
         BrowserAnimationsModule,
