@@ -21,9 +21,9 @@
                    type="ball-pulse"><p style="position: relative; top: 30px">Inzichten worden opgehaald</p>
       </ngx-spinner>
     </div>
-    <!--<div class="text-center" *ngIf="!isLoading && accounts.length && !status">Er zijn geen rekeningen gekoppeld aan dit account.</div>-->
+
     <div class="col-sm-12">
-      <div *ngIf="filter == 'bedrag'">
+      <div *ngIf="filter == bedragFilter">
         <div *ngFor="let e of transactions; index as i" class="overflow-auto">
           <h5 *ngIf="i == 0">Inkomsten</h5>
           <h5 *ngIf="i == 1">Uitgaven</h5>
@@ -61,7 +61,7 @@
 
       </div>
 
-      <div *ngIf="filter == 'rekening'">
+      <div *ngIf="filter == rekeningFilter">
         <div *ngFor="let a of accounts; index as i;">
           <h5 *ngIf="!isLoading && collections[i].transactions[0].amount > 0">
             {{a.name}} / {{a.iban}}<br></h5>
