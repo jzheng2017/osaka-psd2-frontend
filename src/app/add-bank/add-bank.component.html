@@ -16,7 +16,7 @@
                    type="ball-pulse"><p style="position: relative; top: 30px">Bankkoppelingen worden opgehaald.</p>
       </ngx-spinner>
 
-      <p *ngIf="limitReached; else attach_form" class="font-italic">Je kunt maximaal {{ allowedConnections }}
+      <p *ngIf="!canConnect; else attach_form" class="font-italic">Je kunt maximaal {{ allowedConnections }}
         bankaccounts koppelen, je hebt deze limiet bereikt.</p>
 
       <ng-template #attach_form>
