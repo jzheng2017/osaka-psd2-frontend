@@ -58,7 +58,7 @@ export class AddBankComponent implements OnInit {
   getConnections() {
     this.rekeningService.getConnections().subscribe(connections => {
       this.allowedConnections = connections.allowedConnections;
-      this.canConnect = connections.limitReached;
+      this.canConnect = connections.canConnect;
       this.isLoading = false;
     }, err => {
       console.log(err);
