@@ -27,7 +27,7 @@
     "angular-in-memory-web-api": "^0.9.0",
     "bootstrap": "^4.4.1",
     "iban": "0.0.12",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-animate": "^0.3.4",
     "ngx-spinner": "^8.1.0",
     "ngx-teximate": "^0.3.0",
